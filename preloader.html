@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plate of Africa - Preloader</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Main content placeholder (just for demo) */
+        .main-content {
+            padding: 2rem;
+            text-align: center;
+            display: none; /* Hidden initially, shown after preloader */
+        }
+        
+        /* Preloader container */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #050505; /* Changed from #f5f5f5 to dark gray */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        /* Animation container */
+        .animation-container {
+            position: relative;
+            width: 80vmin;
+            height: 80vmin;
+            max-width: 500px;
+            max-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px; /* For 3D transforms */
+            transform-style: preserve-3d; /* Added to properly handle 3D transforms */
+            transition: transform 0.5s ease-in-out; /* Add transition for direct style changes */
+        }
+        
+        /* SVG elements styling */
+        .svg-element {
+            position: absolute;
+            opacity: 0; /* Hidden initially */
+            transform-origin: center;
+            transform-style: preserve-3d; /* Added to ensure elements inherit parent transforms */
+        }
+        
+        /* Base plate styling */
+        #base-plate {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(1.5) translateY(50vh); /* Start at 150% size and below viewport */
+            z-index: 1;
+        }
+        
+        /* Gold ring styling */
+        #gold-ring {
+            width: 75%; /* 70vmin / 80vmin = 87.5% of container */
+            height: 75%;
+            opacity: 0;
+            z-index: 2;
+            
+            /* Removed clip-path animation since we're using SVG mask */
+        }
+        
+        /* Text elements styling */
+        .text-element {
+            opacity: 0;
+            z-index: 5;
+            will-change: transform; /* Helps with animation performance */
+            transform-style: preserve-3d; /* Ensure text maintains 3D positioning */
+        }
+        
+        #text-plate {
+            width: 30%; /* 30vmin / 80vmin = 37.5% of container */
+            height: auto;
+            top: 6%;
+            left: 8.5%;
+            rotate: -3deg;
+            /* Increased from 10% to move it more to the right */
+        }
+        
+        #text-of {
+            width: 12%; /* 15vmin / 80vmin = 18.75% of container */
+            height: auto;
+            top: 3%;
+            left: 42.5%;
+        }
+        
+        #text-africa-word {
+            width: 33%; /* 30vmin / 80vmin = 37.5% of container */
+            height: auto;
+            top: 5%;
+            right: 8.5%;
+            rotate: 1deg;
+        }
+        
+        /* Leaves styling */
+        .leaves {
+            opacity: 0;
+            z-index: 4;
+        }
+        
+        #leaves-left {
+            width: 20%; /* 20vmin / 80vmin = 25% of container */
+            height: auto;
+            left: 0%;
+            top: 30%;
+        }
+        
+        #leaves-right {
+            width: 20%; /* 20vmin / 80vmin = 25% of container */
+            height: auto;
+            position: absolute; /* Add this to ensure it uses absolute positioning */
+            top: 30%; 
+            right: 0%;
+            /* rotate: ...; */
+        }
+        
+        #leaves-bottom {
+            width: 45%;
+            height: auto;
+
+        }
+        
+        /* Africa continent styling */
+        #continent-africa {
+            width: 50%; /* 40vmin / 80vmin = 50% of container */
+            height: auto;
+            opacity: 0;
+            z-index: 3;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+        
+        /* Flame styling */
+        #flame {
+            width: 100%; /* 20vmin / 80vmin = 25% of container */
+            height: auto;
+            bottom: 2.5%;
+            opacity: 0;
+            z-index: 6;
+            left: 50%;
+            
+        }
+        
+        /* Animation keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes scaleUp {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        
+        @keyframes moveUp {
+            from { transform: scale(1.5) translateY(50vh); }
+            to { transform: scale(1) translateY(0); } /* Centered in viewport */
+        }
+        
+        @keyframes slideInFromLeft {
+            0% { transform: translateX(-50px) scale(0.8); opacity: 0; }
+            100% { transform: translateX(0) scale(1); opacity: 1; }
+        }
+        
+        @keyframes drawRing {
+            0% {
+                opacity: 1;
+                clip-path: inset(100% 0 0 0); /* Hidden - full inset from top */
+            }
+            10% {
+                clip-path: inset(90% 0 0 0); /* Show bottom 10% */
+            }
+            20% {
+                clip-path: inset(80% 0 0 0); /* Show bottom 20% */
+            }
+            30% {
+                clip-path: inset(70% 0 0 0); /* Show bottom 30% */
+            }
+            40% {
+                clip-path: inset(60% 0 0 0); /* Show bottom 40% */
+            }
+            50% {
+                clip-path: inset(50% 0 0 0); /* Show bottom 50% */
+            }
+            60% {
+                clip-path: inset(40% 0 0 0); /* Show bottom 60% */
+            }
+            70% {
+                clip-path: inset(30% 0 0 0); /* Show bottom 70% */
+            }
+            80% {
+                clip-path: inset(20% 0 0 0); /* Show bottom 80% */
+            }
+            90% {
+                clip-path: inset(10% 0 0 0); /* Show bottom 90% */
+            }
+            100% {
+                clip-path: inset(0% 0 0 0); /* Show full ring */
+            }
+        }
+        
+       
+    
+        
+        @keyframes leavesGrow {
+            0% { opacity: 0; transform: scale(0); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes leavesBottomGrow {
+            0% { opacity: 0; transform: translateX(-50%) scale(0); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1); }
+        }
+        
+        @keyframes continentAppear {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        @keyframes flameAnimation {
+            0% { transform: translateX(-50%) scale(0.8) translateY(10px); opacity: 0; }
+            20% { transform: translateX(-50%) scale(0.9) translateY(5px); opacity: 0.5; }
+            40% { transform: translateX(-50%) scale(1.1) translateY(0); opacity: 0.8; }
+            60% { transform: translateX(-50%) scale(1) translateY(-5px); opacity: 1; }
+            80% { transform: translateX(-50%) scale(1.1) translateY(-8px); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1) translateY(-10px); opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        @keyframes fillRing {
+            0% {
+                offset: 0%;
+            }
+            100% {
+                offset: 100%;
+            }
+        }
+        
+        #animatedStop, #animatedStop2 {
+            animation: fillRing 1.6s ease-in-out forwards;
+        }
+        
+        /* Animation classes */
+        .base-plate-intro {
+            animation: fadeIn 0.2s ease-out forwards, 
+                       moveUp 0.8s ease-out forwards; /* Was 1.3s */
+        }
+        
+        .text-appear {
+            animation: slideInFromLeft 0.5s ease-out forwards; /* Was 0.8s */
+        }
+        
+        .leaves-grow {
+            animation: leavesGrow 0.3s ease-out forwards; /* Was 0.5s */
+        }
+        
+        .leaves-bottom-grow {
+            animation: leavesBottomGrow 0.5s ease-out forwards;
+        }
+        
+        .plate-turn {
+            animation: plateTurn 1s ease-in-out forwards !important; /* Added !important to ensure animation takes precedence */
+        }
+        
+        .continent-appear {
+            animation: continentAppear 0.6s ease-out forwards; /* Was 1s */
+        }
+        
+        .flame-ignite {
+            animation: flameAnimation 0.8s ease-out forwards; /* Was 1.5s */
+        }
+        
+        .preloader-fade {
+            animation: fadeOut 0.5s ease-in-out forwards;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .animation-container {
+                width: 90vmin;
+                height: 90vmin;
+            }
+        }
+        
+        @keyframes textPulse {
+            0% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(0) scale(1.05); }
+            100% { transform: translateX(0) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="animation-container">
+            <!-- Base plate -->
+            <img id="base-plate" class="svg-element" src="assets/base_plate.svg" alt="Base Plate">
+            
+            <!-- Gold ring -->
+            <object id="gold-ring" class="svg-element" data="assets/gold_ring.svg?v=2" type="image/svg+xml"></object>
+            
+            <!-- Text elements -->
+            <img id="text-plate" class="svg-element text-element" src="assets/text_plate.svg" alt="PLATE">
+            <img id="text-of" class="svg-element text-element" src="assets/text_of.svg" alt="OF">
+            <img id="text-africa-word" class="svg-element text-element" src="assets/text_africa.svg" alt="AFRICA">
+            
+            <!-- Leaves -->
+            <img id="leaves-left" class="svg-element leaves" src="assets/leaves_left.svg" alt="Left Leaves">
+            <img id="leaves-right" class="svg-element leaves" src="assets/leaves_right.svg" alt="Right Leaves">
+            
+            <img id="leaves-bottom" class="svg-element leaves" src="assets/leaves_bottom.svg" alt="Bottom Leaves">
+            
+            
+            <!-- Africa continent -->
+            <img id="continent-africa" class="svg-element" src="assets/continent_africa.svg" alt="Africa Continent">
+            
+        
+            <img id="flame" class="svg-element" src="assets/flame.svg" alt="Flame">
+           
+        </div>
+    </div>
+    
+    <!-- Main content (just for demo) -->
+    <div class="main-content">
+        <h1>Welcome to Plate of Africa</h1>
+        <p>The main content of the website would appear here after the preloader animation completes.</p>
+    </div>
+    
+    <script>
+        // Wait for all assets to load before starting animation
+        window.addEventListener('load', function() {
+            // Get all elements
+            const preloader = document.getElementById('preloader');
+            const basePlate = document.getElementById('base-plate');
+            const goldRing = document.getElementById('gold-ring');
+            const textPlate = document.getElementById('text-plate');
+            const textOf = document.getElementById('text-of');
+            const textAfrica = document.getElementById('text-africa-word');
+            const leavesLeft = document.getElementById('leaves-left');
+            const leavesRight = document.getElementById('leaves-right');
+            const leavesBottom = document.getElementById('leaves-bottom');
+            const continentAfrica = document.getElementById('continent-africa');
+            const flame = document.getElementById('flame');
+            const mainContent = document.querySelector('.main-content');
+            
+            // Animation sequence timing (in milliseconds)
+            const timings = {
+                basePlateIntro: 0,
+                goldRingAppear: 1000,
+                textPlateAppear: 1700,
+                textOfAppear: 2050,
+                textAfricaAppear: 2250,
+                leavesAppear: 2400,
+                continentAppear: 2800,
+                flameIgnite: 3300,
+                preloaderFade: 4200
+            };
+            
+            // Animation sequence
+            
+            // Scene 1: Base Plate Introduction
+            setTimeout(() => {
+                basePlate.style.opacity = '1';
+                basePlate.classList.add('base-plate-intro');
+            }, timings.basePlateIntro);
+            
+            // Scene 2: Gold Ring Appearance
+            setTimeout(() => {
+                goldRing.style.opacity = '1';
+                goldRing.classList.add('gold-ring-appear');
+                
+                // Start the SVG animation after it appears
+                // For <object> tags, we need to wait for the load event
+                const triggerSVGAnimation = () => {
+                    try {
+                        const svgDoc = goldRing.contentDocument;
+                        if (svgDoc) {
+                            const animation1 = svgDoc.getElementById('fillAnimation');
+                            const animation2 = svgDoc.getElementById('fillAnimation2');
+                            if (animation1) animation1.beginElement();
+                            if (animation2) animation2.beginElement();
+                            console.log("SVG animations triggered");
+                        } else {
+                            console.log("SVG document not accessible");
+                        }
+                    } catch(e) {
+                        console.log("Error accessing SVG animation:", e);
+                    }
+                };
+                
+                // If SVG is already loaded, trigger the animation
+                if (goldRing.contentDocument && goldRing.contentDocument.readyState === 'complete') {
+                    triggerSVGAnimation();
+                } else {
+                    // Otherwise wait for it to load
+                    goldRing.addEventListener('load', triggerSVGAnimation);
+                }
+            }, timings.goldRingAppear);
+            
+            // Scene 3: Text "PLATE" and Top Leaves
+            setTimeout(() => {
+                textPlate.classList.add('text-appear');
+            }, timings.textPlateAppear);
+            
+            // Then the OF text appears
+            setTimeout(() => {
+                textOf.classList.add('text-appear');
+            }, timings.textOfAppear);
+            
+            // Scene 5: Text "AFRICA" appears
+            setTimeout(() => {
+                textAfrica.classList.add('text-appear');
+            }, timings.textAfricaAppear);
+            
+            // Scene 6: Left Leaf appears
+            setTimeout(() => {
+                leavesLeft.classList.add('leaves-grow');
+            }, timings.leavesAppear);
+            
+            setTimeout(() => {
+                leavesRight.classList.add('leaves-grow');
+            }, timings.leavesAppear); 
+            
+            setTimeout(() => {
+                leavesBottom.classList.add('leaves-grow');
+            }, timings.leavesAppear);
+            
+            // Scene 7: Africa Continent Silhouette
+            setTimeout(() => {
+                continentAfrica.classList.add('continent-appear');
+            }, timings.continentAppear);
+            
+            // Scene 8: Flame Ignition
+            setTimeout(() => {
+                flame.classList.add('flame-ignite');
+            }, timings.flameIgnite);
+            
+            // Scene 8: Preloader Completion & Fade Out
+            setTimeout(() => {
+                preloader.classList.add('preloader-fade');
+                
+                // After fade out, hide preloader and show main content
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    mainContent.style.display = 'block';
+                }, 500);
+            }, timings.preloaderFade);
+        });
+    </script>
+</body>
+</html>

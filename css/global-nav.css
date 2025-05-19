@@ -1,0 +1,219 @@
+/* 
+ * global-nav.css
+ * Global navigation styles that apply to all pages
+ * These styles have high specificity to override any conflicting styles
+ */
+
+/* Ensure the navbar has the correct base styling */
+.navbar.navbar-expand-lg {
+    position: fixed !important;
+    width: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 2.5% !important;
+    transition: all 0.3s ease !important;
+    background-color: rgba(15, 15, 15, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Styling for scrolled state - will be applied via JavaScript */
+.navbar.navbar-expand-lg.scrolled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Styling for hidden state - will be applied via JavaScript */
+.navbar.navbar-expand-lg.hidden {
+    transform: translateY(-100%) !important;
+}
+
+/* Navigation links */
+.navbar.navbar-expand-lg .nav-link {
+    font-family: "Poppins" !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    color: white !important;
+    margin: 0 5px !important;
+    position: relative !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+    padding: 5px 5px !important;
+}
+
+.navbar.navbar-expand-lg .nav-link:hover {
+    color: #e0bc6b !important;
+}
+
+.navbar.navbar-expand-lg .nav-link::after {
+    content: '' !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 2px !important;
+    background: linear-gradient(90deg, #f7efc1 0%, #e0bc6b 100%) !important;
+    bottom: -5px !important;
+    left: 0 !important;
+    transition: width 0.3s ease !important;
+}
+
+.navbar.navbar-expand-lg .nav-link:hover::after {
+    width: 100% !important;
+}
+
+/* Style for active page link */
+.navbar.navbar-expand-lg .nav-link.active {
+    color: #e0bc6b !important;
+}
+
+.navbar.navbar-expand-lg .nav-link.active::after {
+    content: '' !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: 2px !important;
+    background: linear-gradient(90deg, #f7efc1 0%, #e0bc6b 100%) !important;
+    bottom: -5px !important;
+    left: 0 !important;
+}
+
+/* Contact button styling */
+.navbar.navbar-expand-lg .logbutton {
+    background: linear-gradient(90deg, #f7efc1 0%, #e0bc6b 100%) !important;
+    color: #0f0f0f !important;
+    border: none !important;
+    border-radius: 30px !important;
+    padding: 10px 25px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+}
+
+.navbar.navbar-expand-lg .logbutton:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 5px 15px rgba(224, 188, 107, 0.4) !important;
+    color: #0f0f0f !important; /* Maintain dark text on hover */
+}
+
+/* Fix for Contact Us button link */
+.navbar.navbar-expand-lg a.contact-link {
+    text-decoration: none !important;
+    margin-left: 15px !important;
+}
+
+.navbar.navbar-expand-lg a.contact-link:hover, 
+.navbar.navbar-expand-lg a.contact-link:focus, 
+.navbar.navbar-expand-lg a.contact-link:active {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.navbar.navbar-expand-lg .contact-link .btn:hover {
+    color: #0f0f0f !important;
+}
+
+/* Mobile menu toggle */
+.navbar.navbar-expand-lg .navbar-toggler {
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
+    transition: all 0.3s ease !important;
+    padding: 4px 8px !important;
+}
+
+.navbar.navbar-expand-lg .navbar-toggler:hover {
+    border-color: #e0bc6b !important;
+    box-shadow: 0 0 10px rgba(224, 188, 107, 0.7) !important;
+}
+
+/* Container width fix */
+.navbar.navbar-expand-lg .container-fluid {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+/* Logo styling */
+.navbar.navbar-expand-lg .navbar-brand img {
+    max-height: 60px !important;
+    width: auto !important;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .navbar.navbar-expand-lg .navbar-collapse {
+        background-color: rgba(15, 15, 15, 0.95) !important;
+        padding: 15px !important;
+        border-radius: 10px !important;
+        margin-top: 10px !important;
+        max-width: 100% !important;
+    }
+    
+    .navbar.navbar-expand-lg .nav-link {
+        padding: 8px 0 !important;
+        margin: 3px 5px !important;
+        font-size: 15px !important;
+    }
+    
+    .navbar.navbar-expand-lg .navbar-nav {
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+    
+    .navbar.navbar-expand-lg .logbutton {
+        padding: 8px 15px !important;
+        font-size: 14px !important;
+        margin-top: 10px !important;
+    }
+}
+
+@media (max-width: 1050px) {
+    .navbar.navbar-expand-lg {
+        padding: 8px 2% !important;
+    }
+    
+    .navbar.navbar-expand-lg .logbutton {
+        padding: 6px 12px !important;
+        font-size: 13px !important;
+    }
+    
+    .navbar.navbar-expand-lg .nav-link {
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar.navbar-expand-lg .navbar-brand img {
+        max-height: 50px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar.navbar-expand-lg {
+        padding: 5px 1.5% !important;
+    }
+    
+    .navbar.navbar-expand-lg .logbutton {
+        padding: 5px 10px !important;
+        font-size: 12px !important;
+    }
+    
+    .navbar.navbar-expand-lg .navbar-brand img {
+        max-height: 40px !important;
+    }
+    
+    .navbar.navbar-expand-lg .navbar-toggler {
+        padding: 3px 6px !important;
+    }
+    
+    .navbar.navbar-expand-lg .navbar-toggler-icon {
+        width: 1em !important;
+        height: 1em !important;
+    }
+} 

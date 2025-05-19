@@ -1,0 +1,673 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('/assets//fonts/gilroy//Gilroy-Regular.ttf') format('woff2');
+}
+
+
+.heroContainer {
+    background: #0f0f0f;
+    padding: 40px 10px 0 10px;
+    width: 100%;
+}
+
+
+.welcome-heading {
+    font-family: 'Gilroy';
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 54.47px;
+    text-align: center;
+    color: #FFFFFF;
+
+}
+
+
+.enjoyText {
+    width: 100%;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 15px auto 0 auto;
+    max-width: 722px;
+}
+
+.sumaryMainOuter {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+
+}
+
+.sumaryMain {
+    display: flex;
+    padding-right: 30px;
+    border-right: 1px solid #FFFFFF38;
+    flex-direction: column;
+    min-width: 631px;
+}
+
+.summaryText {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 45px;
+    margin-left: 20px;
+    color: #FFFFFF;
+}
+
+.productMainOuter {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.productListing-Image {
+    width: 17px;
+    height: 17px;
+}
+
+.productMainSection {
+    display: flex;
+    padding-bottom: 20px;
+    width: 100%;
+    max-width: 610px;
+    border-bottom: 1px solid #FFFFFF38;
+    gap: 15px;
+}
+
+.productImg {
+    width: 150px;
+}
+
+.productNameouter {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+}
+
+.productName {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: #FFFFFF;
+}
+
+.productDetailText {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19.6px;
+    color: #FFFFFF;
+    margin-top: 7px;
+}
+
+.productDetailSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.priceSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+.priceText {
+    font-family: "Poppins";
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 42px;
+    color: #E0BC6B;
+
+}
+
+.selectedNumber {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.minusDiv,
+.plusDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #FFFFFF;
+    width: 25px;
+    height: 25px;
+    color: #FFFFFF;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.cursorClass {
+    cursor: pointer;
+}
+
+
+.SelectedDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #FFFFFF;
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(90deg, #F7EFC1 0%, #E0BC6B 100%);
+    color: black;
+    border-radius: 50%;
+}
+
+.orderSectionOuter {
+    width: 100%;
+    max-width: 551px;
+    border: 1px solid #E0BC6B;
+    padding: 20px 10px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ordertEXT {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 45px;
+    color: #FFFFFF;
+
+}
+
+.productLisOuter {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    gap: 10px;
+}
+
+.liberianText {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: #FFFFFF;
+}
+
+.abountTxet {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: #E0BC6B;
+    margin-right: 10px;
+}
+
+.totalASection {
+    border-top: 1px solid #FFFFFF38;
+    border-bottom: 1px solid #FFFFFF38;
+}
+
+.paytext {
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 20px;
+}
+
+.payBtnsouter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.paypalBtnImg {
+    width: 110px;
+}
+
+.cashBtn {
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16.98px;
+    border: 0.79px solid #FFFFFF;
+    border-radius: 6px;
+    background: none;
+    height: 36px;
+    color: #FFFFFF;
+    width: 140px;
+}
+
+.OtherBtn {
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16.98px;
+    border: 0.79px solid #FFFFFF;
+    border-radius: 6px;
+    background: none;
+    height: 36px;
+    color: #FFFFFF;
+    width: 110px;
+}
+
+
+.visaSection,
+.payPalSection {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+    background: #FFFFFF0D;
+    border-radius: 29px;
+    margin-top: 20px;
+}
+
+.cardHolderText {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFFFF;
+    margin-top: 10px;
+}
+
+.cardHolderInput {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19.6px;
+    color: #828282;
+    width: 100%;
+    height: 44px;
+    margin-top: 10px;
+    border: 1px solid #B2BCCA;
+    background: none;
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+.cardHolderInput::placeholder {
+    color: #828282;
+}
+
+.cardexpirySection {
+    display: flex;
+    gap: 10px;
+}
+
+.cardexpirySectionOuter {
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+}
+
+.dicountSection {
+    position: relative;
+    width: 100%;
+}
+
+.cardHolderInput1 {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19.6px;
+    color: #828282;
+    width: 100%;
+    height: 44px;
+    margin-top: 10px;
+    border: 1px solid #B2BCCA;
+    background: none;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 70px;
+}
+
+.applytext {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFDD55;
+    cursor: pointer;
+}
+
+.collectBtns {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+    justify-content: center;
+}
+
+.ClickBtn {
+    font-family: "Poppins";
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 27px;
+    color: black;
+    width: 207px;
+    height: 42px;
+    background: #FFDD55;
+    border: none;
+    border-radius: 6px;
+}
+
+.SkinnyBtn {
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16.98px;
+    text-align: center;
+    color: #FFFFFF;
+    background: none;
+    width: 192px;
+    height: 32px;
+    border: 0.79px solid #FFFFFF;
+    border-radius: 6px;
+}
+
+.checkOutBtn {
+    font-family: "Poppins";
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 27px;
+    color: #1E1E1E;
+    width: 100%;
+    max-width: 412px;
+    background: linear-gradient(90deg, #F7EFC1 0%, #E0BC6B 100%);
+    border: none;
+    border-radius: 24px;
+    height: 44px;
+    margin: 25px auto 0;
+
+}
+
+.BackMenuText {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    color: #5B5B5B;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.orderbgLoweer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.orderPageBg {
+    width: 248px;
+    height: 250px;
+    margin: -20px -30px -100px;
+    position: relative;
+    z-index: 2;
+}
+
+.moveupArrow {
+    width: 64px;
+    position: absolute;
+    z-index: 4;
+    top: 40px;
+    right: 150px;
+}
+
+
+.payPalSection,
+.visaSection {
+    display: none;
+}
+
+.payPalSection.active,
+.visaSection.active {
+    display: block;
+    /* Show the active section */
+}
+
+
+.paypalBtnSelected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 110px;
+    background: #FFDD55;
+    border-radius: 6px;
+    height: 36px;
+    cursor: pointer;
+}
+
+.paypalBtnUnselected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 110px;
+    border-radius: 6px;
+    height: 36px;
+    cursor: pointer;
+    border: 0.79px solid #FFFFFF;
+}
+
+
+/* Hide the white text by default */
+.paypalTextWhite {
+    display: none;
+}
+
+/* Hide the black text when the button is selected */
+.paypalBtnSelected .paypalTextWhite {
+    display: none;
+}
+
+/* Show the white text when the button is selected */
+.paypalBtnSelected .paypalTextBlack {
+    display: inline;
+}
+
+/* Unselected state */
+.paypalBtnUnselected .paypalTextWhite {
+    display: inline;
+}
+
+.paypalBtnUnselected .paypalTextBlack {
+    display: none;
+}
+
+/* Sections */
+.payPalSection,
+.visaSection {
+    display: none;
+    /* Initially hide both sections */
+}
+
+.payPalSection.active,
+.visaSection.active {
+    display: block;
+    /* Show the active section */
+}
+
+
+@media (max-width:1200px) {
+
+    .sumaryMain {
+        min-width: 400px;
+    }
+
+}
+
+
+
+@media (max-width:992px) {
+
+    .welcome-heading {
+        font-size: 30px;
+        line-height: 34.47px;
+    }
+
+
+    .enjoyText {
+        font-size: 14px;
+        line-height: 24px;
+        margin-top: 10px;
+    }
+
+    .sumaryMainOuter {
+        flex-direction: column;
+    }
+
+
+    .productMainSection,
+    .orderSectionOuter {
+        max-width: unset;
+    }
+
+    .productDetailSection {
+        width: 100%;
+    }
+
+}
+
+.no-items-message {
+    margin-left: 20px;
+    color: white;
+}
+
+@media (max-width:576px) {
+
+    .welcome-heading,
+    .summaryText,
+    .ordertEXT {
+        font-size: 26px;
+        line-height: 34.47px;
+    }
+
+
+    .enjoyText {
+        font-size: 13px;
+        line-height: 20px;
+        margin-top: 10px;
+    }
+
+    .productImg {
+        width: 100px;
+        height: 100px;
+    }
+
+    .productName {
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    .productDetailText {
+        font-size: 10px;
+        line-height: 14px;
+    }
+
+    .priceText {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .minusDiv,
+    .plusDiv {
+        width: 15px;
+        height: 15px;
+        font-size: 8px;
+    }
+
+    .SelectedDiv {
+        font-size: 10px;
+        width: 15px;
+        height: 15px
+    }
+
+    .orderSectionOuter {
+        margin: 7px 0;
+    }
+
+
+    .liberianText {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .abountTxet {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .cardHolderText {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+
+    .cardHolderInput {
+        font-size: 12px;
+        line-height: 15.6px;
+        height: 38px;
+        margin-top: 10px;
+    }
+
+    .applytext {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+
+    .paytext {
+        font-size: 17px;
+        line-height: 23px;
+    }
+
+    .ClickBtn {
+        font-size: 14px;
+        line-height: 20px;
+        width: 170px;
+        height: 35px;
+    }
+
+    .SkinnyBtn {
+        font-size: 11px;
+        line-height: 16.98px;
+        width: 152px;
+        height: 28px;
+    }
+
+    .checkOutBtn {
+        font-size: 16px;
+        line-height: 27px;
+        max-width: 350px;
+    }
+
+    .moveupArrow {
+        width: 45px;
+        right: 50px;
+    }
+
+    .sumaryMain {
+        min-width: 100%;
+    }
+
+}

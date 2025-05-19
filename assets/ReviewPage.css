@@ -1,0 +1,1012 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('/assets//fonts/gilroy//Gilroy-Regular.ttf') format('woff2');
+}
+
+
+body {
+    margin-top: 100px;
+}
+
+.heroSection {
+    width: 100%;
+    padding: 10px;
+
+}
+
+.heroInner {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #FFFFFF3D;
+    max-width: 1255px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heroImgSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.mainImgProps {
+    width: 100%;
+    max-width: 580px;
+    border-radius: 16px;
+}
+
+.imagesPOuter {
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+    gap: 10px;
+    /* overflow-x: scroll; */
+}
+
+.imgNeedTo {
+    width: 122px;
+    border-radius: 16px;
+    cursor: pointer;
+
+}
+
+.imgNeedTo.selected {
+    border: 3px solid #E0BC6B
+}
+
+
+.productDetailSection {
+    width: 100%;
+    max-width: 572px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nameSection {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nameText {
+    font-family: 'Gilroy';
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 52px;
+    color: #FFFFFF;
+
+}
+
+.fa-heart {
+    font-size: 24px;
+
+}
+
+.heartOuter {
+    width: 47px;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid #FFFFFF;
+    border-radius: 50%;
+}
+
+.heartInner {
+    width: 20px;
+    height: 18px;
+}
+
+.productprice {
+    font-family: 'Gilroy';
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 56.95px;
+    color: #E1C072;
+    margin-top: 30px;
+}
+
+.productDetail {
+    margin-top: 30px;
+    font-family: "Poppins";
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 27px;
+    color: #FFFFFF;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #FFFFFF3D;
+}
+
+.ingreText {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+    color: #FFFFFF;
+    margin-top: 20px;
+}
+
+.ingreOuter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.okraText {
+    background: #4E442C;
+    border-radius: 37px;
+    padding: 8px;
+    min-width: 123px;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.shippingOuter {
+    display: flex;
+    margin-top: 15px;
+    border: 0.6px solid #FFFFFF33;
+    width: fit-content;
+}
+
+.optionDiv {
+    display: flex;
+    justify-content: center;
+    border-left: 3px solid #FFDD55;
+    align-items: center;
+    gap: 10px;
+    width: 165px;
+    padding: 10px 0;
+}
+
+.shipImg {
+    width: 20px;
+}
+
+.optionText {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16.8px;
+    color: #FFFFFF;
+}
+
+.countSection {
+    margin-top: 20px;
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #FFFFFF3D;
+    cursor: pointer;
+}
+
+.minusDiu {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #393939;
+    color: white;
+    border-top-left-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-right: 1px solid #FFFFFF;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27.5px;
+    height: 41px;
+
+}
+
+.SectedDiu {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #393939;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27.5px;
+    color: white;
+    height: 41px;
+}
+
+.plusDiu {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #393939;
+    color: white;
+    border-top-right-radius: 37px;
+    border-bottom-right-radius: 37px;
+    border-left: 1px solid #FFFFFF;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27.5px;
+    height: 41px;
+}
+
+.cartBtn {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 24px;
+    height: 54px;
+    background: linear-gradient(90deg, #F7EFC1 0%, #E0BC6B 100%);
+    border: none;
+    font-family: "Poppins";
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+.reviewOuter {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    max-width: 1255px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+}
+
+.reviewOuter1 {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    max-width: 1255px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+}
+
+.reviewListSection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.remainHeading {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reviewTextArea {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reviewText {
+    font-family: 'Gilroy';
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 54.47px;
+    color: #FFFFFF;
+}
+
+.showingText {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19.6px;
+
+}
+
+.writeReviewBtn {
+    font-family: "Poppins";
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 27px;
+    color: #1E1E1E;
+    width: 144px;
+    height: 44px;
+    border-radius: 24px;
+    background: linear-gradient(90deg, #F7EFC1 0%, #E0BC6B 100%);
+}
+
+.remainSection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 350px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none;
+    /* Hide scrollbar for IE/Edge */
+    position: relative;
+}
+
+
+.remainSection::-webkit-scrollbar {
+    display: none;
+}
+
+.reviewOuterMain {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 0.6px solid #FFFFFF3D;
+    margin-top: 20px;
+}
+
+.reviewUserSection {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.userNameSection {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.nameMainOuter {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.userName {
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+.reviewStars {
+    width: 96px;
+    height: 16px;
+    margin-top: 5px;
+}
+
+.daysText {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25.6px;
+    color: #8E8F94;
+}
+
+.reviewTextDetail {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25.6px;
+    color: #FFFFFF;
+}
+
+.userImg {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+
+.scrollLine {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 49px;
+    background: white;
+    opacity: 0;
+    /* Hide by default */
+    transition: opacity 0.3s ease;
+    /* Smooth fade-in/out effect */
+}
+
+/* Show the scroll line when the container is scrolled */
+.remainSection:hover .scrollLine {
+    opacity: 1;
+}
+
+.overlayClass {
+    width: 98%;
+    position: absolute;
+    height: 150px;
+    top: -264px;
+    background: linear-gradient(179.85deg, rgba(15, 15, 15, 0) 0.13%, #0F0F0F 97.07%);
+    pointer-events: none;
+
+}
+
+
+.slidSection {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px
+}
+
+
+.sililarText {
+    font-family: 'Gilroy';
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 54.47px;
+    color: #E1C072;
+    text-align: center;
+}
+
+.slidOuter {
+    width: 100%;
+    max-width: 1255px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonial-card {
+    background: #1E1E1E;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: left;
+    color: white;
+    margin: 10px;
+    position: relative;
+    height: 100%;
+    min-height: 350px !important;
+}
+
+.simifood1 {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 26px;
+}
+
+.foofDeatilSection {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.vegtabText {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFDF4;
+
+}
+
+
+.foodPrice {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 42px;
+    color: #FFFDF4;
+
+}
+
+.flavourDeatilSection {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.flavText {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9F9F9F;
+
+}
+
+.slimicardinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+
+.simifood2 {
+    width: 228px;
+    height: 234px;
+}
+
+.bunnyChow {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFDF4;
+}
+
+.bunnyChow1 {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFDF4;
+    margin-top: 10px;
+}
+
+.slick-prev,
+.slick-next {
+    border-radius: 24px;
+    border: 1px solid #e3d17b;
+    background: linear-gradient(90deg, #e3d582 0%, #e6b035 100%) !important;
+    width: 43px !important;
+    height: 263px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slick-prev::before,
+.slick-next::before {
+    font-size: 24px;
+    color: black;
+}
+
+.testimonial-slider {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.slick-prev {
+    left: -46px !important;
+}
+
+.slick-next {
+    right: -46px !important;
+}
+
+
+
+.star-icon {
+    color: #ccc;
+    /* Default color for inactive stars */
+    font-size: 20px;
+}
+
+.star-icon.active {
+    color: #ffcc00;
+    /* Color for active stars */
+}
+
+
+.orderbgLoweer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.moveupArrow {
+    width: 64px;
+    z-index: 4;
+    margin-top: 40px;
+    margin-right: 150px;
+}
+
+
+
+.reviewSection {
+    display: none;
+    position: relative;
+    width: 100%;
+    background: #1E1E1E;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.reviewModal {
+    text-align: center;
+    position: relative;
+    z-index: 22222;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #FFDD55;
+    font-size: 20px;
+    cursor: pointer;
+    border: 1px solid #FFDD55;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.star {
+    font-size: 30px;
+    cursor: pointer;
+    margin: 5px;
+    color: transparent;
+    -webkit-text-stroke: 1px gold;
+    text-stroke: 1px gold;
+    transition: color 0.3s ease;
+}
+
+.star:hover,
+.star.active {
+    color: gold;
+    -webkit-text-stroke: 1px gold;
+    text-stroke: 1px gold;
+}
+
+
+.productListing-Image {
+    cursor: pointer;
+}
+
+
+
+.reviewTextAreaModal {
+    width: 100%;
+    height: 267px;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: #626262;
+
+}
+
+.reviewTextArea::placeholder {
+    color: #626262;
+}
+
+
+
+.sendBtn {
+    display: block;
+    width: 100%;
+    height: 54px;
+    background: linear-gradient(90deg, #F7EFC1 0%, #E0BC6B 100%);
+    border: none;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 24px;
+    margin-top: 20px;
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 27px;
+    color: #232323;
+}
+
+
+.reviewTextModal {
+    font-family: 'Gilroy';
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 54.47px;
+    color: #FFFFFF;
+}
+
+.shareText {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29.71px;
+    font-family: 'Gilroy';
+    margin-top: 10px;
+    color: #B2B2B2;
+
+}
+
+.reviewSuccess {
+    display: none;
+    /* Hidden by default */
+    width: 100%;
+    background: #1E1E1E;
+    padding: 20px;
+    border-radius: 16px;
+    position: relative;
+    min-height: 491px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.sucessmark {
+    width: 90px;
+    height: 90px;
+}
+
+
+.thankuText {
+    font-family: 'Gilroy';
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 54.47px;
+    color: #E1C072;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.forText {
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: #FFFFFF;
+
+}
+
+.reviewModal1 {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 22222;
+    position: relative;
+}
+
+
+
+.reviewModal1 .closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #FFDD55;
+    font-size: 20px;
+    cursor: pointer;
+    border: 1px solid #FFDD55;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width:1400px) {
+    .slidOuter {
+        max-width: 1100px;
+    }
+
+    .testimonial-slider {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+
+@media (max-width:1100px) {
+    .mainImgProps {
+        max-width: 400px;
+    }
+
+    .imgNeedTo {
+        width: 70px;
+    }
+}
+
+
+@media (max-width:992px) {
+
+    .slick-prev,
+    .slick-next {
+        display: none !important;
+    }
+
+    .testimonial-slider {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .heroInner {
+        flex-direction: column;
+        padding-top: 20px;
+    }
+
+    .heroImgSection {
+        align-items: center;
+    }
+
+    .imagesPOuter {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .productDetailSection {
+        max-width: unset;
+        padding: 0 20px;
+    }
+
+
+}
+
+
+
+@media (max-width:576px) {
+
+    .nameText,
+    .reviewText {
+        font-size: 30px;
+        line-height: 35px;
+    }
+
+    .heartOuter {
+        width: 32px;
+        height: 32px;
+    }
+
+    .heartInner {
+        width: 15px;
+        height: 14px;
+    }
+
+    .productprice {
+        font-size: 28px;
+        line-height: 35px;
+        margin-top: 20px;
+    }
+
+    .productDetail {
+        font-size: 14px;
+        line-height: 20px;
+        margin-top: 15px;
+    }
+
+    .ingreText {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .okraText {
+        background: #4E442C;
+        border-radius: 37px;
+        padding: 8px;
+        min-width: 123px;
+        font-family: "Poppins";
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: #FFFFFF;
+        text-align: center;
+    }
+
+    .shippingOuter {
+        flex-wrap: wrap;
+        width: fit-content;
+        border: none;
+    }
+
+    .optionDiv {
+        border: 0.6px solid #FFFFFF33;
+        width: 100%;
+        border-top: 3px solid #FFDD55;
+    }
+
+    .sililarText {
+        font-size: 34px;
+        line-height: 40px;
+    }
+
+    .slidSection {
+        margin-top: 30px;
+    }
+
+    .vegtabText {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+
+    .foodPrice {
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .reviewText {
+        font-size: 30px;
+        line-height: 37px;
+    }
+
+    .showingText {
+        font-size: 10px;
+        line-height: 14px;
+    }
+
+
+    .writeReviewBtn {
+        font-size: 12px;
+        line-height: 20px;
+        width: 100px;
+        height: 38px;
+    }
+
+    .reviewTextDetail {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .shareText {
+        font-size: 18px;
+        line-height: 2px;
+    }
+
+    .reviewTextAreaModal {
+        font-size: 14px;
+        line-height: 20px;
+        height: 200px;
+    }
+
+
+    .reviewSuccess {
+
+        min-height: 300px;
+    }
+
+    .sucessmark {
+        width: 60px;
+        height: 60px;
+    }
+
+    .thankuText {
+        font-size: 30px;
+        line-height: 35px;
+    }
+
+
+    .forText {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .moveupArrow {
+        width: 45px;
+        margin-right: 50px;
+
+    }
+
+
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 749 749">
+  <defs>
+    <linearGradient id="fillGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="white"/>
+      <stop offset="0%" stop-color="white" id="animatedStop">
+        <animate id="fillAnimation" attributeName="offset" values="0;1" dur="1.8s" begin="indefinite" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
+      </stop>
+      <stop offset="0%" stop-color="black" id="animatedStop2">
+        <animate id="fillAnimation2" attributeName="offset" values="0;1" dur="1.8s" begin="indefinite" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
+      </stop>
+      <stop offset="100%" stop-color="black"/>
+    </linearGradient>
+    
+    <mask id="fillMask">
+      <rect x="0" y="0" width="100%" height="100%" fill="url(#fillGradient)"/>
+    </mask>
+    
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+        stroke: url(#linear-gradient-2);
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="561.54" y1="698.44" x2="187.48" y2="50.55" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#e9ab22"/>
+      <stop offset=".24" stop-color="#e9ab22"/>
+      <stop offset=".71" stop-color="#ceb522"/>
+      <stop offset=".84" stop-color="#e9ab22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="561.79" y1="698.88" x2="187.23" y2="50.12" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".29" stop-color="#e9ab22"/>
+      <stop offset=".65" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1" mask="url(#fillMask)">
+    <path class="cls-1" d="M374.54.5h-.04C167.95.5.5,167.95.5,374.5h0c0,206.55,167.45,374,374,374h0c206.55,0,374-167.45,374-374v-.04C748.5,167.93,581.07.5,374.54.5ZM722.5,374.5c0,192.2-155.8,348-348,348h0c-192.19,0-348-155.8-348-348h0C26.5,182.3,182.3,26.5,374.5,26.5h0c192.19,0,348,155.8,348,348h0Z"/>
+  </g>
+</svg>
