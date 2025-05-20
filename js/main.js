@@ -183,6 +183,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuItems = document.querySelectorAll('.menu-item');
   
   if (filterBtns.length && menuItems.length) {
+    // Initially show all items
+    menuItems.forEach(item => {
+      item.style.display = 'block';
+      item.style.opacity = '1';
+      item.style.transform = 'translateY(0)';
+    });
+    
     filterBtns.forEach(btn => {
       btn.addEventListener('click', function() {
         // Remove active class from all buttons
@@ -195,19 +202,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Filter menu items
         menuItems.forEach(item => {
-          if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+          const category = item.getAttribute('data-category');
+          
+          if (filterValue === 'all' || category === filterValue) {
+            // Show matching items
             item.style.display = 'block';
-            
-            // Add a small animation
             setTimeout(() => {
               item.style.opacity = '1';
               item.style.transform = 'translateY(0)';
             }, 50);
           } else {
+            // Hide non-matching items
             item.style.opacity = '0';
             item.style.transform = 'translateY(20px)';
             
-            // Hide after animation completes
             setTimeout(() => {
               item.style.display = 'none';
             }, 300);
