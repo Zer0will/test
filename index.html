@@ -1,2808 +1,654 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="assets/images/logo.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Add theme-color for mobile browser chrome styling -->
-  <meta name="theme-color" content="#0f0f0f">
-  <!-- Add apple-mobile-web-app-capable for iOS web app feel -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>Plate of Africa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plate of Africa - Vegan/Vegetarian African Restaurant</title>
   
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <!-- Removed local Bootstrap CSS to avoid conflicts and use CDN -->
-  <link rel="stylesheet" href="assets/home.css" />
-  <link rel="stylesheet" href="css/global-nav.css">
-  <!-- Removed improved-nav.css to prevent conflicts with the main navigation system -->
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
+  
+  <!-- Meta tags for SEO and social sharing -->
+  <meta name="description" content="Experience Africa's rich culinary traditions reimagined with plant-based ingredients at Plate of Africa. Our vegan and vegetarian restaurant celebrates the continent's diverse flavors.">
+  <meta name="theme-color" content="#0f0f0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <!-- Font imports -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
+  
+  <!-- Bootstrap CSS & Icons -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-icons.css" rel="stylesheet">
+  
   <!-- Slick Slider CSS -->
-  <link rel="stylesheet" type="text/css" href="css/slick.css" />
-  <link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
-  <style>
-    body {
-      background: #0f0f0f;
-      color: white;
-    }
-
-    @font-face {
-      font-family: "Gilroy";
-      src: url("assets/fonts/gilroy/Gilroy-Regular.ttf") format("woff2");
-    }
-    .navbar.navbar-expand-lg {
-                position: fixed !important;
-                width: 100% !important;
-                top: 0 !important;
-                left: 0 !important;
-                right: 0 !important;
-                z-index: 1000 !important;
-                display: flex !important;
-                justify-content: space-between !important;
-                align-items: center !important;
-                padding: 10px 2.5% !important;
-                transition: all 0.3s ease !important;
-                background-color: rgba(15, 15, 15, 0.95) !important;
-                backdrop-filter: blur(10px) !important;
-                -webkit-backdrop-filter: blur(10px) !important;
-                max-width: 100vw !important;
-                overflow-x: hidden !important;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
-            }
-
-            /* Styling for scrolled state - will be applied via JavaScript */
-            .navbar.navbar-expand-lg.scrolled {
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-            }
-
-            /* Styling for hidden state - will be applied via JavaScript */
-            .navbar.navbar-expand-lg.hidden {
-                transform: translateY(-100%) !important;
-            }
-
-            /* Navigation links */
-            .navbar.navbar-expand-lg .nav-link {
-                font-family: "Poppins" !important;
-                font-weight: 400 !important;
-                font-size: 16px !important;
-                color: white !important;
-                margin: 0 5px !important;
-                position: relative !important;
-                transition: all 0.3s ease !important;
-                white-space: nowrap !important;
-                padding: 5px 5px !important;
-            }
-
-            .navbar.navbar-expand-lg .nav-link:hover {
-                color: #e0bc6b !important;
-            }
-
-            .navbar.navbar-expand-lg .nav-link::after {
-                content: '' !important;
-                position: absolute !important;
-                width: 0 !important;
-                height: 2px !important;
-                background: linear-gradient(90deg, #f7efc1 0%, #e0bc6b 100%) !important;
-                bottom: -5px !important;
-                left: 0 !important;
-                transition: width 0.3s ease !important;
-            }
-
-            .navbar.navbar-expand-lg .nav-link:hover::after {
-                width: 100% !important;
-            }
-
-            /* Style for active page link */
-            .navbar.navbar-expand-lg .nav-link.active {
-                color: #e0bc6b !important;
-            }
-
-            .navbar.navbar-expand-lg .nav-link.active::after {
-                content: '' !important;
-                position: absolute !important;
-                width: 100% !important;
-                height: 2px !important;
-                background: linear-gradient(90deg, #f7efc1 0%, #e0bc6b 100%) !important;
-                bottom: -5px !important;
-                left: 0 !important;
-            }
-
-            /* Contact button styling */
-            .navbar.navbar-expand-lg .logbutton {
-                background: linear-gradient(90deg, #f7efc1 0%, #e0bc6b 100%) !important;
-                color: #0f0f0f !important;
-                border: none !important;
-                border-radius: 30px !important;
-                padding: 10px 25px !important;
-                font-weight: 600 !important;
-                transition: all 0.3s ease !important;
-                white-space: nowrap !important;
-            }
-
-            .navbar.navbar-expand-lg .logbutton:hover {
-                transform: translateY(-3px) !important;
-                box-shadow: 0 5px 15px rgba(224, 188, 107, 0.4) !important;
-                color: #0f0f0f !important; /* Maintain dark text on hover */
-            }
-
-            /* Fix for Contact Us button link */
-            .navbar.navbar-expand-lg a.contact-link {
-                text-decoration: none !important;
-                margin-left: 15px !important;
-            }
-
-            .navbar.navbar-expand-lg a.contact-link:hover, 
-            .navbar.navbar-expand-lg a.contact-link:focus, 
-            .navbar.navbar-expand-lg a.contact-link:active {
-                text-decoration: none !important;
-                color: inherit !important;
-            }
-
-            .navbar.navbar-expand-lg .contact-link .btn:hover {
-                color: #0f0f0f !important;
-            }
-
-            /* Mobile menu toggle */
-            .navbar.navbar-expand-lg .navbar-toggler {
-                border: 2px solid rgba(255, 255, 255, 0.5) !important;
-                transition: all 0.3s ease !important;
-                padding: 4px 8px !important;
-            }
-
-            .navbar.navbar-expand-lg .navbar-toggler:hover {
-                border-color: #e0bc6b !important;
-                box-shadow: 0 0 10px rgba(224, 188, 107, 0.7) !important;
-            }
-
-            /* Container width fix */
-            .navbar.navbar-expand-lg .container-fluid {
-                width: 100% !important;
-                max-width: 100% !important;
-                padding-left: 15px !important;
-                padding-right: 15px !important;
-                margin-right: auto !important;
-                margin-left: auto !important;
-            }
-
-            /* Logo styling */
-            .navbar.navbar-expand-lg .navbar-brand img {
-                max-height: 60px !important;
-                width: auto !important;
-            }
-
-            /* Responsive styles */
-            @media (max-width: 1200px) {
-                .navbar.navbar-expand-lg .navbar-collapse {
-                    background-color: rgba(15, 15, 15, 0.95) !important;
-                    padding: 15px !important;
-                    border-radius: 10px !important;
-                    margin-top: 10px !important;
-                    max-width: 100% !important;
-                }
-                
-                .navbar.navbar-expand-lg .nav-link {
-                    padding: 8px 0 !important;
-                    margin: 3px 5px !important;
-                    font-size: 15px !important;
-                }
-                
-                .navbar.navbar-expand-lg .navbar-nav {
-                    max-width: 100% !important;
-                    text-align: center !important;
-                }
-                
-                .navbar.navbar-expand-lg .logbutton {
-                    padding: 8px 15px !important;
-                    font-size: 14px !important;
-                    margin-top: 10px !important;
-                }
-            }
-
-            @media (max-width: 1050px) {
-                .navbar.navbar-expand-lg {
-                    padding: 8px 2% !important;
-                }
-                
-                .navbar.navbar-expand-lg .logbutton {
-                    padding: 6px 12px !important;
-                    font-size: 13px !important;
-                }
-                
-                .navbar.navbar-expand-lg .nav-link {
-                    font-size: 14px !important;
-                }
-            }
-
-            @media (max-width: 768px) {
-                .navbar.navbar-expand-lg .navbar-brand img {
-                    max-height: 50px !important;
-                }
-            }
-
-            @media (max-width: 576px) {
-                .navbar.navbar-expand-lg {
-                    padding: 5px 1.5% !important;
-                }
-                
-                .navbar.navbar-expand-lg .logbutton {
-                    padding: 5px 10px !important;
-                    font-size: 12px !important;
-                }
-                
-                .navbar.navbar-expand-lg .navbar-brand img {
-                    max-height: 40px !important;
-                }
-                
-                .navbar.navbar-expand-lg .navbar-toggler {
-                    padding: 3px 6px !important;
-                }
-                
-                .navbar.navbar-expand-lg .navbar-toggler-icon {
-                    width: 1em !important;
-                    height: 1em !important;
-                }
-            }
-            
-            /* Fix for main content to account for fixed navbar */
-            main {
-                padding-top: 100px !important;
-                margin-top: 0 !important;
-            }
-            
-            /* Additional styles for navbar toggler icon */
-            .navbar-toggler-icon {
-                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-            }
-
-
-            button{
-                display: inline-block;
-                padding: 10px 20px;
-                font-family: "Poppins";
-                background: linear-gradient(90deg, #F7EFC1 0%, #E0BC6B 100%);
-                border-radius: 10px;
-                font-size: 16px;
-                font-weight: 600;
-                border: none;
-                margin-right: 10px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                
-            }
-            button:hover {
-                background: linear-gradient(90deg, #E0BC6B 0%, #F7EFC1 100%);
-                transform: scale(1.05);
-            }
-
-            .group-dining-intro{
-                margin-top: 150px;
-            }
-
-
-    .faq-heading {
-      color: #fff;
-      font-family: "Gilroy";
-      font-size: 44px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-      text-transform: uppercase;
-      margin-bottom: 46px;
-      text-align: center;
-    }
-
-    .home-hero-text {
-      max-width: 625px;
-      font-family: "Poppins";
-      font-size: 18px;
-      margin: 40px 0px;
-    }
-
-    .home-hero-heading {
-      font-size: 80px;
-      font-family: "Poppins";
-      line-height: 90px;
-    }
-
-    .home-hero-heading span {
-      font-weight: bold;
-    }
-
-    .reser-button {
-      border-radius: 24px;
-      background: linear-gradient(90deg, #f7efc1 0%, #e0bc6b 100%);
-      display: inline-flex;
-      height: 44px;
-      padding: 6px 32px;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      color: #232323;
-      font-family: "Poppins";
-      font-size: 18px;
-      width: fit-content;
-    }
-
-    /* .ab-small and .ab-l will now be responsive due to img-fluid class in HTML */
-    /* Remove fixed width/height, img-fluid will manage this by default */
-    .ab-small {
-      /* Potentially keep other styles if any, e.g., margins, borders, but not width/height for now */
-      /* height: 280px; */ /* Removed */
-    }
-
-    .ab-l {
-      /* width: 280px; */ /* Removed */
-    }
-
-    h2 {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 30px;
-    }
-
-    .testimonial-slider .slick-track {
-      display: flex;
-    }
-
-    .testimonial-slider {
-      max-width: 900px;
-      margin: auto;
-      padding: 0 20px; /* Add some padding so cards/arrows don't touch edges if slider is near viewport edge */
-    }
-
-    .testimonial-card {
-      background-color: rgba(255, 255, 255, 0.04);
-      /* Slight transparency */
-      border-radius: 36px;
-      /* padding: 20px; */ /* Base padding defined below */
-      /* Adjust padding as needed */
-      backdrop-filter: blur(35.9px) brightness(100%);
-      -webkit-backdrop-filter: blur(35.9px) brightness(100%);
-
-      /* Gradient border using box-shadow */
-      position: relative;
-
-      padding: 20px; /* Base padding */
-      text-align: left;
-      color: white;
-      margin: 10px;
-      position: relative;
-      /* height: 100%; */ /* Replaced by auto and flex */
-      /* min-height: 263px; */ /* Remove or make responsive */
-      height: auto; /* Allow height to vary based on content */
-      display: flex !important; /* Enable flexbox for vertical alignment if content varies */
-      flex-direction: column !important; /* Align content vertically */
-      justify-content: space-between !important; /* Distribute space if cards have varying content length */
-    }
-
-    .testimonial-card::before {
-      content: "";
-      position: absolute;
-      top: -1px;
-      left: -1px;
-      right: -1px;
-      bottom: -1px;
-      border-radius: 36px;
-      padding: 1px;
-      background: linear-gradient(to bottom,
-          rgba(255, 255, 255, 0),
-          rgb(189, 150, 72));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-    }
-
-    .testimonial-card img {
-      width: 50px; /* Base */
-      height: 50px; /* Base */
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-
-    .testimonial-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .testimonial-name {
-      font-weight: bold;
-      font-size: 16px; /* Base */
-    }
-
-    .testimonial-username {
-      font-size: 14px; /* Base */
-      color: #bbb;
-    }
-
-    .testimonial-text {
-      margin-top: 10px;
-      font-size: 14px; /* Base */
-    }
-
-    .quote-icon {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 20px;
-      color: #ffd700;
-    }
-
-    /* Slick Arrows */
-    .slick-prev,
-    .slick-next {
-      border-radius: 24px;
-      border: 1px solid #e3d17b;
-      background: linear-gradient(90deg, #e3d582 0%, #e6b035 100%);
-      width: 40px; /* Updated base width */
-      height: 40px; /* Updated base height */
-      display: flex !important;
-      align-items: center;
-      justify-content: center;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-    }
-
-    .slick-prev::before,
-    .slick-next::before {
-      font-size: 20px; /* Adjusted icon size */
-      color: black;
-    }
-
-    .faq-container {
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .faq-section {
-      background: #111;
-      /* padding: 20px; */
-      border-radius: 10px;
-    }
-
-    .faq-item {
-      margin-bottom: 10px;
-    }
-
-    .faq-question:hover {
-      background: #1e1e1e;
-    }
-
-    .faq-question {
-      background: #1e1e1e;
-      color: #fff;
-      border: none;
-      /* font-size: 18px; */ /* Overridden by more specific rule below */
-      /* padding: 15px; */ /* Base padding defined below */
-      border-radius: 5px;
-      color: #fff;
-
-      /* SubH3-Gilroy */
-      font-family: "Gilroy";
-      font-size: 22px; /* Adjusted base */
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      display: flex;
-      justify-content: space-between;
-      padding: 15px 20px; /* Consistent padding */
-    }
-
-    .faq-answer {
-      background: #1e1e1e;
-      border-radius: 5px;
-      color: #fff;
-      /* Special/Paragraph Regular 16px */
-      font-family: "Poppins";
-      font-size: 15px; /* Adjusted base */
-      font-style: normal;
-      font-weight: 400;
-      line-height: 1.6;
-    }
-
-    .slick-next {
-      right: -20px !important; /* Adjusted positioning */
-    }
-
-    .slick-prev {
-      left: -20px !important; /* Adjusted positioning */
-    }
-
-    .slick-next:hover,
-    .slick-prev:hover,
-    .slick-next:focus,
-    .slick-prev:focus {
-      background: #e3d582;
-    }
-
-    .icon { /* The container for the plus/minus icon */
-        width: 22px; /* Base size */
-        height: 22px; /* Base size */
-        /* Ensure it's vertically centered if button height changes */
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold; /* from original .icon style */
-    }
-    .icon img { /* The plus/minus image itself */
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-    .menu-section {
-      padding: 50px 0;
-    }
-
-    .menu-title {
-      font-size: 28px; /* Base */
-      font-weight: 600;
-      /* text-align: center; */ /* Already centered by parent flex */
-    }
-
-    .filter-buttons .btn {
-      border-radius: 20px;
-      background-color: #222;
-      color: white;
-      padding: 8px 18px;
-      font-size: 14px;
-      border: none;
-      transition: 0.3s;
-    }
-
-    .filter-buttons .btn.active {
-      background-color: #c8a253;
-      color: black;
-    }
-
-    .menu-card {
-      background-color: #1b1b1b;
-      border-radius: 15px;
-      padding: 20px;
-      margin: 15px auto; /* Center cards if they don't fill row */
-      text-align: center;
-      transition: 0.3s;
-      /* min-height: 364px; Consider removing or making more flexible */
-      height: auto; /* Allow height to be determined by content */
-      width: 100%; /* Make card take full width of its column */
-      max-width: 400px; /* Keep max-width for larger views */
-    }
-
-    .menu-card:hover {
-      transform: scale(1.05);
-    }
-
-    .menu-card img {
-      /* width: 234px; height: 234px; Removed fixed size */
-      max-width: 234px; /* Set a max-width for the image */
-      width: 70%; /* Percentage of card width */
-      height: auto;
-      aspect-ratio: 1 / 1; /* Maintain square shape */
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px; /* Add some space below image */
-    }
-
-    .menu-card h5 {
-      margin-top: 10px;
-      font-size: 18px; /* Base */
-    }
-
-    .menu-card p {
-      font-size: 14px;
-      color: #bbb;
-    }
-
-    .price {
-      font-size: 16px;
-      font-weight: 600;
-      color: #c8a253;
-    }
-
-    .explore-btn {
-      background-color: #c8a253;
-      color: black;
-      border-radius: 20px;
-      padding: 10px 25px;
-      font-size: 14px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .explore-btn:hover {
-      background-color: #b08b42;
-    }
-
-    .map-container {
-      width: 100%;
-      /* height: 100%; Removed, height will be determined by content, primarily the map image */
-      max-width: 1200px;
-      margin: auto;
-      position: relative;
-      border-radius: 15px; /* This will clip the map image's larger radius if map is flush */
-      overflow: hidden;
-    }
-
-    /* Interactive Map Styles */
-    .location-map {
-      width: 100%;
-      height: auto; /* Ensure image scales proportionally */
-      border-radius: 15px; /* Match parent container's radius or set to 0 if map should fill */
-      display: block; /* Remove extra space below image */
-      background-color: #0f0f0f;
-      border: 1px solid #E0BC6B;
-      margin: auto;
-    }
-
-    .location-marker {
-      position: absolute;
-      width: 40px; /* Base size */
-      height: 40px; /* Base size */
-      background-color: var(--color-gold, #E0BC6B);
-      border-radius: 50%;
-      transform: translate(50%, 50%);
-      cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-      z-index: 5;
-    }
-
-    .location-marker::after {
-      content: '';
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      z-index: 1;
-    }
-
-    .location-marker::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 60px;
-      height: 60px;
-      background-color: var(--color-gold, #E0BC6B);
-      border-radius: 50%;
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 0.4;
-      animation: pulse 2s infinite;
-      z-index: -1;
-    }
-    
-    /* Logo on top of markers */
-    .location-marker .marker-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%; /* Fill the marker */
-      height: 100%; /* Fill the marker */
-      background-image: url('assets/images/logo.png');
-      background-size: contain; /* Ensure logo fits */
-      background-repeat: no-repeat;
-      background-position: center;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.4;
-      }
-      70% {
-        transform: translate(-50%, -50%) scale(2.4);
-        opacity: 0;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0;
-      }
-    }
-
-    .location-marker:hover {
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-
-    .marker-1 {
-      top: 40%;
-      left: 30%;
-    }
-
-    .marker-2 {
-      top: 60%;
-      left: 70%;
-    }
-
-    .marker-3 {
-      top: 30%;
-      left: 60%;
-    }
-
-    /* Location info styles */
-    .location-info-container {
-      position: absolute;
-      bottom: 10px; /* Adjust spacing */
-      right: 10px;  /* Adjust spacing */
-      left: 10px;   /* Allow it to use full width on small screens */
-      background-color: rgba(30, 30, 30, 0.9);
-      padding: 1rem;
-      border-radius: 8px;
-      width: auto; /* Was 280px fixed */
-      max-width: 300px; /* Max width for larger screens */
-      opacity: 0; /* Initial state from existing CSS */
-      visibility: hidden;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-      z-index: 10;
-      text-align: left;
-      border-right: 3px solid var(--color-gold, #E0BC6B);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .location-info-container.active {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .location-info {
-      display: none;
-      opacity: 0;
-      transform: translateX(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .location-info.active {
-      display: block;
-      opacity: 1;
-      transform: translateX(0);
-      animation: fadeIn 0.3s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateX(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .location-info h3 {
-      color: var(--color-gold, #E0BC6B);
-      margin-bottom: 5px;
-      font-size: 1.1rem; /* Base */
-    }
-
-    .location-info p {
-      color: #fff;
-      font-size: 0.85rem; /* Base */
-      line-height: 1.5;
-    }
-    
-    .location-info i {
-      color: #E0BC6B;
-      margin-right: 10px;
-      width: 20px;
-      text-align: center;
-    }
-    
-    /* Location Contact Button Styles */
-    .location-contact-btn {
-      background: linear-gradient(90deg, #F7EFC1 0%, #E0BC6B 100%);
-      color: #1E1E1E;
-      font-family: "Poppins";
-      font-size: 13px; /* Base */
-      font-weight: 600;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 100%;
-      margin-top: 10px;
-      display: block;
-    }
-    
-    .location-contact-btn:hover {
-      background: linear-gradient(90deg, #E0BC6B 0%, #F7EFC1 100%);
-      transform: scale(1.05);
-    }
-
-    .main-location {
-      font-weight: 500;
-      margin-top: 1rem;
-      text-align: center;
-      color: #fff;
-    }
-
-    #map {
-      width: 100%;
-      height: 100%;
-    }
-
-    .info-window {
-      border-radius: 26px;
-      background: rgba(0, 0, 0, 0.68);
-      backdrop-filter: blur(8px);
-      color: white;
-      padding: 10px;
-      border-radius: 10px;
-      text-align: left;
-      width: 317px;
-    }
-
-    .info-window h6 {
-      margin: 0;
-      font-size: 16px;
-      color: #c8a253;
-    }
-
-    .info-window p {
-      margin: 5px 0;
-      font-size: 14px;
-    }
-
-    .view-button {
-      background: linear-gradient(90deg, #f7efc1 0%, #e0bc6b 100%);
-      color: black;
-      border: none;
-      padding: 7px 10px;
-      border-radius: 10px;
-      font-size: 12px;
-      border-radius: 15px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 90%;
-      margin: auto;
-    }
-
-    .righ {
-      right: 100px;
-      cursor: pointer;
-
-      /* bottom: 100px; */
-    }
-
-    .bt {
-      /* margin-top: 100px; */
-      padding-bottom: 100px;
-    }
-
-    .hours {
-      color: #fff;
-      /* Special/Paragraph light 15px */
-      font-family: "Poppins";
-      font-size: 15px;
-      font-style: normal;
-      font-weight: 300;
-      line-height: normal;
-    }
-
-    .hover-content {
-      display: none;
-    }
-
-    .menu-item:hover .hover-content {
-      display: block;
-    }
-
-    .menu-item:hover .default-content {
-      display: none;
-    }
-
-    .filter-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px; /* Base gap */
-      margin-bottom: 30px;
-      position: sticky;
-      top: 0;
-      background: rgba(235, 235, 235, 0.04);
-      padding: 12px 20px;
-      z-index: 1000;
-      max-width: fit-content;
-      margin: auto;
-      margin-bottom: 35px;
-      border-radius: 47px;
-      margin-top: 35px;
-      flex-wrap: wrap;
-      transition: 0.3s;
-      font-size: 20px; /* Base */
-      min-width: 139px; /* Base */
-      padding: 0px 15px; /* Adjust base padding slightly */
-    }
-
-    .filter-buttons button {
-      background: #393939;
-      color: white;
-      border: none;
-      height: 41px;
-      border-radius: 37px;
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 20px; /* Base */
-      min-width: 139px; /* Base */
-      padding: 0px 15px; /* Adjust base padding slightly */
-    }
-
-    .filter-buttons button.active {
-      background: linear-gradient(90deg, #f7efc1 0%, #e0bc6b 100%);
-      color: black;
-    }
-
-    .aboutt-section {
-      max-width: 517px;
-      position: relative;
-    }
-
-    .aboutt-title {
-      text-align: left;
-      color: white;
-      font-size: 22px;
-      font-family: Poppins, sans-serif;
-      font-weight: 300;
-    }
-
-    .aboutt-heading {
-      color: white;
-      font-size: 44px;
-      font-family: "Gilroy", sans-serif;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .aboutt-text {
-      max-width: 517px;
-      color: white;
-      font-size: 18px;
-      font-family: Poppins, sans-serif;
-      font-weight: 300;
-    }
-
-    .mt94 {
-      margin-top: 94px;
-    }
-
-    .pdf {
-      padding-top: 129px;
-    }
-
-    .accordion-container {
-      /* width: 450px; */ /* Remove fixed width */
-      max-width: 450px; /* Keep max-width if that's the design for larger screens */
-      width: 100%; /* Allow it to shrink */
-      margin: auto;
-    }
-
-    .accordion-item {
-      background: none;
-      border: none;
-      padding: 15px;
-      color: white;
-      font-size: 18px; /* Base size, will adjust with media queries */
-      font-weight: 600;
-      cursor: pointer;
-      text-align: left;
-    }
-
-    .accordion-number {
-      background: linear-gradient(90deg, #f7efc1 0%, #e0bc6b 100%);
-      color: black;
-      padding: 5px 10px;
-      border-radius: 50px;
-      margin-right: 15px;
-    }
-
-    .accordion-title {
-      flex-grow: 1;
-    }
-
-    .accordion-icon {
-      font-size: 18px;
-      transition: transform 0.3s;
-    }
-
-    .arrow-up {
-      transform: rotate(180deg);
-      transition: transform 0.3s ease;
-    }
-
-    .arrow-down {
-      transform: rotate(0deg);
-      transition: transform 0.3s ease;
-    }
-
-    .accordion-body {
-      padding: 15px;
-      color: white;
-      font-size: 16px; /* Base size, will adjust */
-    }
-
-    .downarrow {
-      position: absolute;
-      bottom: 100px;
-      right: 100px;
-      cursor: pointer;
-      pointer-events: auto;
-      transition: transform 0.3s ease;
-      filter: drop-shadow(0 0 5px rgba(224, 188, 107, 0.5));
-    }
-    
-    .downarrow:hover {
-      filter: drop-shadow(0 0 8px rgba(224, 188, 107, 0.8));
-      transform: scale(1.1);
-    }
-    
-    .rotate-arrow {
-      transform: rotate(180deg);
-    }
-    
-    .rotate-arrow:hover {
-      transform: rotate(180deg) scale(1.1);
-    }
-
-    .ab-down {
-      position: absolute;
-      top: -46px;
-      right: 0px;
-      width: 171px;
-      height: 171px;
-      aspect-ratio: 57/73;
-    }
-
-    .ab-yellow {
-      position: absolute;
-      bottom: -236px;
-      right: 0px;
-      width: 271px;
-      height: 471px;
-      aspect-ratio: 57/73;
-    }
-
-    .found-leaf {
-      position: absolute;
-      top: 32px;
-      left: 0;
-      width: 171px;
-      height: 171px;
-      aspect-ratio: 57/73;
-    }
-
-    .rightleaf-found {
-      position: absolute;
-      bottom: -455px;
-      left: -116px;
-      width: 471px;
-      height: 471px;
-      aspect-ratio: 57/73;
-    }
-
-    .leftleaf-found {
-      position: absolute;
-      bottom: -255px;
-      /* left: -116px; */
-      width: 250px;
-      height: 250px;
-      aspect-ratio: 57/73;
-    }
-
-    .rightdot-found {
-      position: absolute;
-      bottom: -111px;
-      right: 0;
-      width: 171px;
-      height: 171px;
-      aspect-ratio: 57/73;
-    }
-
-    .yellow-explore {
-      border-radius: 295px;
-      background: linear-gradient(90deg,
-          rgba(247, 239, 193, 0.52) 0%,
-          rgba(224, 188, 107, 0.52) 100%);
-      filter: blur(178px);
-      width: 295px;
-      height: 295px;
-      position: absolute;
-      bottom: -196px;
-      right: 0px;
-    }
-
-    .rightleaf-explore {
-      position: absolute;
-      bottom: -111px;
-      right: 0;
-      width: 250px;
-      height: 250px;
-      aspect-ratio: 57/73;
-    }
-
-    .leftdot-explore {
-      position: absolute;
-      bottom: -256px;
-      left: 32px;
-      width: 250px;
-      height: 250px;
-      aspect-ratio: 57/73;
-    }
-
-    .location-yellow {
-      border-radius: 295px;
-      background: linear-gradient(90deg,
-          rgba(247, 239, 193, 0.52) 0%,
-          rgba(224, 188, 107, 0.52) 100%);
-      filter: blur(178px);
-      width: 295px;
-      height: 295px;
-      position: absolute;
-      bottom: 0px;
-    }
-
-    .mt100 {
-      margin-top: 200px;
-    }
-
-    .leftleaf-location {
-      position: absolute;
-      top: -150px;
-      left: 0px;
-      width: 250px;
-      height: 250px;
-      aspect-ratio: 57/73;
-    }
-
-    .leftdot-location {
-      position: absolute;
-      bottom: -381px;
-      left: 0px;
-      width: 250px;
-      height: 250px;
-      aspect-ratio: 57/73;
-    }
-
-    .rightleaf-location {
-      position: absolute;
-      bottom: -281px;
-      right: 0px;
-      width: 171px;
-      height: 171px;
-      aspect-ratio: 57/73;
-    }
-
-    .faq-yellow {
-      border-radius: 295px;
-      background: linear-gradient(90deg,
-          rgba(247, 239, 193, 0.52) 0%,
-          rgba(224, 188, 107, 0.52) 100%);
-      filter: blur(178px);
-      width: 295px;
-      height: 295px;
-      position: absolute;
-      bottom: -196px;
-      right: 0px;
-    }
-
-    @media (max-width: 1200px) {
-      /* .ab-small and .ab-l rules for width/height removed as img-fluid handles it */
-      /* .ab-small {
-        width: 200px;
-        height: 180px;
-      } 
-
-      .ab-l {
-        width: 200px;
-      }*/
-    }
-
-    @media (max-width: 600px) {
-      .faq-heading {
-        color: #fff;
-        font-family: "Gilroy";
-        font-size: 28px;
-      }
-
-      /* .ab-small and .ab-l rules for width/height removed as img-fluid handles it */
-      /* .ab-small {
-        width: 260px;
-        height: 240px;
-      }
-
-      .ab-l {
-        width: 260px;
-      } */
-
-      .home-hero-heading {
-        font-size: 40px;
-        /* Duplicates one of the new hero section rules, will be merged by browser or could be consolidated */
-      }
-
-      .aboutt-title {
-        font-size: 20px;
-      }
-
-      .aboutt-heading {
-        font-size: 24px; /* This was already present */
-      }
-
-      .aboutt-text {
-        font-size: 16px; /* This was already present */
-      }
-    }
-
-    /* Responsive adjustments for Hero Section -- (KEEP THIS BLOCK AS IS) */
-    /* ... existing hero section media queries ... */
-
-    /* Responsive typography for About Section Text */
-    @media (max-width: 991.98px) { /* Medium devices */
-      .aboutt-heading {
-        font-size: 36px;
-      }
-      .aboutt-text {
-        font-size: 17px;
-      }
-    }
-
-    @media (max-width: 767.98px) { /* Small devices */
-      .aboutt-title {
-        font-size: 18px; /* Slightly smaller */
-      }
-      .aboutt-heading {
-        font-size: 30px;
-      }
-      .aboutt-text {
-        font-size: 15px;
-      }
-      .aboutt-section {
-        /* Ensure text section doesn't get too squeezed, maybe add some padding or adjust margins if needed */
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-    }
-    /* max-width: 600px for aboutt-* is already defined, will be used for smaller screens */ 
-
-    /*Button hover animation **/
-    .btn {
-  transition: transform 0.3s ease, text-decoration 0.3s ease;
-}
-
-.btn:hover {
-  transform: scale(1.1) translateY(-10%);
-  animation: pulseGlow 1.5s infinite alternate;
-}
-/*Constant glow effect for Make a reservation button **/
-@keyframes pulseGlow 
-{ 0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); } 
-50% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.9); } 
-100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); } }
- 
- .glow-effect 
-{ animation: pulseGlow 1.5s infinite alternate; }
- /* on scroll animation for most things besides the frq and why veganism sections **/
- .slide-in
- { opacity: 0; 
-transform: translateX(-8%);
- transition: opacity 0.9s ease-in, transform 0.9s ease-out;
- } 
-
-.show
- { opacity: 1;
- transform: translateX(0); 
-}
-/* on scroll animation for frq and why veganism section **/
-.box {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.5s ease-out;
-    }
-.box.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-   a {
-    color:black;
-   }
-    
-   .faq-section{
-    font-family: Gilroy, Poppins;
-   }
-
-/* href for explore our menu to menu page css **/
-.menu-buttons {
-  color:white;
-  text-decoration:none;
-}
-
-/* Responsive adjustments for Hero Section */
-@media (max-width: 991.98px) { /* Medium devices (tablets, less than 992px) */
-  .home-hero-heading {
-    font-size: 60px; /* Adjusted for tablets */
-    line-height: 1.2; /* Adjust line height */
-  }
-  .home-hero-text {
-    font-size: 16px; /* Slightly smaller for tablets */
-    margin: 30px 0px;
-  }
-  .reser-button {
-    font-size: 16px;
-    padding: 8px 28px; /* Adjust padding */
-  }
-}
-
-@media (max-width: 767.98px) { /* Small devices (landscape phones, less than 768px) */
-  .home-hero-heading {
-    font-size: 50px; /* Further reduce for smaller tablets/landscape phones */
-    line-height: 1.2;
-  }
-  .home-hero-text {
-    font-size: 15px;
-    margin: 25px 0px;
-  }
-  .reser-button {
-    font-size: 15px;
-    padding: 7px 24px;
-  }
-}
-
-/* The existing @media (max-width: 600px) rule will still apply for .home-hero-heading, */
-/* overriding the 767.98px rule for screens 600px and below. */
-/* We can add .home-hero-text and .reser-button styles here too if needed for finer control. */
-@media (max-width: 600px) {
-  .home-hero-heading {
-    /* font-size: 40px; This was already present - will be merged by browser */
-    line-height: 1.3; /* Ensure good line height on small screens */
-  }
-  .home-hero-text {
-    font-size: 14px; /* Adjust for very small screens */
-    margin: 20px 0px;
-  }
-  .reser-button {
-    font-size: 14px;
-    padding: 6px 20px; /* Adjust for smaller tap area if necessary, but maintain usability */
-    /* Ensure button doesn't become too wide or too small */
-    min-width: auto; /* Allow it to shrink if text is short */
-  }
-}
-
-@media (max-width: 400px) {
-  .home-hero-heading {
-    font-size: 32px;
-    line-height: 1.3;
-  }
-  .home-hero-text {
-    font-size: 13px;
-  }
-  .reser-button {
-    font-size: 13px;
-    padding: 5px 15px;
-  }
-}
-
-    /* Media queries for Accordion in "Why Veganism?" section */
-    @media (max-width: 767.98px) { /* Small devices */
-      .accordion-header {
-        font-size: 16px; /* Adjust for smaller screens */
-        padding: 12px; /* Adjust padding */
-      }
-      .accordion-number {
-        margin-right: 10px; /* Reduce margin */
-        padding: 4px 8px; /* Adjust padding */
-      }
-      .accordion-body {
-        font-size: 14px; /* Adjust for smaller screens */
-        padding: 12px; /* Adjust padding */
-      }
-    }
-
-    @media (max-width: 480px) { /* Extra small devices */
-      .accordion-header {
-        font-size: 15px;
-        /* Consider flex-wrap if title and icon/number need to stack */
-      }
-      .accordion-body {
-        font-size: 13px;
-      }
-      .accordion-number {
-        font-size: 13px; /* If accordion numbers also need scaling */
-      }
-    }
-
-    /* Media Queries for Menu Section */
-    @media (max-width: 991.98px) { /* Medium devices */
-      .menu-title {
-        font-size: 26px;
-      }
-      .filter-buttons button {
-        font-size: 18px;
-        min-width: 120px;
-      }
-      .menu-card img {
-         width: 65%;
-      }
-    }
-
-    @media (max-width: 767.98px) { /* Small devices (cards stack) */
-      .menu-title {
-        font-size: 24px;
-      }
-      .filter-buttons {
-        gap: 8px;
-      }
-      .filter-buttons button {
-        font-size: 15px; /* Smaller font for filter buttons */
-        min-width: auto; /* Allow buttons to be smaller */
-        padding: 8px 12px; /* Adjust padding */
-      }
-      .menu-card {
-        margin: 10px auto; /* Adjust margin for stacked cards */
-        padding: 15px;
-      }
-      .menu-card img {
-        width: 60%; /* Adjust image size in stacked cards */
-        max-width: 200px; /* Cap image size even more when stacked */
-      }
-      .menu-card h5 {
-        font-size: 17px;
-      }
-      .menu-card p, .price {
-        font-size: 13px;
-      }
-    }
-
-    @media (max-width: 480px) { /* Extra small devices */
-      .menu-title {
-        font-size: 22px;
-      }
-      .filter-buttons button {
-        font-size: 13px;
-        padding: 6px 10px;
-      }
-      .menu-card h5 {
-        font-size: 16px;
-      }
-       .menu-card img {
-        width: 180px; /* Fixed width for very small screens can be okay */
-        height: 180px;
-      }
-    }
-
-    /* Media Queries for Testimonials Section - Ensure this block is added */
-    @media (max-width: 1024px) { 
-        .testimonial-slider {
-            padding: 0 10px; 
-        }
-        .slick-prev { left: 5px !important; }
-        .slick-next { right: 5px !important; }
-    }
-
-    @media (max-width: 767.98px) { 
-      .testimonial-card {
-        padding: 15px;
-        min-height: 0; 
-      }
-      .testimonial-name { font-size: 15px; }
-      .testimonial-username { font-size: 13px; }
-      .testimonial-text { font-size: 13px; }
-      .testimonial-card img { width: 45px; height: 45px; }
-    }
-
-    @media (max-width: 480px) { 
-      /* .faq-heading selector here might conflict if it's too general, ensure it's specific or handled carefully */
-      .faq-heading { 
-          font-size: 24px; 
-      }
-      .testimonial-card { padding: 10px; }
-      .testimonial-name { font-size: 14px; }
-      .testimonial-text { font-size: 12px; }
-      .testimonial-card img { width: 40px; height: 40px; }
-    }
-    /* End of Testimonials Media Queries */
-
-    /* Media Queries for Locations Section */
-    @media (min-width: 576px) { /* Small devices and up */
-        .location-info-container {
-            left: auto; /* Revert to only right-aligned */
-            width: 280px; /* Restore fixed width for sm screens and up if desired */
-        }
-    }
-
-    @media (max-width: 767.98px) { /* Small screens */
-      .location-map {
-        border-radius: 20px; /* Adjust radius */
-      }
-      .location-marker {
-        width: 35px;
-        height: 35px;
-      }
-      /* .location-info-container already full width due to lack of 'left: auto' */
-      .location-info h3 { font-size: 1rem; }
-      .location-info p { font-size: 0.8rem; }
-      .location-contact-btn { font-size: 12px; padding: 6px 12px; }
-    }
-
-    @media (max-width: 480px) { /* Extra small devices */
-      .faq-heading { /* For "OUR MULTIPLE LOCATIONS" */
-          font-size: 24px;
-      }
-      .map-container { border-radius: 10px; }
-      .location-map { border-radius: 10px; }
-      .location-marker {
-        width: 30px;
-        height: 30px;
-      }
-       .location-info-container {
-        bottom: 5px; right: 5px; left: 5px; padding: 0.75rem;
-      }
-      .location-info h3 { font-size: 0.9rem; }
-      .location-info p { font-size: 0.75rem; }
-    }
-
-    /* Media Queries for FAQ Section */
-    @media (max-width: 767.98px) { /* Small devices */
-      .faq-question {
-        font-size: 18px;
-        padding: 12px 15px;
-      }
-      .faq-answer {
-        font-size: 14px;
-        padding: 12px 15px; /* Match question padding if desired */
-      }
-      .icon { width: 20px; height: 20px; }
-    }
-
-    @media (max-width: 480px) { /* Extra small devices */
-      .faq-heading { /* For "Frequently Asked Questions" */
-          font-size: 22px; /* Slightly smaller than other h2s on mobile */
-      }
-      .faq-question {
-        font-size: 16px;
-        padding: 10px;
-      }
-      .faq-answer {
-        font-size: 13px;
-        padding: 10px;
-      }
-      .icon { width: 18px; height: 18px; }
-    }
-
-</style>
+  <link rel="stylesheet" type="text/css" href="css/slick.css">
+  <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css">
 </head>
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid px-3">
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner">
+      <img src="assets/images/logo.png" alt="Plate of Africa logo" class="pulse">
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
-          <div class="logo-container">
-              <img src="images/Plate of Africa Logo.png" alt="Logo" class="logo" />
-          </div>
+        <img src="assets/images/logo.png" alt="Plate of Africa" class="logo-img">
       </a>
-      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto text-center">
-              <li class="nav-item">
-                  <a class="nav-link" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="aboutus.html">About Us</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="reservations.html">Reservations</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="menu.html">Menu</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="OurApproachToVeganism.html">Sustainability</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="hoursLocation.html">Hours & Location</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="employ.html">Employment</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" href="references.html">References</a>
-              </li>
-          </ul>
-          <a href="contacts.html" class="contact-link">
-              <button class="btn logbutton d-none d-lg-block">Contact Us</button>
-              <button class="btn logbutton d-lg-none">Contact</button>
-          </a>
-      </div>
-  </div>
-</nav>
-<body class="position-relative">
-  <section>
-    <div style="position: fixed; height: 100vh; width: 100%; z-index: 1223; pointer-events: none;" class="handledown">
-      <img src="assets/images/downarrow.png" alt="" class="downarrow"/>
-    </div>
-  </section>
-  <section>
-    <div class="home-hero-bg">
-      <!-- Header -->
-      <div id="header"></div>
-
-      <!-- Page Content -->
-      <div class="container d-flex flex-column justify-content-center" style="min-height: 80vh; padding-top: 0; margin-top: 0;">
-        <div class="home-hero-heading slide-in">
-          Welcome to <br />
-          <span>Plate of Africa</span>
-        </div>
-        <div class="home-hero-text slide-in">
-          Plate of Africa is an African restaurant that specializes in the diverse cuisines found throughout the African continent, through an entirely plant-based menu.
-        </div>
-        <!-- Added link to reservations.html page for the reservation button -->
-        <a href="reservations.html" style="text-decoration: none;">
-          <div class="reser-button btn glow-effect">Make a Reservation</div>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#veganism">Why Veganism</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#menu">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testimonials">Testimonials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#locations">Locations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#faq">FAQ</a>
+          </li>
+        </ul>
+        <a href="#reservations" class="contact-link">
+          <button class="btn btn-primary reservation-btn">Make a Reservation</button>
         </a>
       </div>
     </div>
-  </section>
-  <!-- About Section -->
-  <section>
-    <div class="d-flex flex-wrap gap-4 mx-4 mx-sm-0 mt-5 justify-content-center position-relative">
-      <img src="assets/images/about-down-leaf.png" alt="" class="ab-down" />
-      <img src="assets/images/about-yellow.png" alt="" class="ab-yellow" />
-      <img src="assets/images/about-yellow.png" alt="" class="ab-yellow" style="bottom: -473px" />
-      <!-- Apply consistent column stacking and add img-fluid to images -->
-      <div class="d-flex gap-4 flex-column flex-lg-row col-lg-6 col-md-12 slide-in">
-        <img src="assets/images/about-1.png" alt="Main about image" class="ab-l img-fluid" />
-        <div class="d-flex flex-column gap-4">
-          <img src="assets/images/about-2.png" alt="Secondary about image 1" class="ab-small img-fluid" />
-          <img src="assets/images/about-3.png" alt="Secondary about image 2" class="ab-small img-fluid" />
-        </div>
-      </div>
+  </nav>
 
-      <div class="col-lg-6 col-md-12 mt-5 aboutt-section">
-        <div class="aboutt-title slide-in">About</div>
-        <div class="aboutt-heading slide-in">Plate of Africa</div>
-        <div class="aboutt-text slide-in">
-          We celebrate the culinary history found throughout Africa, by recrafting it
-          into modern, health-conscious dining. Our dishes can be found
-          throughout the continent, and includes North, South, East, and West
-          African cuisine.
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container d-flex flex-column justify-content-center text-center text-md-start">
+      <div class="row align-items-center min-vh-100">
+        <div class="col-md-7">
+          <div class="hero-content animate-on-scroll">
+            <h1 class="hero-title">
+              Experience the <span class="highlight">Taste of Africa</span>
+              <br>
+              <span class="secondary-text">Plant-Based Cuisine</span>
+            </h1>
+            <p class="hero-text">
+              Discover the rich culinary traditions of Africa reimagined with fresh, plant-based ingredients. Our menu 
+              celebrates the diverse flavors from across the continent, crafted with care and passion.
+            </p>
+            <div class="hero-buttons">
+              <a href="#reservations" class="btn btn-primary btn-lg reservation-btn glow-effect">
+                Make a Reservation
+              </a>
+              <a href="#menu" class="btn btn-outline-light btn-lg">
+                Explore Our Menu
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="aboutt-text slide-in">
-          We commit ourselves to a high standard of culinary excellence, and
-          invite you to experience the vast flavors that Africa has to offer.
-          Many ingredients used in the creation of our dishes are directly
-          shipped from trusted local farmers to ensure quality ingredients, prioritizing excellence without
-          compromise.
-        </div>
-        <a href="aboutus.html">
-        <div class="btn reser-button mx-auto mt-4 buttonn slide-in">Learn More</div>
-      </a>
       </div>
     </div>
+    <div class="scroll-indicator">
+      <a href="#about">
+        <img src="assets/images/downarrow.png" alt="Scroll down" class="scroll-arrow">
+      </a>
+    </div>
   </section>
-  <section>
-    <div class="position-relative">
-      <img src="assets/images/found-leaf.png" alt="" class="found-leaf" />
-      <img src="assets/images/found-yellow-left.png" alt="" class="rightleaf-found" />
-      <img src="assets/images/foundleft-leaf.png" alt="" class="leftleaf-found" />
-      <div>
-        <img src="assets/images/rightdot-found.png" alt="" class="rightdot-found" />
-      </div>
 
-      <div class="container pdf">
-        <div class="row justify-content-center mx-2 gap-5 gap-md-0 mx-sm-0 align-items-center">
-          <div class="col-md-4 aboutt-section">
-            <div class="aboutt-title mt94 slide-in">Why </div>
-            <br>
-            <div class="aboutt-heading slide-in">Veganism?</div>
-            <br>
-            <div class="aboutt-text slide-in">
+  <!-- About Section -->
+  <section id="about" class="about-section position-relative">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="about-images animate-on-scroll">
+            <div class="row">
+              <div class="col-6">
+                <img src="assets/images/about-1.png" alt="Restaurant interior" class="img-fluid main-img rounded-3 mb-4">
+              </div>
+              <div class="col-6">
+                <img src="assets/images/about-2.png" alt="Chef preparing food" class="img-fluid secondary-img rounded-3 mb-4">
+                <img src="assets/images/about-3.png" alt="Restaurant dishes" class="img-fluid secondary-img rounded-3">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="about-content animate-on-scroll">
+            <span class="section-subtitle">About Us</span>
+            <h2 class="section-title">Plate of Africa</h2>
+            <p class="section-text">
+              We celebrate the culinary history found throughout Africa by recrafting it
+              into modern, health-conscious dining. Our dishes can be found
+              throughout the continent and include North, South, East, and West
+              African cuisine.
+            </p>
+            <p class="section-text">
+              We commit ourselves to a high standard of culinary excellence, and
+              invite you to experience the vast flavors that Africa has to offer.
+              Many ingredients used in the creation of our dishes are directly
+              shipped from trusted local farmers to ensure quality ingredients, prioritizing excellence without
+              compromise.
+            </p>
+            <a href="aboutus.html" class="btn btn-primary learn-more-btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img src="assets/images/about-down-leaf.png" alt="" class="decoration leaf-1">
+    <img src="assets/images/about-yellow.png" alt="" class="decoration blur-1">
+  </section>
+
+  <!-- Why Veganism Section -->
+  <section id="veganism" class="veganism-section position-relative">
+    <img src="assets/images/found-leaf.png" alt="" class="decoration leaf-2">
+    <img src="assets/images/rightleaf-found.png" alt="" class="decoration leaf-3">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-4">
+          <div class="veganism-content animate-on-scroll">
+            <span class="section-subtitle">Why</span>
+            <h2 class="section-title">Veganism?</h2>
+            <p class="section-text">
               Plate of Africa was founded to celebrate Africa's rich culinary
               heritage through a modern, plant-based approach. A multitude of African dishes are naturally vegan, making it the perfect foundation for a menu that stays true to tradition.
+            </p>
+            <a href="OurApproachToVeganism.html" class="btn btn-primary learn-more-btn">Learn More</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="veganism-image animate-on-scroll">
+            <img src="assets/images/whofound.png" alt="Vegan ingredients" class="img-fluid rounded-3">
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="accordion-container animate-on-scroll">
+            <div class="accordion-item">
+              <button class="accordion-header" data-bs-toggle="collapse" data-bs-target="#item1">
+                <span class="accordion-number">01</span>
+                <span class="accordion-title">Ethical Considerations</span>
+                <span class="accordion-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none">
+                    <path d="M7.10053 9.05457C6.80755 9.34755 6.33252 9.34744 6.03968 9.05433C5.74708 8.76145 5.74715 8.28687 6.03984 7.99408L11.287 2.74512C11.3795 2.65197 11.4896 2.57804 11.6109 2.52759C11.7321 2.47714 11.8622 2.45117 11.9935 2.45117C12.1248 2.45117 12.2548 2.47714 12.3761 2.52759C12.4973 2.57804 12.6074 2.65197 12.7 2.74512L17.9499 7.99412C18.2426 8.28683 18.2427 8.76144 17.9499 9.05417C17.6572 9.34686 17.1827 9.34688 16.89 9.05422L12.7021 4.8671C12.3116 4.47664 11.6784 4.47666 11.2879 4.86716L7.10053 9.05457Z" fill="url(#paint0_linear_1_1036)"/>
+                  </svg>
+                </span>
+              </button>
+              <div id="item1" class="collapse">
+                <div class="accordion-body">
+                  Contribute to a healthy planet by cutting your carbon emissions by over 50%.
+                </div>
+              </div>
             </div>
-            <br>
-            <a href="OurApproachToVeganism.html">
 
-            <div class="btn reser-button mx-auto mt-4 buttonn slide-in">Learn More</div>
-            </a>
-          </div>
-          <div class="col-md-4">
-            <!-- Add img-fluid to this image -->
-            <img src="assets/images/whofound.png" alt="Image related to veganism section" class="ab-l img-fluid slide-in" />
-          </div>
-          <div class="col-md-4 ">
-            <div class="accordion-container ">
-              <div class="accordion-item box">
-                <button class="accordion-header " data-bs-toggle="collapse" data-target="#item1">
-                  <span class="accordion-number">01</span>
-                  <span class="accordion-title">Ethical Considerations</span>
-                  <span class="accordion-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none">
-                      <g clip-path="url(#clip0_1_1036)">
-                        <path
-                          d="M7.10053 9.05457C6.80755 9.34755 6.33252 9.34744 6.03968 9.05433C5.74708 8.76145 5.74715 8.28687 6.03984 7.99408L11.287 2.74512C11.3795 2.65197 11.4896 2.57804 11.6109 2.52759C11.7321 2.47714 11.8622 2.45117 11.9935 2.45117C12.1248 2.45117 12.2548 2.47714 12.3761 2.52759C12.4973 2.57804 12.6074 2.65197 12.7 2.74512L17.9499 7.99412C18.2426 8.28683 18.2427 8.76144 17.9499 9.05417C17.6572 9.34686 17.1827 9.34688 16.89 9.05422L12.7021 4.8671C12.3116 4.47664 11.6784 4.47666 11.2879 4.86716L7.10053 9.05457Z"
-                          fill="url(#paint0_linear_1_1036)" />
-                      </g>
-                      <defs>
-                        <linearGradient id="paint0_linear_1_1036" x1="11.995" y1="-3.50073" x2="11.995" y2="8.99927"
-                          gradientUnits="userSpaceOnUse">
-                          <stop offset="0.396347" stop-color="#F2D52C" />
-                          <stop offset="1" stop-color="#CB9E38" />
-                        </linearGradient>
-                        <clipPath id="clip0_1_1036">
-                          <rect width="12" height="24" fill="white" transform="translate(24) rotate(90)" />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </span>
-                </button>
-                <div id="item1" class="collapse">
-                  <div class="accordion-body ">
-                    Contribute to a healthy planet by cutting your carbon emissions by over 50%.
-                  </div>
+            <div class="accordion-item">
+              <button class="accordion-header" data-bs-toggle="collapse" data-bs-target="#item2">
+                <span class="accordion-number">02</span>
+                <span class="accordion-title">Nutritional Content</span>
+                <span class="accordion-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none">
+                    <path d="M7.10053 9.05457C6.80755 9.34755 6.33252 9.34744 6.03968 9.05433C5.74708 8.76145 5.74715 8.28687 6.03984 7.99408L11.287 2.74512C11.3795 2.65197 11.4896 2.57804 11.6109 2.52759C11.7321 2.47714 11.8622 2.45117 11.9935 2.45117C12.1248 2.45117 12.2548 2.47714 12.3761 2.52759C12.4973 2.57804 12.6074 2.65197 12.7 2.74512L17.9499 7.99412C18.2426 8.28683 18.2427 8.76144 17.9499 9.05417C17.6572 9.34686 17.1827 9.34688 16.89 9.05422L12.7021 4.8671C12.3116 4.47664 11.6784 4.47666 11.2879 4.86716L7.10053 9.05457Z" fill="url(#paint0_linear_1_1036)"/>
+                  </svg>
+                </span>
+              </button>
+              <div id="item2" class="collapse">
+                <div class="accordion-body">
+                  Naturally high in vitamins C, A, K, and E.
                 </div>
               </div>
+            </div>
 
-              <div class="accordion-item box">
-                <button class="accordion-header" data-bs-toggle="collapse" data-target="#item2">
-                  <span class="accordion-number">02</span>
-                  <span class="accordion-title">Nutritional Content</span>
-                  <span class="accordion-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none">
-                      <g clip-path="url(#clip0_1_1036)">
-                        <path
-                          d="M7.10053 9.05457C6.80755 9.34755 6.33252 9.34744 6.03968 9.05433C5.74708 8.76145 5.74715 8.28687 6.03984 7.99408L11.287 2.74512C11.3795 2.65197 11.4896 2.57804 11.6109 2.52759C11.7321 2.47714 11.8622 2.45117 11.9935 2.45117C12.1248 2.45117 12.2548 2.47714 12.3761 2.52759C12.4973 2.57804 12.6074 2.65197 12.7 2.74512L17.9499 7.99412C18.2426 8.28683 18.2427 8.76144 17.9499 9.05417C17.6572 9.34686 17.1827 9.34688 16.89 9.05422L12.7021 4.8671C12.3116 4.47664 11.6784 4.47666 11.2879 4.86716L7.10053 9.05457Z"
-                          fill="url(#paint0_linear_1_1036)" />
-                      </g>
-                      <defs>
-                        <linearGradient id="paint0_linear_1_1036" x1="11.995" y1="-3.50073" x2="11.995" y2="8.99927"
-                          gradientUnits="userSpaceOnUse">
-                          <stop offset="0.396347" stop-color="#F2D52C" />
-                          <stop offset="1" stop-color="#CB9E38" />
-                        </linearGradient>
-                        <clipPath id="clip0_1_1036">
-                          <rect width="12" height="24" fill="white" transform="translate(24) rotate(90)" />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </span>
-                </button>
-                <div id="item2" class="collapse">
-                  <div class="accordion-body">
-                    Naturally high in vitamins C, A, K, and E.
-                  </div>
+            <div class="accordion-item">
+              <button class="accordion-header" data-bs-toggle="collapse" data-bs-target="#item3">
+                <span class="accordion-number">03</span>
+                <span class="accordion-title">Quality Ingredients</span>
+                <span class="accordion-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none">
+                    <path d="M7.10053 9.05457C6.80755 9.34755 6.33252 9.34744 6.03968 9.05433C5.74708 8.76145 5.74715 8.28687 6.03984 7.99408L11.287 2.74512C11.3795 2.65197 11.4896 2.57804 11.6109 2.52759C11.7321 2.47714 11.8622 2.45117 11.9935 2.45117C12.1248 2.45117 12.2548 2.47714 12.3761 2.52759C12.4973 2.57804 12.6074 2.65197 12.7 2.74512L17.9499 7.99412C18.2426 8.28683 18.2427 8.76144 17.9499 9.05417C17.6572 9.34686 17.1827 9.34688 16.89 9.05422L12.7021 4.8671C12.3116 4.47664 11.6784 4.47666 11.2879 4.86716L7.10053 9.05457Z" fill="url(#paint0_linear_1_1036)"/>
+                  </svg>
+                </span>
+              </button>
+              <div id="item3" class="collapse">
+                <div class="accordion-body">
+                  Sourced locally and sustainably from trusted farmers.
                 </div>
               </div>
+            </div>
 
-              <div class="accordion-item box">
-                <button class="accordion-header" data-bs-toggle="collapse" data-target="#item3">
-                  <span class="accordion-number">03</span>
-                  <span class="accordion-title">Quality Ingredients</span>
-                  <span class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="12"
-                      viewBox="0 0 24 12" fill="none">
-                      <g clip-path="url(#clip0_1_1036)">
-                        <path
-                          d="M7.10053 9.05457C6.80755 9.34755 6.33252 9.34744 6.03968 9.05433C5.74708 8.76145 5.74715 8.28687 6.03984 7.99408L11.287 2.74512C11.3795 2.65197 11.4896 2.57804 11.6109 2.52759C11.7321 2.47714 11.8622 2.45117 11.9935 2.45117C12.1248 2.45117 12.2548 2.47714 12.3761 2.52759C12.4973 2.57804 12.6074 2.65197 12.7 2.74512L17.9499 7.99412C18.2426 8.28683 18.2427 8.76144 17.9499 9.05417C17.6572 9.34686 17.1827 9.34688 16.89 9.05422L12.7021 4.8671C12.3116 4.47664 11.6784 4.47666 11.2879 4.86716L7.10053 9.05457Z"
-                          fill="url(#paint0_linear_1_1036)" />
-                      </g>
-                      <defs>
-                        <linearGradient id="paint0_linear_1_1036" x1="11.995" y1="-3.50073" x2="11.995" y2="8.99927"
-                          gradientUnits="userSpaceOnUse">
-                          <stop offset="0.396347" stop-color="#F2D52C" />
-                          <stop offset="1" stop-color="#CB9E38" />
-                        </linearGradient>
-                        <clipPath id="clip0_1_1036">
-                          <rect width="12" height="24" fill="white" transform="translate(24) rotate(90)" />
-                        </clipPath>
-                      </defs>
-                    </svg></span>
-                </button>
-                <div id="item3" class="collapse">
-                  <div class="accordion-body">
-                    Sourced locally and sustainably from trusted farmers.
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item box">
-                <button class="accordion-header" data-bs-toggle="collapse" data-target="#item4">
-                  <span class="accordion-number">04</span>
-                  <span class="accordion-title">Cultural Exploration</span>
-                  <span class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="12"
-                      viewBox="0 0 24 12" fill="none">
-                      <g clip-path="url(#clip0_1_1036)">
-                        <path
-                          d="M7.10053 9.05457C6.80755 9.34755 6.33252 9.34744 6.03968 9.05433C5.74708 8.76145 5.74715 8.28687 6.03984 7.99408L11.287 2.74512C11.3795 2.65197 11.4896 2.57804 11.6109 2.52759C11.7321 2.47714 11.8622 2.45117 11.9935 2.45117C12.1248 2.45117 12.2548 2.47714 12.3761 2.52759C12.4973 2.57804 12.6074 2.65197 12.7 2.74512L17.9499 7.99412C18.2426 8.28683 18.2427 8.76144 17.9499 9.05417C17.6572 9.34686 17.1827 9.34688 16.89 9.05422L12.7021 4.8671C12.3116 4.47664 11.6784 4.47666 11.2879 4.86716L7.10053 9.05457Z"
-                          fill="url(#paint0_linear_1_1036)" />
-                      </g>
-                      <defs>
-                        <linearGradient id="paint0_linear_1_1036" x1="11.995" y1="-3.50073" x2="11.995" y2="8.99927"
-                          gradientUnits="userSpaceOnUse">
-                          <stop offset="0.396347" stop-color="#F2D52C" />
-                          <stop offset="1" stop-color="#CB9E38" />
-                        </linearGradient>
-                        <clipPath id="clip0_1_1036">
-                          <rect width="12" height="24" fill="white" transform="translate(24) rotate(90)" />
-                        </clipPath>
-                      </defs>
-                    </svg></span>
-                </button>
-                <div id="item4" class="collapse">
-                  <div class="accordion-body">
-                    Explore the wide variety of vegan cuisine that Africa has to offer.
-                  </div>
+            <div class="accordion-item">
+              <button class="accordion-header" data-bs-toggle="collapse" data-bs-target="#item4">
+                <span class="accordion-number">04</span>
+                <span class="accordion-title">Cultural Exploration</span>
+                <span class="accordion-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none">
+                    <path d="M7.10053 9.05457C6.80755 9.34755 6.33252 9.34744 6.03968 9.05433C5.74708 8.76145 5.74715 8.28687 6.03984 7.99408L11.287 2.74512C11.3795 2.65197 11.4896 2.57804 11.6109 2.52759C11.7321 2.47714 11.8622 2.45117 11.9935 2.45117C12.1248 2.45117 12.2548 2.47714 12.3761 2.52759C12.4973 2.57804 12.6074 2.65197 12.7 2.74512L17.9499 7.99412C18.2426 8.28683 18.2427 8.76144 17.9499 9.05417C17.6572 9.34686 17.1827 9.34688 16.89 9.05422L12.7021 4.8671C12.3116 4.47664 11.6784 4.47666 11.2879 4.86716L7.10053 9.05457Z" fill="url(#paint0_linear_1_1036)"/>
+                  </svg>
+                </span>
+              </button>
+              <div id="item4" class="collapse">
+                <div class="accordion-body">
+                  Explore the wide variety of vegan cuisine that Africa has to offer.
                 </div>
               </div>
             </div>
           </div>
-          <script>
-            
-            document.addEventListener("DOMContentLoaded", function () {
-              const veganismAccordionButtons =
-              document.querySelectorAll(".accordion-container .accordion-header");
-
-              veganismAccordionButtons.forEach((button) => {
-                const targetId = button.getAttribute("data-target") || button.getAttribute("href");;
-                const targetElement = document.querySelector(targetId);
-                const icon = button.querySelector(".accordion-icon svg");
-
-                // Initialize collapse instance
-                const collapseInstance = new bootstrap.Collapse(targetElement, {
-                    toggle: false
-                });
-
-                button.addEventListener("click", function (e) {
-                  e.preventDefault();
-                  const isExpanded = targetElement.classList.contains("show");
-                  
-                  /**
-                  // Close any other open accordion items
-                  document
-                    .querySelectorAll(".collapse.show")
-                    .forEach((openItem) => {
-                      if (openItem.id !== targetId.replace("#", "")) {
-                        new bootstrap.Collapse(openItem, { toggle: true });
-
-                        // Reset icon rotation for closed items
-                        const openButton = document.querySelector(
-                          `[data-bs-target="#${openItem.id}"]`
-                        );
-                        if (openButton) {
-                          const openIcon = openButton.querySelector(
-                            ".accordion-icon svg"
-                          );
-                          if (openIcon)
-                            openIcon.style.transform = "rotate(0deg)";
-                        }
-                      }
-                    });
-
-                    **/
-                   // Close all other accordion items
-                document.querySelectorAll(".collapse.show").forEach((openItem) => {
-                  if (openItem !== targetElement) {
-                    const openInstance = bootstrap.Collapse.getInstance(openItem);
-                    if (openInstance) openInstance.hide();
-                  const openButton = document.querySelector(`[data-target="#${openItem.id}"]`);
-                  if (openButton) {
-                    const openIcon = openButton.querySelector(".accordion-icon svg");
-                  if (openIcon) openIcon.style.transform = "rotate(0deg)";
-                }
-              }
-            });
-                  /**
-                  // Toggle the clicked accordion item
-                  const isExpanded = targetElement.classList.contains("show");
-                  const collapseInstance = new bootstrap.Collapse(
-                    targetElement,
-                    {
-                      toggle: true,
-                    }
-                  );
-
-                  // Handle icon rotation
-                  if (!isExpanded) {
-                    icon.style.transform = "rotate(180deg)"; // Arrow points down for opened item
-                  } else {
-                    icon.style.transform = "rotate(0deg)"; // Arrow resets for closed item
-                  }
-                    **/
-                   // Toggle current item
-                if (isExpanded) {
-                  collapseInstance.hide();
-                  icon.style.transform = "rotate(0deg)";
-                } else {
-                  collapseInstance.show();
-                  icon.style.transform = "rotate(180deg)";
-                }
-            });
-            // Handle when a collapse is shown
-            targetElement.addEventListener("shown.bs.collapse", function () {
-              icon.style.transform = "rotate(180deg)";
-            });
-
-            // Handle when a collapse is hidden
-            targetElement.addEventListener("hidden.bs.collapse", function () {
-              icon.style.transform = "rotate(0deg)";
-                });
-              });
-            });
-
-            const elements = document.querySelectorAll('.slide-in'); 
-
-            const onScroll = () => {
-            elements.forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight * 0.85) {
-              el.classList.add('show');                 }
-          });
-};
-
-
-
-window.addEventListener('scroll', onScroll);
-onScroll(); 
-
-// On-scroll fade in animation for frq and why veganism section
-document.addEventListener("scroll", function() {
-      const boxes = document.querySelectorAll(".box");
-      const triggerBottom = window.innerHeight / 5 * 4;
-
-      boxes.forEach(function(box) {
-        const boxTop = box.getBoundingClientRect().top;
-        if (boxTop < triggerBottom) {
-          box.classList.add("visible");
-        } else {
-          box.classList.remove("visible");
-        }
-      });
-    });
-
-          </script>
         </div>
       </div>
     </div>
   </section>
-  <section>
-    <div class="position-relative">
-      <img src="assets/images/explore-leaf.png" alt="" class="rightleaf-explore" />
-      <img src="assets/images/exploreleft-dot.png" alt="" class="leftdot-explore" />
-      <img src="assets/images/explore-dot.png" alt="" class="rightleaf-explore" style="bottom: -230px" />
-      <div class="yellow-explore"></div>
-      <div
-        class="container menu-section align-items-center justify-content-center position-relative d-flex flex-column">
-        <h2 class="menu-title box">EXPLORE OUR MENU</h2>
 
-        <div class="d-flex justify-content-center filter-buttons my-4">
-          <button class="btn active mx-2 box " onclick="filterMenu('all')">
-            All
-          </button>
-          <button class="btn mx-2 box " onclick="filterMenu('appetizers')">
-            Appetizers
-          </button>
-         
-          <button class="btn mx-2 box" onclick="filterMenu('main-courses')">
-            Main Courses
-          </button>
-        </div>
-
-        <div class="row justify-content-center w-100" id="menu-container">
-          <!-- Menu Items -->
-           
-          <div class="col-md-4 menu-item box" data-category="appetizers">
-            <div class="menu-card default-content ">
-              <img src="images/SambusaImage.png" alt="Sambusa" />
-              <h5>Sambusa</h5>
-            </div>
-            <div class="menu-card hover-content ">
-              <a href="menu.html" class="menu-buttons">
-              <img src="images/SambusaImage.png" alt="Sambusa" />
-              <div class="d-flex justify-content-between align-items-center">
-                <h5>Sambusa</h5>
-                <p class="price mb-0">$21</p>
+  <!-- Menu Preview Section -->
+  <section id="menu" class="menu-section position-relative">
+    <img src="assets/images/explore-leaf.png" alt="" class="decoration leaf-4">
+    <img src="assets/images/exploreleft-dot.png" alt="" class="decoration dot-1">
+    <div class="container text-center">
+      <h2 class="section-title animate-on-scroll">EXPLORE OUR MENU</h2>
+      
+      <div class="filter-buttons animate-on-scroll">
+        <button class="btn filter-btn active" data-filter="all">All</button>
+        <button class="btn filter-btn" data-filter="appetizers">Appetizers</button>
+        <button class="btn filter-btn" data-filter="main-courses">Main Courses</button>
+        <button class="btn filter-btn" data-filter="desserts">Desserts</button>
+      </div>
+      
+      <div class="row menu-container">
+        <!-- Menu item 1 -->
+        <div class="col-md-4 menu-item animate-on-scroll" data-category="appetizers">
+          <div class="menu-card">
+            <div class="menu-card-inner">
+              <div class="menu-card-front">
+                <img src="https://images.unsplash.com/photo-1552166539-2ec8888dd801" alt="Jollof Quinoa" class="menu-img">
+                <h3 class="menu-title">Jollof Quinoa</h3>
               </div>
-              
-              <div class="d-flex justify-content-between align-items-center">
-                <p style="color: #9f9f9f">Crispy Shell</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                  <path d="M5 0V2H11.59L0 13.59L1.41 15L13 3.41V10H15V0H5Z" fill="#FFFDF4" />
-                </svg>
-              </div>
-            </a>
-            </div>
-          </div>
-          
-          
-          <div class="col-md-4 menu-item box" data-category="appetizers">
-            <div class="menu-card default-content ">
-              <img src="images/KachumbariImage.png" alt="Sambusa" />
-              <h5>Kachumbari</h5>
-            </div>
-            <div class="menu-card hover-content ">
-              <a href="menu.html" class="menu-buttons">
-              <img src="images/KachumbariImage.png" alt="Sambusa" />
-              <div class="d-flex justify-content-between align-items-center">
-                <h5>Kachumbari</h5>
-                <p class="price mb-0">$19</p>
-              </div>
-            
-              <div class="d-flex justify-content-between align-items-center">
-                <p style="color: #9f9f9f">Refreshing Flavor</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                  <path d="M5 0V2H11.59L0 13.59L1.41 15L13 3.41V10H15V0H5Z" fill="#FFFDF4" />
-                </svg>
-              
-              </div>
-            </a>
-            </div>
-          </div>
-          
-          <div class="col-md-4 menu-item box" data-category="main-courses">
-            <div class="menu-card default-content ">
-              <img src="images/MisirWatImage.png" alt="Sambusa" />
-              <h5>Misir Wat</h5>
-            </div>
-            
-            <div class="menu-card hover-content ">
-              <a href="menu.html" class="menu-buttons">
-              <img src="images/MisirWatImage.png" alt="Sambusa" />
-              <div class="d-flex justify-content-between align-items-center">
-                <h5>Misir Wat</h5>
-                <p class="price mb-0">$32</p>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center">
-                <p style="color: #9f9f9f">Rich Flavor</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                  <path d="M5 0V2H11.59L0 13.59L1.41 15L13 3.41V10H15V0H5Z" fill="#FFFDF4" />
-                </svg>
+              <div class="menu-card-back">
+                <h3 class="menu-title">Jollof Quinoa</h3>
+                <p class="menu-price">$18</p>
+                <p class="menu-description">
+                  Our signature dish featuring quinoa cooked in tomato and pepper sauce with aromatic spices.
+                </p>
+                <div class="menu-tags">
+                  <span class="menu-tag">Gluten-Free</span>
+                  <span class="menu-tag">Vegan</span>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
-        </div>
-      </a>
-        <a href="menu.html">
-
-        <button class="btn reser-button mx-auto mt-4 buttonn">
-          Explore More
-        </button>
-       </a>
-      </div>
-    </div>
-  </section>
-  <script>
-    document.querySelector(".buttonn").addEventListener("click", function () {
-      const menuContainer = document.getElementById("menu-container");
-
-      const newItems = `
-    <div class="col-md-4 menu-item" data-category="appetizers">
-      <div class="menu-card default-content">
-        <img src="assets/images/dish2.png" alt="New Dish" />
-        <h5>New Dish</h5>
-      </div>
-      <div class="menu-card hover-content">
-        <img src="assets/images/dish1.png" alt="Vegetable Skewers" />
-         <div class="d-flex justify-content-between align-items-center">
-            <h5>Vegetable Skewers</h5>
-            <p class="price mb-0">$50.42</p>
-          </div>
-          <div class="d-flex justify-content-between align-items-center">
-            <p style="color: #9f9f9f">Flavor Harmony</p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-              <path d="M5 0V2H11.59L0 13.59L1.41 15L13 3.41V10H15V0H5Z" fill="#FFFDF4" />
-            </svg>
-          </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 menu-item" data-category="entrees">
-      <div class="menu-card default-content">
-        <img src="assets/images/dish3.png" alt="Another Dish" />
-        <h5>Another Dish</h5>
-      </div>
-      <div class="menu-card hover-content">
-        <img src="assets/images/dish1.png" alt="Vegetable Skewers" />
-         <div class="d-flex justify-content-between align-items-center">
-            <h5>Vegetable Skewers</h5>
-            <p class="price mb-0">$50.42</p>
-          </div>
-          <div class="d-flex justify-content-between align-items-center">
-            <p style="color: #9f9f9f">Flavor Harmony</p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-              <path d="M5 0V2H11.59L0 13.59L1.41 15L13 3.41V10H15V0H5Z" fill="#FFFDF4" />
-            </svg>
-          </div>
-      </div>
-    </div>
-    <div class="col-md-4 menu-item" data-category="entrees">
-      <div class="menu-card default-content">
-        <img src="assets/images/dish2.png" alt="Another Dish" />
-        <h5>Another Dish</h5>
-      </div>
-      <div class="menu-card hover-content">
-        <img src="assets/images/dish1.png" alt="Vegetable Skewers" />
-         <div class="d-flex justify-content-between align-items-center">
-            <h5>Vegetable Skewers</h5>
-            <p class="price mb-0">$50.42</p>
-          </div>
-          <div class="d-flex justify-content-between align-items-center">
-            <p style="color: #9f9f9f">Flavor Harmony</p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-              <path d="M5 0V2H11.59L0 13.59L1.41 15L13 3.41V10H15V0H5Z" fill="#FFFDF4" />
-            </svg>
-          </div>
-      </div>
-    </div>
-  `;
-
-      menuContainer.innerHTML += newItems; // Append new menu items
-    });
-
-    function filterMenu(category) {
-      const items = document.querySelectorAll(".menu-item");
-      items.forEach((item) => {
-        if (category === "all" || item.dataset.category === category) {
-          item.style.display = "flex";
-        } else {
-          item.style.display = "none";
-        }
-      });
-
-      // Update active button
-      document
-        .querySelectorAll(".filter-buttons .btn")
-        .forEach((btn) => btn.classList.remove("active"));
-      event.target.classList.add("active");
-    }
-  </script>
-  <section>
-    <div class="faq-heading mt-5">WHAT PEOPLE SAY ABOUT US</div>
-
-    <div class="testimonial-slider ">
-      <!-- Testimonial 1 -->
-      <div class="testimonial-card ">
-        <span class="quote-icon"><img src="assets/images/quotes.png" alt="" style="width: 24px; height: 24px" /></span>
-        <div class="testimonial-header ">
-          <img src="images/JohnWellbergImage.png" alt="User" />
-          <div>
-            <div class="testimonial-name">John Wellberg</div>
-            <div class="testimonial-username">@WellbergJ</div>
           </div>
         </div>
-        <p class="testimonial-text box">
-          "Absolutely amazing food, I come here every time I'm looking for a
-          good meal. Plate of Africa has a variety of food options that leave
-          you satisfied and great staff!"
-        </p>
-      </div>
-
-      <!-- Testimonial 2 -->
-      <div class="testimonial-card">
-        <span class="quote-icon"><img src="assets/images/quotes.png" alt="" style="width: 24px; height: 24px" /></span>
-        <div class="testimonial-header">
-          <img src="images/NettieHardinImage.png" alt="User" />
-          <div>
-            <div class="testimonial-name">Nettie Hardin</div>
-            <div class="testimonial-username">@netti3</div>
-          </div>
-        </div>
-        <p class="testimonial-text box">
-          "Plate of Africa just nails it every time! So many great vegan
-          options to choose from and a staff that is very attentive and nice!
-          I am definitely coming back tomorrow for more!"
-        </p>
-      </div>
-
-      <!-- Testimonial 3 -->
-      <div class="testimonial-card">
-        <span class="quote-icon"><img src="assets/images/quotes.png" alt="" style="width: 24px; height: 24px" /></span>
-        <div class="testimonial-header">
-          <img src="images/StellaGallegosImage.png" alt="User" />
-          <div>
-            <div class="testimonial-name">Stella Gallagos</div>
-            <div class="testimonial-username">@stellag</div>
-          </div>
-        </div>
-        <p class="testimonial-text box">
-          "So grateful for this restaurant to have opened near where I live!
-          Whenever I'm craving something good, this is the first place I think
-          of!"
-        </p>
-      </div>
-      <!-- Testimonial 1 -->
-      <div class="testimonial-card">
-        <span class="quote-icon"><img src="assets/images/quotes.png" alt="" style="width: 24px; height: 24px" /></span>
-        <div class="testimonial-header">
-          <img src="images/ZeinebaTesfayeImage.png" alt="User" />
-          <div>
-            <div class="testimonial-name">Zeineba Tesfaye</div>
-            <div class="testimonial-username">@WZeinafay</div>
-          </div>
-        </div>
-        <p class="testimonial-text box">
-          "This food was so authentic! I was suprised to see how good the food was, and it was all vegan! 10/10 experience."
-        </p>
-      </div>
-
-      <!-- Testimonial 2 -->
-      <div class="testimonial-card">
-        <span class="quote-icon"><img src="assets/images/quotes.png" alt="" style="width: 24px; height: 24px" /></span>
-        <div class="testimonial-header">
-          <img src="images/MadisonLeImage.png" alt="User" />
-          <div>
-            <div class="testimonial-name">Madison Le</div>
-            <div class="testimonial-username">@MadiLe</div>
-          </div>
-        </div>
-        <p class="testimonial-text box">
-          "You can't compete with the quality of Plate of Africa! The food was so flavorful and filling!"
-        </p>
-      </div>
-
-      <!-- Testimonial 3 -->
-      <div class="testimonial-card">
-        <span class="quote-icon"><img src="assets/images/quotes.png" alt="" style="width: 24px; height: 24px" /></span>
-        <div class="testimonial-header">
-          <img src="images/SarahPrichettImage.png" alt="User" />
-          <div>
-            <div class="testimonial-name">Sarah Prichett</div>
-            <div class="testimonial-username">@SarahPi</div>
-          </div>
-        </div>
-        <p class="testimonial-text box">
-          "Plate of Africa's Liberian Fried Okra was so good! Make sure to try that first!"
-        </p>
-      </div>
-    </div>
-  </section>
-  <!-- Slick Slider JS -->
-  <script src="js/jquery-3.6.0.min.js"></script>
-  <script src="js/slick.min.js"></script>
-
-  <script>
-    $(document).ready(function () {
-      $(".testimonial-slider").slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        arrows: true,
-        dots: false,
-        prevArrow: '<button type="button" class="slick-prev">❮</button>',
-        nextArrow: '<button type="button" class="slick-next">❯</button>',
-        responsive: [
-          {
-            breakpoint: 1000,
-            settings: {
-              slidesToShow: 2,
-            },
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 1,
-              autoplay: true, // Force autoplay on mobile
-              arrows: false, // Hide arrows on mobile
-              autoplaySpeed: 1000,
-            },
-          },
-        ],
-      });
-    });
-  </script>
-  <section>
-    <div class="position-relative">
-      <div class="location-yellow"></div>
-      <img src="assets/images/location-leaf.png" alt="" class="leftleaf-location" />
-      <img src="assets/images/leftdot-location.png" alt="" class="leftdot-location" />
-      <img src="assets/images/location-rightleaf.png" alt="" class="rightleaf-location" />
-      <div class="faq-heading mt100">OUR MULTIPLE LOCATIONS</div>
-      <div class="container">
-        <div class="map-container">
-          <img src="images/map.png" alt="Restaurant Locations Map" class="location-map">
-          <!-- Location info container (bottom right) -->
-          <div class="location-info-container" id="location-info-container">
-              <div class="location-info" id="info-downtown" data-location="Downtown">
-                  <h3>Downtown</h3>
-                  <p><i class="fa-solid fa-location-dot"></i> 123 Main Street</p>
-                  <p><i class="fa-solid fa-clock"></i> Open: 11am - 10pm</p>
-                  <p><i class="fa-solid fa-phone"></i> 908-441-9271</p>
-                  <button class="location-contact-btn" data-location="Downtown">Contact This Location</button>
-              </div>
-              <div class="location-info" id="info-westside" data-location="Westside">
-                  <h3>Westside</h3>
-                  <p><i class="fa-solid fa-location-dot"></i> 456 Park Avenue</p>
-                  <p><i class="fa-solid fa-clock"></i> Open: 11am - 11pm</p>
-                  <p><i class="fa-solid fa-phone"></i> 908-441-9271</p>
-                  <button class="location-contact-btn" data-location="Westside">Contact This Location</button>
-              </div>
-              <div class="location-info" id="info-eastside" data-location="Eastside">
-                  <h3>Eastside</h3>
-                  <p><i class="fa-solid fa-location-dot"></i> 789 River Road</p>
-                  <p><i class="fa-solid fa-clock"></i> Open: 12pm - 10pm</p>
-                  <p><i class="fa-solid fa-phone"></i> 908-441-9271</p>
-                  <button class="location-contact-btn" data-location="Eastside">Contact This Location</button>
-              </div>
-          </div>
-          <!-- Location markers -->
-          <div class="location-marker marker-1" data-location="Downtown">
-            <div class="marker-logo"></div>
-          </div>
-          <div class="location-marker marker-2" data-location="Westside">
-            <div class="marker-logo"></div>
-          </div>
-          <div class="location-marker marker-3" data-location="Eastside">
-            <div class="marker-logo"></div>
-          </div>
-        </div>
-       
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="position-relative">
-      <div class="faq-yellow"></div>
-      <div class="container my-5">
-        <div class="faq-heading mt100">Frequently Asked Questions</div>
-        <div class="faq-section">
-
-          <div class="faq-item">
-            <button class="faq-question btn btn-dark w-100 text-start box" data-bs-toggle="collapse" data-bs-target="#faq1">
-              What type of cuisine does Plate of Africa serve?
-              <span class="icon float-end"><img src="assets/images/plus.png" alt="" /></span>
-            </button>
-            <div id="faq1" class="collapse">
-              <div class="faq-answer p-3 text-white">
-                Plate of Africa serves a wide variety of African cuisine spanning across the continent, all with a vegan perspective.
-              </div>
-            </div>
-          </div>
-
-          
-
-          <div class="faq-item">
-            <button class="faq-question btn btn-dark w-100 text-start box" data-bs-toggle="collapse" data-bs-target="#faq3">
-              Do you offer takeout or delivery services?
-              <span class="icon float-end"><img src="assets/images/plus.png" alt="" /></span>
-            </button>
-            <div id="faq3" class="collapse">
-              <div class="faq-answer p-3 text-white">
-                Yes! We offer both takeout and delivery options.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question btn btn-dark w-100 text-start box" data-bs-toggle="collapse" data-bs-target="#faq4">
-              Where do you source your ingredients from?
-              <span class="icon float-end"><img src="assets/images/plus.png" alt="" /></span>
-            </button>
-            <div id="faq4" class="collapse">
-              <div class="faq-answer p-3 text-white">
-                Our ingredients are sourced from the finest local farmers and
-                suppliers to ensure top quality.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question btn btn-dark w-100 text-start box" data-bs-toggle="collapse" data-bs-target="#faq5">
-              Does Plate of Africa accommodate those with mobility disabilities?
-              <span class="icon float-end"><img src="assets/images/plus.png" alt="" /></span>
-            </button>
-            <div id="faq5" class="collapse">
-              <div class="faq-answer p-3 text-white">
-                Yes! At our locations, all entrances and dining tables are accessible to those with mobility impairments. If there are further concerns that you may have, please contact us with the number 908-441-9271.
-              </div>
-            </div>
-          </div>
-
-          <!--
-
-          <div class="faq-item">
-            <button class="faq-question btn btn-dark w-100 text-start box" data-bs-toggle="collapse" data-bs-target="#faq6">
-              Do you host private events or parties?
-              <span class="icon float-end"><img src="assets/images/plus.png" alt="" /></span>
-            </button>
-            <div id="faq6" class="collapse">
-              <div class="faq-answer p-3 text-white">
-                Yes! We are delighted to host private events, from intimate gatherings to special celebrations. For more details, including availability, seating capacity, and customized menus, please contact us at 908-441-9271. 
-              </div>
-            </div>
-          </div>
-
-        -->
-
-          <!--
-          
-          <div class="faq-item">
-            <button class="faq-question btn btn-dark w-100 text-start box" data-bs-toggle="collapse" data-bs-target="#faq7">
-              What is the average wait time during peak hours?
-              <span class="icon float-end"><img src="assets/images/plus.png" alt="" /></span>
-            </button>
-            <div id="faq7" class="collapse">
-              <div class="faq-answer p-3 text-white">
-                Our peak hours are generally from 6 PM to 9 PM. During these hours, customers without reservations may wait up to 35 minutes for a table. 
-              </div>
-            </div>
-          </div>
-
-        -->
-
-          <!--
-
-          <div class="faq-item">
-            <button class="faq-question btn btn-dark w-100 text-start box" data-bs-toggle="collapse" data-bs-target="#faq8">
-              Do you have happy hour or any special discounts?
-              <span class="icon float-end"><img src="assets/images/plus.png" alt="" /></span>
-            </button>
-            <div id="faq8" class="collapse">
-              <div class="faq-answer p-3 text-white">
-                Our restuarant does not have happy hour. However, we do ocassionaly host special discounts for holidays like Mother's Day and Veteran's Day. Please check our social media page to be updated with our most recent specials!
-              </div>
-            </div>
-          </div>
-        -->
         
+        <!-- Menu item 2 -->
+        <div class="col-md-4 menu-item animate-on-scroll" data-category="main-courses">
+          <div class="menu-card">
+            <div class="menu-card-inner">
+              <div class="menu-card-front">
+                <img src="https://images.unsplash.com/photo-1542814784-133212a2e378" alt="Moroccan Tagine" class="menu-img">
+                <h3 class="menu-title">Moroccan Tagine</h3>
+              </div>
+              <div class="menu-card-back">
+                <h3 class="menu-title">Moroccan Tagine</h3>
+                <p class="menu-price">$22</p>
+                <p class="menu-description">
+                  Slow-cooked vegetables and chickpeas in a savory blend of Moroccan spices served with quinoa.
+                </p>
+                <div class="menu-tags">
+                  <span class="menu-tag">Gluten-Free</span>
+                  <span class="menu-tag">Vegan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Menu item 3 -->
+        <div class="col-md-4 menu-item animate-on-scroll" data-category="desserts">
+          <div class="menu-card">
+            <div class="menu-card-inner">
+              <div class="menu-card-front">
+                <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f" alt="Ethiopian Platter" class="menu-img">
+                <h3 class="menu-title">Ethiopian Platter</h3>
+              </div>
+              <div class="menu-card-back">
+                <h3 class="menu-title">Ethiopian Platter</h3>
+                <p class="menu-price">$24</p>
+                <p class="menu-description">
+                  A selection of vibrant stews including Misir Wat (spiced lentils) and Gomen (collard greens) served with injera.
+                </p>
+                <div class="menu-tags">
+                  <span class="menu-tag">Spicy</span>
+                  <span class="menu-tag">Vegan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <a href="menu.html" class="btn btn-primary view-menu-btn animate-on-scroll">View Full Menu</a>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials-section">
+    <div class="container text-center">
+      <h2 class="section-title animate-on-scroll">WHAT OUR GUESTS SAY</h2>
+      
+      <div class="testimonial-slider animate-on-scroll">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="assets/images/user1.png" alt="Customer 1" class="testimonial-img">
+            <div>
+              <h4 class="testimonial-name">Maria Johnson</h4>
+              <p class="testimonial-location">Seattle, WA</p>
+            </div>
+          </div>
+          <p class="testimonial-text">
+            "The Moroccan Tagine transported me straight to North Africa. The blend of spices was perfectly balanced and the vegetables were cooked to perfection. Can't wait to come back!"
+          </p>
+          <div class="quote-icon">
+            <img src="assets/images/quotes.png" alt="Quote" width="24">
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="assets/images/reviewImg2.png" alt="Customer 2" class="testimonial-img">
+            <div>
+              <h4 class="testimonial-name">James Wilson</h4>
+              <p class="testimonial-location">Portland, OR</p>
+            </div>
+          </div>
+          <p class="testimonial-text">
+            "As someone who recently switched to a plant-based diet, I was blown away by the depth of flavor in every dish. The Jollof Quinoa was a standout - I didn't miss the meat at all!"
+          </p>
+          <div class="quote-icon">
+            <img src="assets/images/quotes.png" alt="Quote" width="24">
+          </div>
+        </div>
+        
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="assets/images/reviewImg3.png" alt="Customer 3" class="testimonial-img">
+            <div>
+              <h4 class="testimonial-name">Sarah Thompson</h4>
+              <p class="testimonial-location">Vancouver, BC</p>
+            </div>
+          </div>
+          <p class="testimonial-text">
+            "The atmosphere is as impressive as the food. The authentic decor and warm service made our anniversary dinner truly special. The Ethiopian platter was a taste adventure we'll never forget."
+          </p>
+          <div class="quote-icon">
+            <img src="assets/images/quotes.png" alt="Quote" width="24">
+          </div>
+        </div>
+        
+        <!-- Testimonial 4 -->
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="assets/images/reviewImg4.png" alt="Customer 4" class="testimonial-img">
+            <div>
+              <h4 class="testimonial-name">David Chen</h4>
+              <p class="testimonial-location">San Francisco, CA</p>
+            </div>
+          </div>
+          <p class="testimonial-text">
+            "I've traveled across Africa and was skeptical about vegan versions of traditional dishes, but Plate of Africa exceeded all expectations. Authentic flavors with a modern twist - brilliant!"
+          </p>
+          <div class="quote-icon">
+            <img src="assets/images/quotes.png" alt="Quote" width="24">
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <section>
-    
+
+  <!-- Locations Section -->
+  <section id="locations" class="locations-section position-relative">
+    <img src="assets/images/leftdot-location.png" alt="" class="decoration dot-2">
+    <img src="assets/images/location-rightleaf.png" alt="" class="decoration leaf-5">
+    <div class="container text-center">
+      <h2 class="section-title animate-on-scroll">OUR LOCATIONS</h2>
+      
+      <div class="map-container animate-on-scroll">
+        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b" alt="Restaurant map" class="location-map">
+        
+        <!-- Location markers -->
+        <div class="location-marker marker-1" data-location="seattle">
+          <div class="marker-logo"></div>
+        </div>
+        
+        <div class="location-marker marker-2" data-location="portland">
+          <div class="marker-logo"></div>
+        </div>
+        
+        <div class="location-marker marker-3" data-location="vancouver">
+          <div class="marker-logo"></div>
+        </div>
+        
+        <!-- Location info container -->
+        <div class="location-info-container">
+          <!-- Seattle location info -->
+          <div class="location-info" id="seattle-info">
+            <h3>Seattle, WA</h3>
+            <p><i class="bi bi-geo-alt-fill"></i> 628 Cara Lodge Harbor Way, Seattle, WA 98154</p>
+            <p><i class="bi bi-telephone-fill"></i> (206) 555-7890</p>
+            <p><i class="bi bi-clock-fill"></i> Mon-Thu: 11am-9pm | Fri-Sun: 11am-11pm</p>
+            <button class="location-contact-btn">Get Directions</button>
+          </div>
+          
+          <!-- Portland location info -->
+          <div class="location-info" id="portland-info">
+            <h3>Portland, OR</h3>
+            <p><i class="bi bi-geo-alt-fill"></i> 412 Rose District Ave, Portland, OR 97205</p>
+            <p><i class="bi bi-telephone-fill"></i> (503) 555-4321</p>
+            <p><i class="bi bi-clock-fill"></i> Mon-Thu: 11am-9pm | Fri-Sun: 11am-10pm</p>
+            <button class="location-contact-btn">Get Directions</button>
+          </div>
+          
+          <!-- Vancouver location info -->
+          <div class="location-info" id="vancouver-info">
+            <h3>Vancouver, BC</h3>
+            <p><i class="bi bi-geo-alt-fill"></i> 215 Gastown Way, Vancouver, BC V6B 1H7</p>
+            <p><i class="bi bi-telephone-fill"></i> (604) 555-9876</p>
+            <p><i class="bi bi-clock-fill"></i> Mon-Thu: 11am-9pm | Fri-Sun: 11am-10pm</p>
+            <button class="location-contact-btn">Get Directions</button>
+          </div>
+        </div>
+      </div>
+      
+      <p class="main-location animate-on-scroll">
+        Visit any of our locations to experience the authentic flavors of Africa with our plant-based menu.
+      </p>
+    </div>
   </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq-section position-relative">
+    <div class="container">
+      <h2 class="section-title text-center animate-on-scroll">FREQUENTLY ASKED QUESTIONS</h2>
+      
+      <div class="faq-container animate-on-scroll">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <button class="faq-question collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            Are all your dishes vegan?
+            <span class="icon">
+              <img src="assets/images/plus.png" alt="Expand" class="plus-icon">
+            </span>
+          </button>
+          <div id="faq1" class="collapse faq-answer">
+            <p>Yes, all of our dishes are 100% plant-based and vegan-friendly. We carefully craft our menu to ensure authentic African flavors without animal products.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <button class="faq-question collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            Do I need to make a reservation?
+            <span class="icon">
+              <img src="assets/images/plus.png" alt="Expand" class="plus-icon">
+            </span>
+          </button>
+          <div id="faq2" class="collapse faq-answer">
+            <p>While walk-ins are welcome, we highly recommend making a reservation, especially for dinner service and weekends. You can easily book a table online through our reservations page or by calling us directly.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <button class="faq-question collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            Are your dishes spicy?
+            <span class="icon">
+              <img src="assets/images/plus.png" alt="Expand" class="plus-icon">
+            </span>
+          </button>
+          <div id="faq3" class="collapse faq-answer">
+            <p>The spice level varies across our menu to represent different African cuisines. We can adjust the heat level for most dishes upon request. Just let your server know your preference when ordering.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <button class="faq-question collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+            Do you offer gluten-free options?
+            <span class="icon">
+              <img src="assets/images/plus.png" alt="Expand" class="plus-icon">
+            </span>
+          </button>
+          <div id="faq4" class="collapse faq-answer">
+            <p>Yes, many of our dishes are naturally gluten-free, and we clearly mark these items on our menu. Our kitchen staff is trained to handle allergen concerns, but please inform your server about any specific dietary restrictions.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 5 -->
+        <div class="faq-item">
+          <button class="faq-question collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+            Can you accommodate large groups?
+            <span class="icon">
+              <img src="assets/images/plus.png" alt="Expand" class="plus-icon">
+            </span>
+          </button>
+          <div id="faq5" class="collapse faq-answer">
+            <p>Absolutely! We welcome large groups and can accommodate private events. For groups of 8 or more, please contact us in advance so we can ensure the best possible experience for your party.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation Section (Mini Form) -->
+  <section id="reservations" class="reservations-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="reservation-content animate-on-scroll">
+            <h2 class="section-title">Make a Reservation</h2>
+            <p class="section-text">
+              Reserve your table today and embark on a culinary journey through Africa. Our plant-based menu celebrates the continent's rich flavors and traditions.
+            </p>
+            <div class="reservation-details">
+              <div class="reservation-detail">
+                <i class="bi bi-telephone-fill"></i>
+                <span>Call us: (206) 555-7890</span>
+              </div>
+              <div class="reservation-detail">
+                <i class="bi bi-envelope-fill"></i>
+                <span>Email: reservations@plateofafrica.com</span>
+              </div>
+              <div class="reservation-detail">
+                <i class="bi bi-clock-fill"></i>
+                <span>Hours: Mon-Thu: 11am-9pm | Fri-Sun: 11am-11pm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <form class="reservation-form animate-on-scroll">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="nameInput" placeholder="Your Name">
+              <label for="nameInput">Your Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="emailInput" placeholder="Email Address">
+              <label for="emailInput">Email Address</label>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="date" class="form-control" id="dateInput">
+                  <label for="dateInput">Date</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="time" class="form-control" id="timeInput">
+                  <label for="timeInput">Time</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-floating mb-3">
+              <select class="form-select" id="guestsInput">
+                <option value="1">1 Person</option>
+                <option value="2">2 People</option>
+                <option value="3">3 People</option>
+                <option value="4">4 People</option>
+                <option value="5">5 People</option>
+                <option value="6">6+ People</option>
+              </select>
+              <label for="guestsInput">Number of Guests</label>
+            </div>
+            <div class="form-floating mb-3">
+              <textarea class="form-control" id="messageInput" placeholder="Special Requests" style="height: 100px"></textarea>
+              <label for="messageInput">Special Requests</label>
+            </div>
+            <button type="submit" class="btn btn-primary reservation-submit-btn">Book My Table</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
-  <section>
-    <div id="footer"></div>
-  </section>
-  <script>
-    $(document).ready(function () {
-      $(".scroll-to-top").on("click", function () {
-        $("html, body").animate({ scrollTop: 0 }, "slow");
-      });
-    });
-    $(document).ready(function () {
-      $(".downarrow").on("mouseenter", function () {
-        $(".handledown").css("z-index", "9999"); // Increase z-index on hover
-      });
+  <footer id="footer" class="footer">
+    <!-- Footer content will be loaded dynamically from footer.html -->
+  </footer>
 
-      $(".downarrow").on("mouseleave", function () {
-        $(".handledown").css("z-index", "1"); // Reset z-index when mouse leaves
-      });
-      
-      // Add scroll event listener to change arrow direction based on scroll position
-      $(window).on("scroll", function() {
-        let currentScroll = $(window).scrollTop();
-        let windowHeight = $(window).height();
-        let documentHeight = $(document).height();
-        let footerPosition = $("#footer").offset().top;
-        
-        // Check if we're near the footer (within 80% of document height)
-        let nearFooter = currentScroll > (documentHeight * 0.8) || 
-                         currentScroll > (footerPosition - windowHeight);
-        
-        if (nearFooter) {
-          $(".downarrow").addClass("rotate-arrow");
-        } else {
-          $(".downarrow").removeClass("rotate-arrow");
-        }
-      });
-      
-      // Down arrow click functionality
-      $(".downarrow").on("click", function () {
-        let debug = false; // Set to true to enable console logging for debugging
-        let currentScroll = $(window).scrollTop();
-        let windowHeight = $(window).height();
-        let documentHeight = $(document).height();
-        let footerPosition = $("#footer").offset().top;
-        let sections = $("section"); // Get all sections
-        let nextSection = null;
-        let scrollOffset = 150; // Increased offset to show more of the next section
-        
-        // Check if we're near the footer (within 80% of document height)
-        let nearFooter = currentScroll > (documentHeight * 0.8) || 
-                         currentScroll > (footerPosition - windowHeight);
-        
-        if (debug) {
-          console.log("Current scroll position:", currentScroll);
-          console.log("Window height:", windowHeight);
-          console.log("Document height:", documentHeight);
-          console.log("Footer position:", footerPosition);
-          console.log("Near footer:", nearFooter);
-        }
-        
-        // If near footer, scroll to top
-        if (nearFooter) {
-          // Scroll to top
-          $('html, body').animate({
-            scrollTop: 0
-          }, 800);
-          return; // Exit the function
-        }
-        
-        // Normal down arrow functionality for rest of the page
-        sections.each(function (index) {
-          let sectionTop = $(this).offset().top;
-          let sectionHeight = $(this).outerHeight();
-          
-          if (debug) {
-            console.log("Section", index, "- Top:", sectionTop, "Height:", sectionHeight);
-          }
-          
-          // Skip very small sections (likely not meant to be scrolled to)
-          if (sectionHeight < 200) {
-            return true; // Continue to next section
-          }
-          
-          // Check if the section is below the current viewport (with a smaller buffer)
-          if (sectionTop > currentScroll + (windowHeight * 0.2)) { 
-            nextSection = $(this);
-            if (debug) {
-              console.log("Selected next section:", index);
-            }
-            return false; // Break the loop
-          }
-        });
+  <!-- Scroll to top button -->
+  <a href="#" id="movetop" class="move-top">
+    <img src="assets/images/movetop.png" alt="Move to top">
+  </a>
 
-        if (nextSection) {
-          // Smooth scroll to the next section with offset
-          $('html, body').animate({
-            scrollTop: nextSection.offset().top - scrollOffset
-          }, 100); // 800ms animation duration for smooth scrolling
-        } else {
-          // If no next section found, scroll to the bottom of the page
-          $('html, body').animate({
-            scrollTop: $(document).height() - $(window).height()
-          }, 800);
-        }
-      });
-    });
+  <!-- JavaScript Libraries -->
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  
+  <!-- Custom Scripts -->
+  <script src="js/main.js"></script>
 
-
-
-
-
-    $(document).ready(function () {
-      $(".faq-question").click(function () {
-        let elements = document.getElementsByClassName("faq-question");
-        for (let i = 0; i < elements.length; i++) {
-          elements[i].style.borderBottomLeftRadius = "0px";
-          elements[i].style.borderBottomRightRadius = "0px";
-        }
-        let elementsA = document.getElementsByClassName("faq-answer");
-        for (let i = 0; i < elementsA.length; i++) {
-          elementsA[i].style.borderTopLeftRadius = "0px";
-          elementsA[i].style.borderTopRightRadius = "0px";
-        }
-        // Toggle the icon between plus and minus
-        $(this)
-          .find(".icon")
-          .text($(this).next().hasClass("show") ? "" : "");
-
-        // Close other opened FAQs and reset their icons
-        $(".faq-item .collapse")
-          .not($(this).next())
-          .collapse("hide")
-          .prev()
-          .find(".icon")
-          .html('<img style="" src="/assets/images/plus.png" alt="">');
-      });
-
-      // When an FAQ is closed, reset its icon to '+'
-      $(".faq-item .collapse").on("hidden.bs.collapse", function () {
-        $(this)
-          .prev()
-          .find(".icon")
-          .html('<img style="" src="/assets/images/plus.png" alt="">');
-      });
-
-      // When an FAQ is opened, set its icon to '-'
-      $(".faq-item .collapse").on("shown.bs.collapse", function () {
-        $(this)
-          .prev()
-          .find(".icon")
-          .html(
-            '<div style="    background: #E0BC6B;width: 20px;height: 3px;margin-top: 15px;border-radius: 35px;"></div>'
-          );
-      });
-    });
-  </script>
-  <script>
-    
-  $(document).ready(function () {
-    $(".faq-question").click(function () {
-      const $collapse = $(this).next('.collapse');
-      $collapse.collapse('toggle'); // Explicitly toggle the clicked FAQ
-    });
-
-    $('.faq-item .collapse').on('shown.bs.collapse', function () {
-      $(this).prev().find('.icon').html(
-        '<div style="background: #E0BC6B;width: 20px;height: 3px;margin-top: 15px;border-radius: 35px;"></div>'
-      );
-    });
-
-    $('.faq-item .collapse').on('hidden.bs.collapse', function () {
-      $(this).prev().find('.icon').html(
-        '<img src="assets/images/plus.png" alt="Plus icon">'
-      );
-    });
-  });
-    /**
-     * Initialize location markers functionality
-     * - Shows location info when markers are hovered/clicked
-     * - Adds smooth transitions between different locations
-     */
-    document.addEventListener('DOMContentLoaded', function() {
-      initLocationMarkers();
-    });
-    
-    function initLocationMarkers() {
-      const locationMarkers = document.querySelectorAll('.location-marker');
-      const infoContainer = document.getElementById('location-info-container');
-      const locationInfos = document.querySelectorAll('.location-info');
-      let currentLocation = null;
-      
-      // Exit if elements don't exist
-      if (!locationMarkers.length || !infoContainer) return;
-      
-      /**
-       * Show location info with enhanced animations
-       * @param {string} locationName - The name of the location to show
-       */
-      function showLocationInfo(locationName) {
-        // If we're already showing this location, do nothing
-        if (currentLocation === locationName) return;
-        
-        // If we're showing a different location, animate the transition
-        if (currentLocation) {
-          // First hide the current location info with a quick fade
-          locationInfos.forEach(info => {
-            if (info.getAttribute('data-location') === currentLocation) {
-              info.style.opacity = '0';
-              info.style.transform = 'translateX(10px)';
-              
-              // After a short delay, remove active class and show new location
-              setTimeout(() => {
-                info.classList.remove('active');
-                showNewLocation();
-              }, 150);
-            }
-          });
-        } else {
-          // If no location is currently shown, just show the new one
-          infoContainer.classList.add('active');
-          showNewLocation();
-        }
-        
-        /**
-         * Helper function to show the new location
-         */
-        function showNewLocation() {
-          // Show the selected location info
-          const selectedInfo = document.getElementById('info-' + locationName.toLowerCase());
-          if (selectedInfo) {
-            selectedInfo.classList.add('active');
-            // Ensure the container is visible
-            infoContainer.classList.add('active');
-            // Highlight the active marker
-            highlightMarker(locationName);
-          }
-          // Update current location
-          currentLocation = locationName;
-        }
-      }
-      
-      /**
-       * Highlight the active marker
-       * @param {string} locationName - The name of the location to highlight
-       */
-      function highlightMarker(locationName) {
-        // Reset all markers
-        locationMarkers.forEach(marker => {
-          marker.style.backgroundColor = 'var(--color-gold, #E0BC6B)';
-          marker.style.transform = 'translate(-50%, -50%)';
-          marker.style.boxShadow = 'none';
-          // Make sure logo is properly sized
-          const logo = marker.querySelector('.marker-logo');
-          if (logo) {
-            logo.style.width = '30px';
-            logo.style.height = '30px';
-          }
-        });
-        
-        // Highlight the active marker
-        locationMarkers.forEach(marker => {
-          if (marker.getAttribute('data-location') === locationName) {
-            marker.style.backgroundColor = '#E6B035';
-            marker.style.transform = 'translate(-50%, -50%) scale(1.2)';
-            marker.style.boxShadow = '0 0 15px #E0BC6B';
-            // Make logo slightly larger on highlighted marker
-            const logo = marker.querySelector('.marker-logo');
-            if (logo) {
-              logo.style.width = '35px';
-              logo.style.height = '35px';
-            }
-          }
-        });
-      }
-      
-      /**
-       * Hide location info
-       */
-      function hideLocationInfo() {
-        infoContainer.classList.remove('active');
-        setTimeout(() => {
-          locationInfos.forEach(info => {
-            info.classList.remove('active');
-          });
-          // Reset all markers
-          locationMarkers.forEach(marker => {
-            marker.style.backgroundColor = 'var(--color-gold, #E0BC6B)';
-            marker.style.transform = 'translate(-50%, -50%)';
-            marker.style.boxShadow = 'none';
-            // Reset logo size
-            const logo = marker.querySelector('.marker-logo');
-            if (logo) {
-              logo.style.width = '30px';
-              logo.style.height = '30px';
-            }
-          });
-          currentLocation = null;
-        }, 300);
-      }
-      
-      // Add event listeners to markers
-      locationMarkers.forEach(marker => {
-        const location = marker.getAttribute('data-location');
-        
-        // Show on hover
-        marker.addEventListener('mouseenter', () => {
-          showLocationInfo(location);
-        });
-        
-        // Hide when mouse leaves the map container (not just the marker)
-        const mapContainer = document.querySelector('.map-container');
-        if (mapContainer) {
-          mapContainer.addEventListener('mouseleave', hideLocationInfo);
-        }
-        
-        // For mobile: toggle on click
-        marker.addEventListener('click', (e) => {
-          e.stopPropagation(); // Prevent bubbling
-          showLocationInfo(location);
-        });
-      });
-      
-      // Add event listeners to contact buttons
-      document.querySelectorAll('.location-contact-btn').forEach(button => {
-        button.addEventListener('click', (e) => {
-          e.stopPropagation(); // Prevent bubbling
-          const location = button.getAttribute('data-location');
-          
-          // Redirect to contact page with location parameter
-          window.location.href = 'contacts.html?location=' + encodeURIComponent(location);
-        });
-      });
-      
-      // Hide when clicking elsewhere on the document (for mobile)
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.location-marker') && !e.target.closest('.location-info-container')) {
-          hideLocationInfo();
-        }
-      });
-    }
-  </script>
-  <script src="js/script.js"></script>
-  <!--
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
--->
-  <link href="css/bootstrap-icons.css" rel="stylesheet" />
-  <!--
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
--->
-  <script src="js/popper.min.js"></script>
+  <!-- SVG Linear Gradient Definitions -->
+  <svg style="display: none;">
+    <defs>
+      <linearGradient id="paint0_linear_1_1036" x1="11.995" y1="-3.50073" x2="11.995" y2="8.99927" gradientUnits="userSpaceOnUse">
+        <stop offset="0.396347" stop-color="#F2D52C" />
+        <stop offset="1" stop-color="#CB9E38" />
+      </linearGradient>
+    </defs>
+  </svg>
 </body>
-
 </html>
