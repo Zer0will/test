@@ -1,0 +1,13 @@
+{
+  "product": "Edmonds Chess Club",
+  "disclaimers": ["Live public site, plus a supplied admin recording."],
+  "alwaysShowDisclaimer": true,
+  "allow": {
+    "metrics": [],
+    "customers": [],
+    "integrations": [],
+    "literals": []
+  },
+  "bannedPatterns": [],
+  "notes": "Claims stay inside the product description: a live club site in use by its members, public pages, a chess bot, and a private admin CMS a volunteer can maintain, with member profiles, image storage, and security hardening. The admin pictures are a supplied screen recording with the address bar cropped and the signed-in name, avatar, and contact email blurred. Do not submit a form."
+}

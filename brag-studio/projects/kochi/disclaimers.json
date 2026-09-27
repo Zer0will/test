@@ -1,0 +1,13 @@
+{
+  "product": "Kochi",
+  "disclaimers": ["Prototype · no real payments"],
+  "alwaysShowDisclaimer": true,
+  "allow": {
+    "metrics": [],
+    "customers": [],
+    "integrations": [],
+    "literals": ["Table 7", "코치포차", "Beef bulgogi"]
+  },
+  "bannedPatterns": [],
+  "notes": "Do not invent metrics, customers, or integrations. The pay button is visible in the product and is not pressed. No payment details are entered. The recording is the live table page. Send round uses the app's preview response."
+}
