@@ -26,16 +26,16 @@ export const theme = {
 };
 
 export const notes = `
-Wired Tides is Will's AI automation agency site, and the first proof of the process it sells. Will supplied the design. His AI operator prepared the build, created the GitHub repo and the Vercel project, added Contact, Privacy, and Terms pages, wired the inquiry links, diagnosed a DNS and certificate issue, and issued the certificates. Will bought the domain and edited DNS. This recording is the live site: the homepage, the inquiry links, and Contact, Privacy, and Terms. The mail link is only hovered.
+Wired Tides is Yael Sahagun's AI automation agency site, and the first proof of the process it sells. Yael Sahagun supplied the design. His AI operator prepared the build, created the GitHub repo and the Vercel project, added Contact, Privacy, and Terms pages, wired the inquiry links, diagnosed a DNS and certificate issue, and issued the certificates. Yael Sahagun bought the domain and edited DNS. This recording is the live site: the homepage, the inquiry links, and Contact, Privacy, and Terms. The mail link is only hovered.
 `;
 
 export const posts = {
-  linkedin: `Wired Tides is Will's AI automation agency, and the first proof of the process it sells.
+  linkedin: `Wired Tides is Yael Sahagun's AI automation agency, and the first proof of the process it sells.
 
 He supplied the design. His AI operator prepared the build, created the GitHub repo and the Vercel project, added Contact, Privacy, and Terms, wired the inquiry links, and issued the certificate.
 
-Will bought the domain and edited DNS.`,
-  x: `Designed by Will. Built and deployed by his AI operator.
+Yael Sahagun bought the domain and edited DNS.`,
+  x: `Designed by Yael Sahagun. Built and deployed by his AI operator.
 
 Wired Tides: the agency site, with contact, privacy, and terms. He bought the domain and edited DNS. The operator handled the repo, Vercel, and the certificate.`
 };
@@ -70,7 +70,7 @@ export const scenes = [
     zoom: [1, 1.02],
     copy: {
       kicker: 'Design',
-      title: 'Will supplied the design',
+      title: 'Yael supplied the design',
       sub: 'The agency site uses his design.'
     }
   },
@@ -125,14 +125,14 @@ export const scenes = [
   {
     id: 'end',
     kind: 'end',
-    duration: 3.8,
+    duration: 4.0,
     holdScene: 'arrive',
     dim: 0.4,
     zoom: [1, 1],
     copy: {
       kicker: 'Live',
       title: 'Wired Tides',
-      sub: 'Designed by Will. Built and deployed by his operator.'
+      sub: 'Designed by Yael Sahagun. Built and deployed by his operator.'
     }
   }
 ];

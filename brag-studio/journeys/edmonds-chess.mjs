@@ -1,7 +1,7 @@
 /**
  * Edmonds Chess Club, recorded on the live public site.
  * Scroll the homepage, play the engine, then open meets and the team page.
- * Does not sign in, submit a form, or open the admin area.
+ * Does not sign in or submit a form. The admin step is a supplied recording spliced onto this capture.
  */
 
 export const product = 'Edmonds Chess Club';
@@ -26,7 +26,7 @@ export const theme = {
 };
 
 export const notes = `
-Edmonds Chess Club is a live website for a local chess club, in use by its members. The public site has club pages and a chess bot. The recording plays a few moves against that bot on the live board and visits the homepage, weekly meets, and team page. A private admin area is a CMS for content, member profiles, image storage, and security hardening, so a volunteer can maintain the site. This recording does not sign in, submit a form, or open the admin area.
+Edmonds Chess Club is a live website for a local chess club, in use by its members. The public site has club pages and a chess bot. The recording plays a few moves against that bot on the live board and visits the homepage, weekly meets, and team page. The admin segment is a supplied screen recording of the content editor: homepage copy, the weekly schedule, and officer fields with an image upload. The browser address bar is cropped off. The signed-in name, avatar, and contact email are blurred. No form is submitted.
 `;
 
 export const posts = {
@@ -39,6 +39,8 @@ Built so the club can run it without a developer on call.`,
 
 Member profiles, image storage, and security hardening. No developer on call.`
 };
+
+export const durationRange = { min: 28, max: 35 };
 
 const pace = { maxRate: 1.35, minRate: 0.8 };
 
@@ -106,19 +108,37 @@ export const scenes = [
     }
   },
   {
-    id: 'maintain',
+    id: 'admin',
     kind: 'feature',
-    step: 'maintain',
-    duration: 3.8,
-    ...pace,
-    cue: 'home',
-    cueAt: 0.3,
+    step: 'admin',
+    duration: 3.4,
+    maxRate: 1.2,
+    minRate: 0.85,
+    cue: 'editor',
+    cueAt: 0.15,
     zoom: [1, 1.012],
     copy: {
-      kicker: 'For the club',
-      title: 'A volunteer can maintain it',
-      sub: 'Member profiles, image storage, and security hardening.',
+      kicker: 'Admin CMS',
+      title: 'Edit content without touching code',
+      sub: 'Homepage, meets, and the schedule.',
       callout: 'Admin CMS'
+    }
+  },
+  {
+    id: 'roster',
+    kind: 'feature',
+    step: 'admin',
+    duration: 3.5,
+    maxRate: 1.15,
+    minRate: 0.85,
+    cue: 'roster',
+    cueAt: 0.72,
+    zoom: [1, 1.015],
+    copy: {
+      kicker: 'Profiles',
+      title: 'Member profiles and image storage',
+      sub: 'Schedule rows and officer bios.',
+      callout: 'Image upload'
     }
   },
   {

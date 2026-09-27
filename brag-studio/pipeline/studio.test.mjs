@@ -96,12 +96,12 @@ test('edmonds chess copy is honest and readable', () => {
     t += spec.duration;
     return scene;
   });
-  assert.ok(t >= 20 && t <= 30, `duration ${t}`);
+  assert.ok(t >= 28 && t <= 35, `duration ${t}`);
   assert.deepEqual(pacingIssues(built.flatMap(linesForScene)), []);
   const hits = assertHonest(publicBlocks({
     scenes: built,
     posts: chessPosts,
-    disclaimer: 'A recording of the live public site.'
+    disclaimer: 'Live public site, plus a supplied admin recording.'
   }));
   assert.deepEqual(hits, []);
 });
