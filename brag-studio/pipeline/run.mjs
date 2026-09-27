@@ -125,7 +125,8 @@ export async function run(options) {
     height: layout.height,
     background: journey.theme?.bg,
     durationMin: durationRange.min,
-    durationMax: durationRange.max + 0.5
+    durationMax: durationRange.max + 0.5,
+    device: layout.phone
   });
   await fs.writeFile(path.join(outDir, 'review.json'), JSON.stringify({ ...report, heroes }, null, 2));
   if (!report.ok) {

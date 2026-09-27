@@ -126,7 +126,7 @@ export const scenes = [
     id: 'end',
     kind: 'end',
     duration: 4.0,
-    holdScene: 'arrive',
+    holdScene: 'hook',
     dim: 0.4,
     zoom: [1, 1],
     copy: {

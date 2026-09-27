@@ -5,11 +5,14 @@ export function buildTimeline(meta, specs) {
   const scenes = [];
   for (const spec of specs) {
     if (spec.kind === 'end') {
-      const source = spec.holdScene ? scenes.find(s => s.id === spec.holdScene) : scenes.at(-1);
-      const duration = spec.duration;
-      const holdAt = source
-        ? (spec.holdAt ?? (source.srcIn + source.srcOut) / 2)
-        : 0;
+    const source = spec.holdScene ? scenes.find(s => s.id === spec.holdScene) : scenes.at(-1);
+    if (spec.holdScene && !source) {
+      throw new Error(`End scene "${spec.id}" holds "${spec.holdScene}", which is not an earlier scene.`);
+    }
+    const duration = spec.duration;
+    const holdAt = source
+      ? (spec.holdAt ?? (source.srcIn + source.srcOut) / 2)
+      : 0;
       const scene = {
         id: spec.id,
         kind: 'end',

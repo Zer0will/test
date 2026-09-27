@@ -9,6 +9,7 @@ import { scenes as tideScenes, posts as tidePosts } from '../journeys/wired-tide
 import { scenes as chessScenes, posts as chessPosts } from '../journeys/edmonds-chess.mjs';
 import { scenes as cardScenes, posts as cardPosts } from '../journeys/card-match.mjs';
 import { scenes as card15Scenes, durationRange as card15Range } from '../journeys/card-match-15.mjs';
+import { deviceUniformity } from './review.mjs';
 
 test('reading time floors', () => {
   assert.equal(readingSeconds('Scan.'), 0.8);
@@ -126,6 +127,25 @@ test('card match copy is honest and readable', () => {
     disclaimer: 'A recording of the live site.'
   }));
   assert.deepEqual(hits, []);
+});
+
+test('a flat device panel is a blank frame', () => {
+  const width = 200;
+  const height = 120;
+  const rect = { x: 20, y: 16, w: 160, h: 88 };
+  const buf = Buffer.alloc(width * height * 3, 150);
+  const flat = deviceUniformity(buf, width, height, rect);
+  assert.equal(flat.blank, true);
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const i = (y * width + x) * 3;
+      buf[i] = (x * 40) % 255;
+      buf[i + 1] = (y * 50) % 255;
+      buf[i + 2] = ((x + y) * 30) % 255;
+    }
+  }
+  const busy = deviceUniformity(buf, width, height, rect);
+  assert.equal(busy.blank, false);
 });
 
 test('invented claims are rejected', () => {

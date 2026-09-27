@@ -5,7 +5,34 @@ import { ffprobe, ffmpeg } from './clips.mjs';
 
 const FONT = '/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf';
 
-export async function reviewVideo(file, { workDir, width, height, background = '#0d0c0f', durationMin = 20, durationMax = 30.5 }) {
+/**
+ * The device interior of a real screen is not a flat field.
+ * A missing still renders as a large near-uniform grey or blank panel.
+ */
+export function deviceUniformity(buf, width, height, rect, offset = 0) {
+  const x0 = Math.max(0, Math.round(rect.x + 16));
+  const y0 = Math.max(0, Math.round(rect.y + 16));
+  const x1 = Math.min(width, Math.round(rect.x + rect.w - 16));
+  const y1 = Math.min(height, Math.round(rect.y + rect.h - 16));
+  let n = 0;
+  let sum = 0;
+  let sum2 = 0;
+  for (let y = y0; y < y1; y += 3) {
+    for (let x = x0; x < x1; x += 3) {
+      const i = offset + (y * width + x) * 3;
+      const yv = 0.2126 * buf[i] + 0.7152 * buf[i + 1] + 0.0722 * buf[i + 2];
+      sum += yv;
+      sum2 += yv * yv;
+      n++;
+    }
+  }
+  if (!n) return { mean: 0, stdev: 0, blank: true };
+  const mean = sum / n;
+  const stdev = Math.sqrt(Math.max(0, sum2 / n - mean * mean));
+  return { mean, stdev, blank: stdev < 8 };
+}
+
+export async function reviewVideo(file, { workDir, width, height, background = '#0d0c0f', durationMin = 20, durationMax = 30.5, device = null }) {
   const probe = await ffprobe(file);
   const video = (probe.streams || []).find(s => s.codec_type === 'video');
   const audio = (probe.streams || []).find(s => s.codec_type === 'audio');
@@ -21,15 +48,18 @@ export async function reviewVideo(file, { workDir, width, height, background = '
   if (stat.size > 15 * 1024 * 1024) issues.push({ type: 'filesize', detail: `${(stat.size / 1024 / 1024).toFixed(1)} MB` });
 
   const bg = hexToRgb(background);
-  const pixels = await readFrames(file, width, height, bg);
+  const pixels = await readFrames(file, width, height, bg, device);
   const blank = [];
   const edges = [];
+  const deviceBlank = [];
   pixels.forEach((frame, i) => {
     if (frame.stdev < 7 && frame.mean < 22) blank.push({ t: i, mean: frame.mean, stdev: frame.stdev });
     if (frame.inkRatio > 0.02) edges.push({ t: i, inkRatio: Number(frame.inkRatio.toFixed(4)) });
+    if (frame.device?.blank) deviceBlank.push({ t: i, mean: Number(frame.device.mean.toFixed(1)), stdev: Number(frame.device.stdev.toFixed(2)) });
   });
   if (blank.length) issues.push({ type: 'blank', frames: blank });
   if (edges.length) issues.push({ type: 'edge', frames: edges });
+  if (deviceBlank.length) issues.push({ type: 'device-blank', frames: deviceBlank });
 
   const sheet = await contactSheet(file, workDir, pixels.length, background);
   return {
@@ -49,7 +79,7 @@ function hexToRgb(hex) {
   return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
 }
 
-async function readFrames(file, width, height, bg) {
+async function readFrames(file, width, height, bg, device) {
   return new Promise((resolve, reject) => {
     const proc = spawn('ffmpeg', [
       '-hide_banner', '-v', 'error', '-i', file,
@@ -65,7 +95,9 @@ async function readFrames(file, width, height, bg) {
       const frameBytes = width * height * 3;
       const frames = [];
       for (let off = 0; off + frameBytes <= buf.length; off += frameBytes) {
-        frames.push(stats(buf, off, width, height, bg));
+        const frame = stats(buf, off, width, height, bg);
+        if (device) frame.device = deviceUniformity(buf, width, height, device, off);
+        frames.push(frame);
       }
       resolve(frames);
     });
