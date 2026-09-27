@@ -22,7 +22,7 @@ export const scenes = [
     kind: 'feature',
     step: 'survey',
     duration: 6.8,
-    maxRate: 2,
+    maxRate: 4.2,
     minRate: 0.8,
     cue: 'asking',
     cueAt: 0.08,

@@ -62,7 +62,8 @@ export const scenes = [
     kind: 'feature',
     step: 'survey',
     duration: 10.0,
-    ...pace,
+    maxRate: 1.7,
+    minRate: 0.8,
     cue: 'asking',
     cueAt: 0.12,
     zoom: [1, 1.015],
@@ -77,7 +78,7 @@ export const scenes = [
     id: 'result',
     kind: 'feature',
     step: 'result',
-    duration: 9.0,
+    duration: 8.0,
     ...pace,
     cue: 'shown',
     cueAt: 0.28,
@@ -145,15 +146,30 @@ export async function run(ctx) {
     await page.getByRole('heading', { name: /monthly credit card spend/i }).waitFor();
     ctx.cue('asking');
     await ctx.jump(GUTTER.x, 360);
-    await ctx.sleep(700);
+    await ctx.sleep(500);
     for (const pattern of CHOICES) {
+      const heading = page.getByRole('heading').first();
+      const before = (await heading.innerText()).trim();
       const choice = page.getByRole('button', { name: pattern }).first();
       await approach(ctx, choice);
-      await ctx.sleep(160);
+      await ctx.sleep(120);
       const next = page.getByRole('button', { name: /^(Next|Get my wallet)$/ });
       await approach(ctx, next);
-      await ctx.jump(GUTTER.x, 360);
-      await ctx.sleep(180);
+      try {
+        await page.waitForFunction(prev => {
+          const node = document.querySelector('h1, h2');
+          return node && node.innerText.trim() !== prev;
+        }, before, { timeout: 2500 });
+      } catch {
+        await choice.click();
+        await next.click();
+        await page.waitForFunction(prev => {
+          const node = document.querySelector('h1, h2');
+          return node && node.innerText.trim() !== prev;
+        }, before, { timeout: 8000 });
+      }
+      await ctx.jump(GUTTER.x, 280);
+      await ctx.sleep(120);
     }
   });
 
