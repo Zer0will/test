@@ -131,7 +131,8 @@ export const scenes = [
     id: 'end',
     kind: 'end',
     duration: 3.2,
-    dim: 0.42,
+    holdScene: 'menu',
+    dim: 0.55,
     zoom: [1, 1.04],
     copy: {
       kicker: 'Prototype',

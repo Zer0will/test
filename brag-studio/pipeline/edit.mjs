@@ -5,8 +5,11 @@ export function buildTimeline(meta, specs) {
   const scenes = [];
   for (const spec of specs) {
     if (spec.kind === 'end') {
-      const prev = scenes.at(-1);
+      const source = spec.holdScene ? scenes.find(s => s.id === spec.holdScene) : scenes.at(-1);
       const duration = spec.duration;
+      const holdAt = source
+        ? (spec.holdAt ?? (source.srcIn + source.srcOut) / 2)
+        : 0;
       const scene = {
         id: spec.id,
         kind: 'end',
@@ -15,7 +18,7 @@ export function buildTimeline(meta, specs) {
         end: t + duration,
         duration,
         hold: true,
-        holdAt: Math.max(0, (prev?.srcOut ?? 1) - 0.12),
+        holdAt,
         zoomFrom: spec.zoom?.[0] ?? 1,
         zoomTo: spec.zoom?.[1] ?? 1.04,
         originX: 50,

@@ -31,7 +31,7 @@ On-screen disclaimer: ${disclaimer}
 This storyboard does not add metrics, customers, or integrations. Prices, dish names, and the split controls are whatever the live app showed during the capture. Payment is not completed. The kitchen round request is answered locally as a preview so no order is sent.
 
 ## Footage
-Every scene except the end card is live recording. The end card holds the last frame of the split-bill recording and adds type on top.
+Every scene except the end card is live recording, played back slightly faster. The end card holds one frame from the menu recording and adds type on top.
 
 ${footage}
 
