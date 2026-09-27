@@ -3,13 +3,23 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 import { CURSOR_SCRIPT } from './cursor-script.mjs';
 
+function cursorScript(cursor) {
+  let script = CURSOR_SCRIPT;
+  if (!cursor) return script;
+  if (cursor.fill) script = script.replace('rgba(255, 89, 79, 0.92)', cursor.fill);
+  if (cursor.down) script = script.replaceAll('#ffbd62', cursor.down);
+  if (cursor.ring) script = script.replace('rgba(255, 189, 98, .95)', cursor.ring);
+  return script;
+}
+
 const VIEWPORT = { width: 1920, height: 1080 };
 
 /**
  * Drive a live URL and record the journey.
- * Capture is a CDP screencast at device pixels (viewport 1920x1080, deviceScaleFactor 2).
+ * Capture is a CDP screencast at device pixels (default viewport 1920x1080, deviceScaleFactor 2).
  */
 export async function captureJourney({ url, journey, outDir, onLog = () => {} }) {
+  const viewport = journey.viewport || VIEWPORT;
   await fs.mkdir(path.join(outDir, 'raw'), { recursive: true });
   const browser = await chromium.launch({
     headless: true,
@@ -25,11 +35,11 @@ export async function captureJourney({ url, journey, outDir, onLog = () => {} })
   });
 
   const context = await browser.newContext({
-    viewport: VIEWPORT,
+    viewport,
     deviceScaleFactor: 2
   });
   const page = await context.newPage();
-  await page.addInitScript(CURSOR_SCRIPT);
+  await page.addInitScript(cursorScript(journey.cursor));
   if (typeof journey.prepare === 'function') await journey.prepare(page);
 
   const client = await context.newCDPSession(page);
@@ -62,7 +72,7 @@ export async function captureJourney({ url, journey, outDir, onLog = () => {} })
 
   const meta = {
     url,
-    viewport: VIEWPORT,
+    viewport,
     deviceScaleFactor: 2,
     steps: [],
     taps: [],
@@ -75,12 +85,16 @@ export async function captureJourney({ url, journey, outDir, onLog = () => {} })
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
     await page.waitForSelector('.card, body', { timeout: 20000 }).catch(() => {});
     await page.evaluate(() => document.fonts?.ready).catch(() => {});
-    meta.shell = await page.evaluate(() => {
-      const shell = document.querySelector('.frame-shell') || document.querySelector('.screen');
-      if (!shell) return null;
-      const r = shell.getBoundingClientRect();
-      return { x: r.x, y: r.y, width: r.width, height: r.height };
-    });
+    if (journey.frame === 'viewport') {
+      meta.shell = { x: 0, y: 0, width: viewport.width, height: viewport.height };
+    } else {
+      meta.shell = await page.evaluate(() => {
+        const shell = document.querySelector('.frame-shell') || document.querySelector('.screen');
+        if (!shell) return null;
+        const r = shell.getBoundingClientRect();
+        return { x: r.x, y: r.y, width: r.width, height: r.height };
+      });
+    }
     await journey.run(ctx);
   } finally {
     await client.send('Page.stopScreencast').catch(() => {});
@@ -169,6 +183,13 @@ function createDriver(page, meta, onLog, outDir) {
     async glide(target) {
       const p = await pointOf(target);
       await glideTo(p.x, p.y);
+    },
+    async rest(x, y) {
+      await glideTo(x, y);
+    },
+    async jump(x, y) {
+      cursor = { x, y };
+      await page.mouse.move(x, y);
     },
     async tap(target) {
       const p = await pointOf(target);

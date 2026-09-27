@@ -5,6 +5,7 @@ import { assertHonest } from './honesty.mjs';
 import { auditLayout, layoutFor } from './layout.mjs';
 import { publicBlocks } from './storyboard.mjs';
 import { scenes, posts } from '../journeys/kochi.mjs';
+import { scenes as tideScenes, posts as tidePosts } from '../journeys/wired-tides.mjs';
 
 test('reading time floors', () => {
   assert.equal(readingSeconds('Scan.'), 0.8);
@@ -52,6 +53,37 @@ test('landscape phone sits inside the margin', () => {
   const right = width - (phone.x + phone.w);
   assert.ok(Math.abs(copyX - right) <= 1);
   assert.ok(phone.h > 920);
+  assert.equal(layout.device, 'phone');
+});
+
+test('landscape laptop group stays centered', () => {
+  const layout = layoutFor('landscape', { device: 'laptop' });
+  assert.equal(layout.device, 'laptop');
+  assert.deepEqual(auditLayout(layout), []);
+  const { phone, copyX, textWidth, gap, width } = layout;
+  assert.equal(phone.x, copyX + textWidth + gap);
+  const right = width - (phone.x + phone.w);
+  assert.ok(Math.abs(copyX - right) <= 1);
+  assert.ok(phone.w > phone.h);
+  assert.ok(Math.abs(phone.w / phone.h - 1366 / 768) < 0.02);
+});
+
+test('wired tides copy is honest and readable', () => {
+  let t = 0;
+  const built = tideScenes.map(spec => {
+    const scene = { ...spec, start: t, duration: spec.duration, end: t + spec.duration };
+    t += spec.duration;
+    return scene;
+  });
+  assert.ok(t >= 20 && t <= 30, `duration ${t}`);
+  const lines = built.flatMap(linesForScene);
+  assert.deepEqual(pacingIssues(lines), []);
+  const hits = assertHonest(publicBlocks({
+    scenes: built,
+    posts: tidePosts,
+    disclaimer: 'A recording of the live site.'
+  }));
+  assert.deepEqual(hits, []);
 });
 
 test('invented claims are rejected', () => {

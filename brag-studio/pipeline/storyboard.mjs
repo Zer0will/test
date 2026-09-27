@@ -23,15 +23,15 @@ export function writePlan({ product, url, scenes, duration, disclaimer, notes, p
   return `# Brag plan: ${product}
 
 ## What this is
-Dine-in ordering prototype. The picture is a screen recording of ${url}, cropped to the phone the site already draws at desktop size.
+A screen recording of ${url}. The device window and the caption column are one centered group.
 
 ## Honesty
 On-screen disclaimer: ${disclaimer}
 
-This storyboard does not add metrics, customers, or integrations. Prices, dish names, and the split controls are whatever the app showed during the capture. Payment is not completed, and no payment details are entered. The Kochi example is a recording of the live table page.
+The storyboard does not add metrics, customers, or integrations. Claims stay inside the notes below.
 
 ## Footage
-Every scene except the end card is live recording, played back slightly faster. The end card holds one frame from the menu recording and adds type on top.
+Every scene except the end card is live recording. The end card holds one frame from the recording and adds type on top.
 
 ${footage}
 

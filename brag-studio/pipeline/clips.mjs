@@ -70,7 +70,8 @@ export async function buildClips({ outDir, scenes, shell }) {
   const frames = saved.frames;
   const first = await fs.readFile(path.join(outDir, 'raw', frames[0].name));
   const jpeg = jpegSize(first);
-  const scale = jpeg.w / 1920;
+  const viewW = saved.meta.viewport?.width || 1920;
+  const scale = jpeg.w / viewW;
   const crop = shell
     ? evenBox(shell.x * scale, shell.y * scale, shell.width * scale, shell.height * scale, jpeg.w, jpeg.h)
     : evenBox((1920 - 390) / 2 * scale, (1080 - 844) / 2 * scale, 390 * scale, 844 * scale, jpeg.w, jpeg.h);

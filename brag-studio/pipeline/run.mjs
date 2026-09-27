@@ -78,17 +78,19 @@ export async function run(options) {
   log('writing soundtrack');
   await writeSoundtrack({ outDir, duration: timeline.duration, hits: timeline.taps, sfxDir });
 
+  const device = journey.device || 'phone';
+  const aspect = journey.viewport ? journey.viewport.width / journey.viewport.height : undefined;
   let fontScale = 1;
   let margin;
-  let layout = layoutFor(format, { fontScale });
+  let layout = layoutFor(format, { fontScale, device, aspect });
   margin = layout.margin;
   const server = await serve(outDir);
   let session = null;
   try {
     let issues = [];
     for (let attempt = 0; attempt < 3; attempt++) {
-      layout = layoutFor(format, { fontScale, margin });
-      await writeComposition(outDir, compositionData(layout, timeline, disclaimer));
+      layout = layoutFor(format, { fontScale, margin, device, aspect });
+      await writeComposition(outDir, compositionData(layout, timeline, disclaimer, journey.theme));
       if (session) await session.close();
       session = await openComposition(server, layout);
       const times = sampleTimes(timeline.scenes);
@@ -116,7 +118,12 @@ export async function run(options) {
   const mp4 = await encode(outDir);
   const heroes = await heroStills(outDir, mp4, timeline.scenes);
   log('contact sheet');
-  const report = await reviewVideo(mp4, { workDir: outDir, width: layout.width, height: layout.height });
+  const report = await reviewVideo(mp4, {
+    workDir: outDir,
+    width: layout.width,
+    height: layout.height,
+    background: journey.theme?.bg
+  });
   await fs.writeFile(path.join(outDir, 'review.json'), JSON.stringify({ ...report, heroes }, null, 2));
   if (!report.ok) {
     throw new Error('Picture review failed: ' + JSON.stringify(report.issues));
@@ -125,7 +132,7 @@ export async function run(options) {
   return { outDir, mp4, report, heroes, duration: timeline.duration };
 }
 
-function compositionData(layout, timeline, disclaimer) {
+function compositionData(layout, timeline, disclaimer, theme) {
   const windows = {};
   for (const line of timeline.lines) windows[line.id] = { in: line.in, out: line.out };
   return {
@@ -133,7 +140,8 @@ function compositionData(layout, timeline, disclaimer) {
     scenes: timeline.scenes,
     windows,
     disclaimer,
-    duration: timeline.duration
+    duration: timeline.duration,
+    theme: theme || null
   };
 }
 

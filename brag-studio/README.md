@@ -38,9 +38,9 @@ No voiceover is generated. No paid image, music, or video API is called.
 
 ## What the command does
 
-1. **Record.** Headless Chrome at 1920×1080, deviceScaleFactor 2, opens the URL and runs the journey at a human pace: scrolling, a drawn cursor, taps, and typing. A CDP screencast stores the frames. `prepare()` on the journey may stub a request that would otherwise leave the machine.
+1. **Record.** Headless Chrome at deviceScaleFactor 2 opens the URL and runs the journey at a human pace: scrolling, a drawn cursor, taps, and typing. The default viewport is 1920×1080. A journey can set its own. A CDP screencast stores the frames. `prepare()` on the journey may stub a request that would otherwise leave the machine.
 2. **Storyboard.** Shot timings come from the recording plus the copy in the journey file. A checker rejects invented proof: customer counts, growth stats, ratings, and integrations that are not in the allow list.
-3. **Landscape cut.** The phone UI from the recording sits in a device window. Type, callouts, and highlight boxes use the rest of the frame. Camera moves ease in. Screenshots are not the body of the video.
+3. **Landscape cut.** The recorded UI sits in a device window. On landscape, the caption column and that window are one centered group. A journey with `device: 'laptop'` uses a wider window for a desktop site. Type, callouts, and highlight boxes use the rest of the frame. Camera moves ease in. Screenshots are not the body of the video.
 4. **Sound.** A generated bed, plus quiet Kenney clicks on the real taps.
 5. **Review.** One frame a second becomes a contact sheet. The run checks cut-off type, overlapping boxes, blank frames, edge pixels, duration, size, and frame rate. It shrinks the type and re-renders if the layout audit fails.
 
@@ -58,6 +58,19 @@ No voiceover is generated. No paid image, music, or video API is called.
 ## Kochi
 
 The checked-in journey records [Kochi table 7](https://kochi-dine-in-app.vercel.app/table/7): category tabs, joining the check, a dish, a second person, the shared cart, Send round to kitchen, then the split bill. It does not press Pay and does not type payment details. See `projects/kochi/disclaimers.json`. Dish photos in the app are stripe placeholders, so the cut stays on the category rail, the price button, and the cart.
+
+## Wired Tides
+
+`journeys/wired-tides.mjs` records the live agency site in a laptop window: the homepage, a scroll through the design, the inquiry links, then Contact, Privacy, and Terms. It does not send a message. See `projects/wired-tides/disclaimers.json`.
+
+```bash
+node brag-studio/bin/brag-studio.mjs \
+  --url https://wiredtides.com \
+  --journey brag-studio/journeys/wired-tides.mjs \
+  --format landscape \
+  --disclaimers brag-studio/projects/wired-tides/disclaimers.json \
+  --out brag-studio/runs/wired-tides
+```
 
 ## Credits
 

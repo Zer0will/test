@@ -5,7 +5,7 @@ import { ffprobe, ffmpeg } from './clips.mjs';
 
 const FONT = '/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf';
 
-export async function reviewVideo(file, { workDir, width, height }) {
+export async function reviewVideo(file, { workDir, width, height, background = '#0d0c0f' }) {
   const probe = await ffprobe(file);
   const video = (probe.streams || []).find(s => s.codec_type === 'video');
   const audio = (probe.streams || []).find(s => s.codec_type === 'audio');
@@ -20,7 +20,8 @@ export async function reviewVideo(file, { workDir, width, height }) {
   if (!audio) issues.push({ type: 'audio', detail: 'missing soundtrack' });
   if (stat.size > 15 * 1024 * 1024) issues.push({ type: 'filesize', detail: `${(stat.size / 1024 / 1024).toFixed(1)} MB` });
 
-  const pixels = await readFrames(file, width, height);
+  const bg = hexToRgb(background);
+  const pixels = await readFrames(file, width, height, bg);
   const blank = [];
   const edges = [];
   pixels.forEach((frame, i) => {
@@ -30,7 +31,7 @@ export async function reviewVideo(file, { workDir, width, height }) {
   if (blank.length) issues.push({ type: 'blank', frames: blank });
   if (edges.length) issues.push({ type: 'edge', frames: edges });
 
-  const sheet = await contactSheet(file, workDir, pixels.length);
+  const sheet = await contactSheet(file, workDir, pixels.length, background);
   return {
     ok: issues.length === 0,
     issues,
@@ -43,7 +44,12 @@ export async function reviewVideo(file, { workDir, width, height }) {
   };
 }
 
-async function readFrames(file, width, height) {
+function hexToRgb(hex) {
+  const h = String(hex || '#0d0c0f').replace('#', '');
+  return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+}
+
+async function readFrames(file, width, height, bg) {
   return new Promise((resolve, reject) => {
     const proc = spawn('ffmpeg', [
       '-hide_banner', '-v', 'error', '-i', file,
@@ -59,20 +65,19 @@ async function readFrames(file, width, height) {
       const frameBytes = width * height * 3;
       const frames = [];
       for (let off = 0; off + frameBytes <= buf.length; off += frameBytes) {
-        frames.push(stats(buf, off, width, height));
+        frames.push(stats(buf, off, width, height, bg));
       }
       resolve(frames);
     });
   });
 }
 
-function stats(buf, off, w, h) {
+function stats(buf, off, w, h, bg) {
   let n = 0;
   let sum = 0;
   let sum2 = 0;
   let border = 0;
   let ink = 0;
-  const bg = [13, 12, 15];
   for (let y = 0; y < h; y++) {
     const edgeY = y < 4 || y >= h - 4;
     for (let x = 0; x < w; x++) {
@@ -96,7 +101,7 @@ function stats(buf, off, w, h) {
   return { mean, stdev: Math.sqrt(variance), inkRatio: border ? ink / border : 0 };
 }
 
-async function contactSheet(file, workDir, count) {
+async function contactSheet(file, workDir, count, background = '#0d0c0f') {
   const dir = path.join(workDir, 'contact-frames');
   await fs.rm(dir, { recursive: true, force: true });
   await fs.mkdir(dir, { recursive: true });
@@ -118,7 +123,7 @@ async function contactSheet(file, workDir, count) {
   const sheet = path.join(workDir, 'contact-sheet.png');
   await ffmpeg([
     '-framerate', '1', '-i', path.join(seq, '%03d.png'),
-    '-vf', `tile=${cols}x${rows}:padding=10:margin=10:color=0x0d0c0f`,
+    '-vf', `tile=${cols}x${rows}:padding=10:margin=10:color=0x${String(background).replace('#', '')}`,
     '-frames:v', '1',
     sheet
   ]);

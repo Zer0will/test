@@ -27,35 +27,40 @@ function html(json) {
   @font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/SchibstedGrotesk-500.ttf") format("truetype"); font-weight: 500; }
   @font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/SchibstedGrotesk-700.ttf") format("truetype"); font-weight: 700; }
   @font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/SchibstedGrotesk-800.ttf") format("truetype"); font-weight: 800; }
+  @font-face { font-family: "Wired Sans"; src: url("/fonts/wired-sans.woff") format("woff"); font-weight: 400; }
+  @font-face { font-family: "Wired Sans"; src: url("/fonts/wired-sans-bold.woff") format("woff"); font-weight: 700; }
   :root {
     --s: 1; --m: 64px; --copy-x: 72px; --copy-top: 116px; --text-w: 640px;
     --hook: 92px; --title: 58px; --end: 104px; --sub: 24px;
     --phone-x: 0px; --phone-y: 0px; --phone-w: 400px; --phone-h: 860px; --radius: 48px;
+    --bg: #0d0c0f; --ink: #f6eede; --ink-soft: #f3eadc; --kicker: #ffbd62; --hot: #ff594f;
+    --display: "Black Han Sans", sans-serif; --display-weight: 400;
+    --glow: 255,89,79; --glow2: 255,189,98;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; overflow: hidden; background: #0d0c0f; color: #f6eede; font-family: "Schibsted Grotesk", sans-serif; }
+  html, body { margin: 0; overflow: hidden; background: var(--bg); color: var(--ink); font-family: "Schibsted Grotesk", sans-serif; }
   body { position: relative; }
-  .glow { position: absolute; left: calc(var(--copy-x) + 48px); top: 160px; width: 520px; height: 420px; background: radial-gradient(circle, rgba(255,89,79,.22), transparent 68%); filter: blur(8px); pointer-events: none; }
-  .glow-gold { position: absolute; left: var(--copy-x); top: 520px; width: 360px; height: 220px; background: radial-gradient(circle, rgba(255,189,98,.14), transparent 70%); filter: blur(10px); pointer-events: none; }
+  .glow { position: absolute; left: calc(var(--copy-x) + 48px); top: 160px; width: 520px; height: 420px; background: radial-gradient(circle, rgba(var(--glow), .22), transparent 68%); filter: blur(8px); pointer-events: none; }
+  .glow-gold { position: absolute; left: var(--copy-x); top: 520px; width: 360px; height: 220px; background: radial-gradient(circle, rgba(var(--glow2), .14), transparent 70%); filter: blur(10px); pointer-events: none; }
   .copy { position: absolute; left: var(--copy-x); top: var(--copy-top); width: var(--text-w); }
-  .pen { font-family: "Nanum Pen Script", cursive; font-size: calc(42px * var(--s)); color: #ffbd62; line-height: 1; margin: 0 0 6px; }
-  .kicker { font-weight: 700; letter-spacing: .22em; font-size: calc(13px * var(--s)); color: #ffbd62; text-transform: uppercase; margin: 0 0 14px; }
-  .rule { width: 46px; height: 3px; border-radius: 2px; background: #ff594f; margin: 0 0 18px; }
-  .word, .title, .end-title { font-family: "Black Han Sans", sans-serif; font-weight: 400; margin: 0; }
+  .pen { font-family: "Nanum Pen Script", cursive; font-size: calc(42px * var(--s)); color: var(--kicker); line-height: 1; margin: 0 0 6px; }
+  .kicker { font-weight: 700; letter-spacing: .22em; font-size: calc(13px * var(--s)); color: var(--kicker); text-transform: uppercase; margin: 0 0 14px; }
+  .rule { width: 46px; height: 3px; border-radius: 2px; background: var(--hot); margin: 0 0 18px; }
+  .word, .title, .end-title { font-family: var(--display); font-weight: var(--display-weight); margin: 0; }
   .word { font-size: calc(var(--hook) * var(--s)); line-height: 1.04; }
-  .word.a { color: #f6eede; } .word.b { color: #ffbd62; } .word.c { color: #ff594f; }
+  .word.a { color: var(--ink); } .word.b { color: var(--kicker); } .word.c { color: var(--hot); }
   .title { font-size: calc(var(--title) * var(--s)); line-height: 1.08; margin: 0 0 14px; }
   .end-title { font-size: calc(var(--end) * var(--s)); line-height: 1; margin: 0 0 16px; }
-  .sub { font-weight: 500; font-size: calc(var(--sub) * var(--s)); line-height: 1.35; color: #f3eadc; margin: 0; max-width: 36rem; }
-  .callout { display: inline-block; margin-top: 22px; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(255,89,79,.55); background: rgba(255,89,79,.12); color: #ffbd62; font-weight: 700; font-size: calc(16px * var(--s)); }
-  .disclaimer { position: absolute; left: var(--copy-x); bottom: var(--m); color: #ffbd62; font-weight: 700; font-size: 15px; letter-spacing: .03em; }
-  .disclaimer i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ff594f; margin-right: 8px; vertical-align: 1px; }
+  .sub { font-weight: 500; font-size: calc(var(--sub) * var(--s)); line-height: 1.35; color: var(--ink-soft); margin: 0; max-width: 36rem; }
+  .callout { display: inline-block; margin-top: 22px; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(var(--glow), .55); background: rgba(var(--glow), .12); color: var(--kicker); font-weight: 700; font-size: calc(16px * var(--s)); }
+  .disclaimer { position: absolute; left: var(--copy-x); bottom: var(--m); color: var(--kicker); font-weight: 700; font-size: 15px; letter-spacing: .03em; }
+  .disclaimer i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--hot); margin-right: 8px; vertical-align: 1px; }
   .phone-shadow { position: absolute; left: var(--phone-x); top: var(--phone-y); width: var(--phone-w); height: var(--phone-h); filter: drop-shadow(0 22px 36px rgba(0,0,0,.55)); }
-  .phone-clip { width: 100%; height: 100%; border-radius: var(--radius); overflow: hidden; background: #0d0c0f; }
+  .phone-clip { width: 100%; height: 100%; border-radius: var(--radius); overflow: hidden; background: var(--bg); }
   #stage { width: 100%; height: 100%; position: relative; }
   #shot { width: 100%; height: 100%; display: block; }
   #dim { position: absolute; inset: 0; background: #000; pointer-events: none; }
-  #hl { position: absolute; border: 3px solid #ffbd62; border-radius: 18px; box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 0 22px rgba(255,189,98,.28); pointer-events: none; }
+  #hl { position: absolute; border: 3px solid var(--kicker); border-radius: 18px; box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 0 22px rgba(var(--glow2), .28); pointer-events: none; }
 </style>
 </head>
 <body>
@@ -106,7 +111,18 @@ root.style.setProperty('--phone-x', L.phone.x + 'px');
 root.style.setProperty('--phone-y', L.phone.y + 'px');
 root.style.setProperty('--phone-w', L.phone.w + 'px');
 root.style.setProperty('--phone-h', L.phone.h + 'px');
-root.style.setProperty('--radius', Math.round(46 / 844 * L.phone.h) + 'px');
+root.style.setProperty('--radius', (L.radius ?? Math.round(46 / 844 * L.phone.h)) + 'px');
+const theme = DATA.theme || {};
+const setTheme = (name, value) => { if (value != null && value !== '') root.style.setProperty(name, value); };
+setTheme('--bg', theme.bg);
+setTheme('--ink', theme.ink);
+setTheme('--ink-soft', theme.inkSoft);
+setTheme('--kicker', theme.kicker);
+setTheme('--hot', theme.hot);
+setTheme('--glow', theme.glow);
+setTheme('--glow2', theme.glow2);
+if (theme.display) setTheme('--display', '"' + theme.display + '", sans-serif');
+if (theme.displayWeight != null) setTheme('--display-weight', String(theme.displayWeight));
 document.querySelector('.disclaimer span').textContent = DATA.disclaimer;
 document.getElementById('end').style.top = (L.endTop || L.textTop || 240) + 'px';
 

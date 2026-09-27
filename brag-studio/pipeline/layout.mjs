@@ -8,10 +8,11 @@ export const FORMATS = {
 
 const PHONE_ASPECT = 390 / 844;
 
-export function layoutFor(format, { fontScale = 1, margin } = {}) {
+export function layoutFor(format, { fontScale = 1, margin, device = 'phone', aspect } = {}) {
   const base = FORMATS[format];
   if (!base) throw new Error(`Unknown format "${format}". Use landscape, vertical, or square.`);
   const m = margin ?? (format === 'landscape' ? 64 : 56);
+  if (format === 'landscape' && device === 'laptop') return landscapeLaptop(base, m, fontScale, aspect || 1366 / 768);
   if (format === 'landscape') {
     // Caption column and phone are one group, centered, with a fixed gutter.
     const gap = 120;
@@ -27,7 +28,7 @@ export function layoutFor(format, { fontScale = 1, margin } = {}) {
     const phoneX = groupX + textWidth + gap;
     const phoneY = Math.round((base.height - phoneH) / 2);
     return {
-      format, ...base, margin: m, fontScale, gap,
+      format, ...base, margin: m, fontScale, gap, device: 'phone',
       phone: { x: phoneX, y: phoneY, w: phoneW, h: phoneH },
       copyX: groupX,
       textWidth,
@@ -66,6 +67,30 @@ export function layoutFor(format, { fontScale = 1, margin } = {}) {
     hookSize: 64,
     titleSize: 40,
     endSize: 72,
+    subSize: 20
+  };
+}
+
+/** Wider window for a desktop site. Same centered group as the phone layout. */
+function landscapeLaptop(base, m, fontScale, aspect) {
+  const gap = 72;
+  const textWidth = 460;
+  const phoneW = 1240;
+  const phoneH = Math.round(phoneW / aspect);
+  const groupW = textWidth + gap + phoneW;
+  const groupX = Math.round((base.width - groupW) / 2);
+  const phoneX = groupX + textWidth + gap;
+  const phoneY = Math.round((base.height - phoneH) / 2);
+  return {
+    format: 'landscape', ...base, margin: m, fontScale, gap, device: 'laptop', radius: 16,
+    phone: { x: phoneX, y: phoneY, w: phoneW, h: phoneH },
+    copyX: groupX,
+    textWidth,
+    textTop: phoneY + 36,
+    endTop: phoneY + 110,
+    hookSize: 56,
+    titleSize: 40,
+    endSize: 60,
     subSize: 20
   };
 }
