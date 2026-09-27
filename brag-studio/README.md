@@ -12,7 +12,7 @@ From the repository root:
 
 ```bash
 node brag-studio/bin/brag-studio.mjs \
-  --url http://127.0.0.1:5173/table/7 \
+  --url https://kochi-dine-in-app.vercel.app/table/7 \
   --journey brag-studio/journeys/kochi.mjs \
   --format landscape \
   --disclaimers brag-studio/projects/kochi/disclaimers.json \
@@ -57,16 +57,7 @@ No voiceover is generated. No paid image, music, or video API is called.
 
 ## Kochi
 
-The checked-in journey records table 7 of the Kochi dine-in app: category tabs, joining the check, a dish, a second person, the shared cart, then the split bill. It does not press Pay.
-
-Record it against a local checkout of [kochi-dine-in-app](https://github.com/Zer0will/kochi-dine-in-app), not the hosted site. On that site, **Send round to kitchen** can place a real order. `npm run dev` answers `POST /api/round` in memory and does not use a database or production keys. The journey throws if the page host is not `localhost` or `127.0.0.1`. `prepare()` also fulfills `/api/round`, aborts `/api/order`, and blocks requests to a hosted Kochi origin.
-
-```bash
-# in the Kochi repo
-npm install && npm run dev -- --host 127.0.0.1 --port 5173
-```
-
-Then run the command above. See `projects/kochi/disclaimers.json`. Dish photos in the app are stripe placeholders, so the cut stays on the category rail, the price button, and the cart.
+The checked-in journey records [Kochi table 7](https://kochi-dine-in-app.vercel.app/table/7): category tabs, joining the check, a dish, a second person, the shared cart, Send round to kitchen, then the split bill. It does not press Pay and does not type payment details. See `projects/kochi/disclaimers.json`. Dish photos in the app are stripe placeholders, so the cut stays on the category rail, the price button, and the cart.
 
 ## Credits
 

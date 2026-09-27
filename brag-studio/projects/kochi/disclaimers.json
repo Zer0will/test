@@ -9,5 +9,5 @@
     "literals": ["Table 7", "코치포차", "Beef bulgogi"]
   },
   "bannedPatterns": [],
-  "notes": "Do not invent metrics, customers, or integrations. The pay button is visible in the product and is not pressed. Record against the local Vite server. Its POST /api/round mock is in memory and is not a kitchen ticket. Do not press Send round on the hosted site."
+  "notes": "Do not invent metrics, customers, or integrations. The pay button is visible in the product and is not pressed. No payment details are entered. The recording is the live table page. Send round uses the app's preview response."
 }

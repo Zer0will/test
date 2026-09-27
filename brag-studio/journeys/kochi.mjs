@@ -1,17 +1,14 @@
 /**
- * Kochi dine-in, table 7, recorded against the local Vite app.
+ * Kochi dine-in, table 7, recorded on the live table page.
  * Join the check, add a dish, add a second person, look at the shared cart,
- * send the round, then open the split. Does not press Pay.
- *
- * Send round is refused unless the page is localhost. The Vite dev server
- * answers POST /api/round in memory (no database). prepare() also fulfills
- * that request and aborts /api/order, and drops anything aimed at a hosted app.
+ * send the round, then open the split.
+ * Does not press Pay and does not type payment details.
  */
 
 export const product = 'Kochi';
 
 export const notes = `
-Kochi Po-cha's dine-in screen opens a menu for one table. Category buttons and prices come from the restaurant menu data. Joining the check asks for a name, then a dish can be added, then another person can join the same check. The cart lists each person with subtotal, tax, and total, and says the bill can be one check or split by person. This recording is the local dev server. Sending the round hits that server's in-memory preview, not a kitchen. The recording stops on the even split. Pay is not pressed.
+Kochi Po-cha's dine-in screen opens a menu for one table. Category buttons and prices come from the restaurant menu data. Joining the check asks for a name, then a dish can be added, then another person can join the same check. The cart lists each person with subtotal, tax, and total, and says the bill can be one check or split by person. This recording is the live table page. Sending the round uses the app's own preview response. The recording stops on the even split. Pay is not pressed, and no payment details are entered.
 `;
 
 export const posts = {
@@ -148,28 +145,6 @@ export const scenes = [
   }
 ];
 
-export async function prepare(page) {
-  await page.route('**/*', route => {
-    const host = new URL(route.request().url()).hostname;
-    if (host.endsWith('vercel.app') || host.endsWith('supabase.co')) return route.abort();
-    return route.continue();
-  });
-  const preview = JSON.stringify({ ok: true, roundId: 'PREVIEW', mode: 'preview_no_kitchen_notification' });
-  await page.route('**/api/round', route => route.fulfill({
-    status: 200,
-    contentType: 'application/json',
-    body: preview
-  }));
-  await page.route('**/api/order', route => route.abort());
-}
-
-function assertLocal(page) {
-  const host = new URL(page.url()).hostname;
-  if (host !== '127.0.0.1' && host !== 'localhost') {
-    throw new Error(`Kochi journey only runs on localhost (got ${host}). Send round is not pressed on a hosted site.`);
-  }
-}
-
 async function hideStripe(page) {
   await page.locator('.sheet-scroll').evaluate(el => {
     el.scrollTo({ top: 220, behavior: 'smooth' });
@@ -178,7 +153,6 @@ async function hideStripe(page) {
 
 export async function run(ctx) {
   const { page } = ctx;
-  assertLocal(page);
 
   await ctx.step('arrive', async () => {
     await page.waitForSelector('.card');
@@ -272,7 +246,6 @@ export async function run(ctx) {
   });
 
   await ctx.step('split', async () => {
-    assertLocal(page);
     await ctx.tap(page.getByRole('button', { name: /Send round/ }));
     await page.waitForSelector('.sent-banner');
     await ctx.sleep(800);
