@@ -47,7 +47,7 @@ export const scenes = [
     id: 'hook',
     kind: 'hook',
     step: 'arrive',
-    duration: 3.4,
+    duration: 3.0,
     ...pace,
     cue: 'settled',
     cueAt: 0.24,
