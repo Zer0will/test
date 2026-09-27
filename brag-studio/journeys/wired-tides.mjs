@@ -110,7 +110,7 @@ export const scenes = [
     id: 'ship',
     kind: 'feature',
     step: 'ship',
-    duration: 4.6,
+    duration: 3.5,
     ...pace,
     cue: 'home',
     cueAt: 0.32,
@@ -228,6 +228,6 @@ export async function run(ctx) {
     await page.getByRole('heading', { level: 1, name: /Your business/ }).waitFor();
     ctx.cue('home');
     await ctx.jump(GUTTER.x, GUTTER.y);
-    await ctx.sleep(2600);
+    await ctx.sleep(3600);
   });
 }
