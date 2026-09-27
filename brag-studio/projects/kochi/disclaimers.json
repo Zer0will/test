@@ -9,5 +9,5 @@
     "literals": ["Table 7", "코치포차", "Beef bulgogi"]
   },
   "bannedPatterns": [],
-  "notes": "Do not invent metrics, customers, or integrations. The pay button is visible in the product and is not pressed. The kitchen round is a local preview response, not a ticket."
+  "notes": "Do not invent metrics, customers, or integrations. The pay button is visible in the product and is not pressed. Record against the local Vite server. Its POST /api/round mock is in memory and is not a kitchen ticket. Do not press Send round on the hosted site."
 }

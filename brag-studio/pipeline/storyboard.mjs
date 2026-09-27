@@ -28,7 +28,7 @@ Dine-in ordering prototype. The picture is a screen recording of ${url}, cropped
 ## Honesty
 On-screen disclaimer: ${disclaimer}
 
-This storyboard does not add metrics, customers, or integrations. Prices, dish names, and the split controls are whatever the live app showed during the capture. Payment is not completed. The kitchen round request is answered locally as a preview so no order is sent.
+This storyboard does not add metrics, customers, or integrations. Prices, dish names, and the split controls are whatever the app showed during the capture. Payment is not completed. The Kochi example is recorded on the local dev server, whose kitchen round is an in-memory preview, so no order is sent.
 
 ## Footage
 Every scene except the end card is live recording, played back slightly faster. The end card holds one frame from the menu recording and adds type on top.

@@ -94,9 +94,12 @@ export function linesForScene(scene) {
     (scene.copy.words || []).forEach((word, i) => add(`w${i}`, word, 0.14 + i * 0.62));
     add('sub', scene.copy.sub, 0.52);
   } else if (scene.kind === 'end') {
+    add('pen', scene.copy.pen, 0.08);
+    add('kicker', scene.copy.kicker, 0.1);
     add('title', scene.copy.title, 0.16);
     add('sub', scene.copy.sub, 0.42);
   } else {
+    add('pen', scene.copy.pen, 0.04);
     add('kicker', scene.copy.kicker, 0.06);
     add('title', scene.copy.title, 0.1);
     add('sub', scene.copy.sub, 0.26);

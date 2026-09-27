@@ -33,9 +33,10 @@ function html(json) {
     --phone-x: 0px; --phone-y: 0px; --phone-w: 400px; --phone-h: 860px; --radius: 48px;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; overflow: hidden; background: #08090d; color: #f6eede; font-family: "Schibsted Grotesk", sans-serif; }
+  html, body { margin: 0; overflow: hidden; background: #0d0c0f; color: #f6eede; font-family: "Schibsted Grotesk", sans-serif; }
   body { position: relative; }
-  .glow { position: absolute; left: 160px; top: 140px; width: 480px; height: 380px; background: radial-gradient(circle, rgba(255,89,79,.18), transparent 70%); filter: blur(6px); pointer-events: none; }
+  .glow { position: absolute; left: 120px; top: 160px; width: 520px; height: 420px; background: radial-gradient(circle, rgba(255,89,79,.22), transparent 68%); filter: blur(8px); pointer-events: none; }
+  .glow-gold { position: absolute; left: 80px; top: 520px; width: 360px; height: 220px; background: radial-gradient(circle, rgba(255,189,98,.14), transparent 70%); filter: blur(10px); pointer-events: none; }
   .copy { position: absolute; left: var(--m); top: var(--copy-top); width: var(--text-w); }
   .pen { font-family: "Nanum Pen Script", cursive; font-size: calc(42px * var(--s)); color: #ffbd62; line-height: 1; margin: 0 0 6px; }
   .kicker { font-weight: 700; letter-spacing: .22em; font-size: calc(13px * var(--s)); color: #ffbd62; text-transform: uppercase; margin: 0 0 14px; }
@@ -46,11 +47,11 @@ function html(json) {
   .title { font-size: calc(var(--title) * var(--s)); line-height: 1.08; margin: 0 0 14px; }
   .end-title { font-size: calc(var(--end) * var(--s)); line-height: 1; margin: 0 0 16px; }
   .sub { font-weight: 500; font-size: calc(var(--sub) * var(--s)); line-height: 1.35; color: #f3eadc; margin: 0; max-width: 36rem; }
-  .callout { display: inline-block; margin-top: 22px; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(255,189,98,.6); color: #ffbd62; font-weight: 700; font-size: calc(16px * var(--s)); }
+  .callout { display: inline-block; margin-top: 22px; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(255,89,79,.55); background: rgba(255,89,79,.12); color: #ffbd62; font-weight: 700; font-size: calc(16px * var(--s)); }
   .disclaimer { position: absolute; left: var(--m); bottom: var(--m); color: #ffbd62; font-weight: 700; font-size: 15px; letter-spacing: .03em; }
   .disclaimer i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ff594f; margin-right: 8px; vertical-align: 1px; }
   .phone-shadow { position: absolute; left: var(--phone-x); top: var(--phone-y); width: var(--phone-w); height: var(--phone-h); filter: drop-shadow(0 22px 36px rgba(0,0,0,.55)); }
-  .phone-clip { width: 100%; height: 100%; border-radius: var(--radius); overflow: hidden; background: #08090d; }
+  .phone-clip { width: 100%; height: 100%; border-radius: var(--radius); overflow: hidden; background: #0d0c0f; }
   #stage { width: 100%; height: 100%; position: relative; }
   #shot { width: 100%; height: 100%; display: block; }
   #dim { position: absolute; inset: 0; background: #000; pointer-events: none; }
@@ -59,6 +60,7 @@ function html(json) {
 </head>
 <body>
   <div class="glow"></div>
+  <div class="glow-gold"></div>
   <div class="copy" id="hook">
     <div class="pen" data-id="pen"></div>
     <div class="kicker" data-id="kicker"></div>
@@ -69,6 +71,7 @@ function html(json) {
     <p class="sub" data-id="sub"></p>
   </div>
   <div class="copy" id="feature">
+    <div class="pen" data-id="pen"></div>
     <div class="kicker" data-id="kicker"></div>
     <div class="rule" data-id="rule"></div>
     <h1 class="title" data-id="title"></h1>
@@ -76,6 +79,7 @@ function html(json) {
     <div class="callout" data-id="callout"></div>
   </div>
   <div class="copy" id="end">
+    <div class="pen" data-id="pen"></div>
     <div class="kicker" data-id="kicker"></div>
     <h1 class="end-title" data-id="title"></h1>
     <p class="sub" data-id="sub"></p>

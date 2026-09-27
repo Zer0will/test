@@ -12,7 +12,7 @@ From the repository root:
 
 ```bash
 node brag-studio/bin/brag-studio.mjs \
-  --url https://example.com \
+  --url http://127.0.0.1:5173/table/7 \
   --journey brag-studio/journeys/kochi.mjs \
   --format landscape \
   --disclaimers brag-studio/projects/kochi/disclaimers.json \
@@ -38,7 +38,7 @@ No voiceover is generated. No paid image, music, or video API is called.
 
 ## What the command does
 
-1. **Record.** Headless Chrome at 1920×1080, deviceScaleFactor 2, opens the URL and runs the journey at a human pace: scrolling, a drawn cursor, taps, and typing. A CDP screencast stores the frames. `prepare()` on the journey may stub a request that would otherwise leave the machine (Kochi does this for the preview kitchen POST).
+1. **Record.** Headless Chrome at 1920×1080, deviceScaleFactor 2, opens the URL and runs the journey at a human pace: scrolling, a drawn cursor, taps, and typing. A CDP screencast stores the frames. `prepare()` on the journey may stub a request that would otherwise leave the machine.
 2. **Storyboard.** Shot timings come from the recording plus the copy in the journey file. A checker rejects invented proof: customer counts, growth stats, ratings, and integrations that are not in the allow list.
 3. **Landscape cut.** The phone UI from the recording sits in a device window. Type, callouts, and highlight boxes use the rest of the frame. Camera moves ease in. Screenshots are not the body of the video.
 4. **Sound.** A generated bed, plus quiet Kenney clicks on the real taps.
@@ -57,7 +57,16 @@ No voiceover is generated. No paid image, music, or video API is called.
 
 ## Kochi
 
-The checked-in journey records [Kochi table 7](https://kochi-dine-in-app.vercel.app/table/7): menu, a dish, a guest name, a second guest, the shared cart, then the split bill. It does not press Pay. See `projects/kochi/disclaimers.json`.
+The checked-in journey records table 7 of the Kochi dine-in app: category tabs, joining the check, a dish, a second person, the shared cart, then the split bill. It does not press Pay.
+
+Record it against a local checkout of [kochi-dine-in-app](https://github.com/Zer0will/kochi-dine-in-app), not the hosted site. On that site, **Send round to kitchen** can place a real order. `npm run dev` answers `POST /api/round` in memory and does not use a database or production keys. The journey throws if the page host is not `localhost` or `127.0.0.1`. `prepare()` also fulfills `/api/round`, aborts `/api/order`, and blocks requests to a hosted Kochi origin.
+
+```bash
+# in the Kochi repo
+npm install && npm run dev -- --host 127.0.0.1 --port 5173
+```
+
+Then run the command above. See `projects/kochi/disclaimers.json`. Dish photos in the app are stripe placeholders, so the cut stays on the category rail, the price button, and the cart.
 
 ## Credits
 

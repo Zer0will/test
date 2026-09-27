@@ -72,7 +72,7 @@ function stats(buf, off, w, h) {
   let sum2 = 0;
   let border = 0;
   let ink = 0;
-  const bg = [8, 9, 13];
+  const bg = [13, 12, 15];
   for (let y = 0; y < h; y++) {
     const edgeY = y < 4 || y >= h - 4;
     for (let x = 0; x < w; x++) {
@@ -118,7 +118,7 @@ async function contactSheet(file, workDir, count) {
   const sheet = path.join(workDir, 'contact-sheet.png');
   await ffmpeg([
     '-framerate', '1', '-i', path.join(seq, '%03d.png'),
-    '-vf', `tile=${cols}x${rows}:padding=10:margin=10:color=0x08090d`,
+    '-vf', `tile=${cols}x${rows}:padding=10:margin=10:color=0x0d0c0f`,
     '-frames:v', '1',
     sheet
   ]);
