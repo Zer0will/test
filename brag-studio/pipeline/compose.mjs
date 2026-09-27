@@ -27,6 +27,7 @@ function html(json) {
   @font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/SchibstedGrotesk-500.ttf") format("truetype"); font-weight: 500; }
   @font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/SchibstedGrotesk-700.ttf") format("truetype"); font-weight: 700; }
   @font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/SchibstedGrotesk-800.ttf") format("truetype"); font-weight: 800; }
+  @font-face { font-family: "Sora"; src: url("/fonts/sora-600.woff2") format("woff2"); font-weight: 600; }
   @font-face { font-family: "Wired Sans"; src: url("/fonts/wired-sans.woff") format("woff"); font-weight: 400; }
   @font-face { font-family: "Wired Sans"; src: url("/fonts/wired-sans-bold.woff") format("woff"); font-weight: 700; }
   :root {

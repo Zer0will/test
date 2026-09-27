@@ -72,6 +72,19 @@ node brag-studio/bin/brag-studio.mjs \
   --out brag-studio/runs/wired-tides
 ```
 
+## Edmonds Chess Club
+
+`journeys/edmonds-chess.mjs` records the live public site in the laptop window: the homepage, a few moves against the chess bot, then weekly meets and the team page. It does not sign in or submit a form. See `projects/edmonds-chess/disclaimers.json`.
+
+```bash
+node brag-studio/bin/brag-studio.mjs \
+  --url https://edmondschessclub.org \
+  --journey brag-studio/journeys/edmonds-chess.mjs \
+  --format landscape \
+  --disclaimers brag-studio/projects/edmonds-chess/disclaimers.json \
+  --out brag-studio/runs/edmonds-chess
+```
+
 ## Credits
 
 - Original workflow, skill, and CC0 interface effects: [latent-spaces/brag](https://github.com/latent-spaces/brag), MIT, Shunit Haviv Hakimi

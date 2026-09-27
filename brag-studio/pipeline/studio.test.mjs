@@ -6,6 +6,7 @@ import { auditLayout, layoutFor } from './layout.mjs';
 import { publicBlocks } from './storyboard.mjs';
 import { scenes, posts } from '../journeys/kochi.mjs';
 import { scenes as tideScenes, posts as tidePosts } from '../journeys/wired-tides.mjs';
+import { scenes as chessScenes, posts as chessPosts } from '../journeys/edmonds-chess.mjs';
 
 test('reading time floors', () => {
   assert.equal(readingSeconds('Scan.'), 0.8);
@@ -82,6 +83,23 @@ test('wired tides copy is honest and readable', () => {
     scenes: built,
     posts: tidePosts,
     disclaimer: 'A recording of the live site.'
+  }));
+  assert.deepEqual(hits, []);
+});
+
+test('edmonds chess copy is honest and readable', () => {
+  let t = 0;
+  const built = chessScenes.map(spec => {
+    const scene = { ...spec, start: t, duration: spec.duration, end: t + spec.duration };
+    t += spec.duration;
+    return scene;
+  });
+  assert.ok(t >= 20 && t <= 30, `duration ${t}`);
+  assert.deepEqual(pacingIssues(built.flatMap(linesForScene)), []);
+  const hits = assertHonest(publicBlocks({
+    scenes: built,
+    posts: chessPosts,
+    disclaimer: 'A recording of the live public site.'
   }));
   assert.deepEqual(hits, []);
 });
