@@ -28,16 +28,16 @@ function html(json) {
   @font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/SchibstedGrotesk-700.ttf") format("truetype"); font-weight: 700; }
   @font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/SchibstedGrotesk-800.ttf") format("truetype"); font-weight: 800; }
   :root {
-    --s: 1; --m: 72px; --copy-top: 116px; --text-w: 640px;
+    --s: 1; --m: 64px; --copy-x: 72px; --copy-top: 116px; --text-w: 640px;
     --hook: 92px; --title: 58px; --end: 104px; --sub: 24px;
     --phone-x: 0px; --phone-y: 0px; --phone-w: 400px; --phone-h: 860px; --radius: 48px;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; overflow: hidden; background: #0d0c0f; color: #f6eede; font-family: "Schibsted Grotesk", sans-serif; }
   body { position: relative; }
-  .glow { position: absolute; left: 120px; top: 160px; width: 520px; height: 420px; background: radial-gradient(circle, rgba(255,89,79,.22), transparent 68%); filter: blur(8px); pointer-events: none; }
-  .glow-gold { position: absolute; left: 80px; top: 520px; width: 360px; height: 220px; background: radial-gradient(circle, rgba(255,189,98,.14), transparent 70%); filter: blur(10px); pointer-events: none; }
-  .copy { position: absolute; left: var(--m); top: var(--copy-top); width: var(--text-w); }
+  .glow { position: absolute; left: calc(var(--copy-x) + 48px); top: 160px; width: 520px; height: 420px; background: radial-gradient(circle, rgba(255,89,79,.22), transparent 68%); filter: blur(8px); pointer-events: none; }
+  .glow-gold { position: absolute; left: var(--copy-x); top: 520px; width: 360px; height: 220px; background: radial-gradient(circle, rgba(255,189,98,.14), transparent 70%); filter: blur(10px); pointer-events: none; }
+  .copy { position: absolute; left: var(--copy-x); top: var(--copy-top); width: var(--text-w); }
   .pen { font-family: "Nanum Pen Script", cursive; font-size: calc(42px * var(--s)); color: #ffbd62; line-height: 1; margin: 0 0 6px; }
   .kicker { font-weight: 700; letter-spacing: .22em; font-size: calc(13px * var(--s)); color: #ffbd62; text-transform: uppercase; margin: 0 0 14px; }
   .rule { width: 46px; height: 3px; border-radius: 2px; background: #ff594f; margin: 0 0 18px; }
@@ -48,7 +48,7 @@ function html(json) {
   .end-title { font-size: calc(var(--end) * var(--s)); line-height: 1; margin: 0 0 16px; }
   .sub { font-weight: 500; font-size: calc(var(--sub) * var(--s)); line-height: 1.35; color: #f3eadc; margin: 0; max-width: 36rem; }
   .callout { display: inline-block; margin-top: 22px; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(255,89,79,.55); background: rgba(255,89,79,.12); color: #ffbd62; font-weight: 700; font-size: calc(16px * var(--s)); }
-  .disclaimer { position: absolute; left: var(--m); bottom: var(--m); color: #ffbd62; font-weight: 700; font-size: 15px; letter-spacing: .03em; }
+  .disclaimer { position: absolute; left: var(--copy-x); bottom: var(--m); color: #ffbd62; font-weight: 700; font-size: 15px; letter-spacing: .03em; }
   .disclaimer i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ff594f; margin-right: 8px; vertical-align: 1px; }
   .phone-shadow { position: absolute; left: var(--phone-x); top: var(--phone-y); width: var(--phone-w); height: var(--phone-h); filter: drop-shadow(0 22px 36px rgba(0,0,0,.55)); }
   .phone-clip { width: 100%; height: 100%; border-radius: var(--radius); overflow: hidden; background: #0d0c0f; }
@@ -95,6 +95,7 @@ body.style.width = L.width + 'px';
 body.style.height = L.height + 'px';
 root.style.setProperty('--s', String(L.fontScale));
 root.style.setProperty('--m', L.margin + 'px');
+root.style.setProperty('--copy-x', (L.copyX ?? L.margin) + 'px');
 root.style.setProperty('--copy-top', (L.textTop || 116) + 'px');
 root.style.setProperty('--text-w', L.textWidth + 'px');
 root.style.setProperty('--hook', L.hookSize + 'px');

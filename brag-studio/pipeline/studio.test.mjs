@@ -46,6 +46,12 @@ test('landscape phone sits inside the margin', () => {
   assert.deepEqual(auditLayout(layout), []);
   assert.deepEqual(auditLayout(layoutFor('vertical')), []);
   assert.deepEqual(auditLayout(layoutFor('square')), []);
+  const { phone, copyX, textWidth, gap, width } = layout;
+  assert.equal(phone.x, copyX + textWidth + gap);
+  assert.ok(gap >= 80 && gap <= 160);
+  const right = width - (phone.x + phone.w);
+  assert.ok(Math.abs(copyX - right) <= 1);
+  assert.ok(phone.h > 920);
 });
 
 test('invented claims are rejected', () => {

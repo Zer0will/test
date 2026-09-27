@@ -11,14 +11,26 @@ const PHONE_ASPECT = 390 / 844;
 export function layoutFor(format, { fontScale = 1, margin } = {}) {
   const base = FORMATS[format];
   if (!base) throw new Error(`Unknown format "${format}". Use landscape, vertical, or square.`);
-  const m = margin ?? (format === 'landscape' ? 72 : 56);
+  const m = margin ?? (format === 'landscape' ? 64 : 56);
   if (format === 'landscape') {
-    const phoneH = 920;
-    const phoneW = Math.round(phoneH * PHONE_ASPECT);
+    // Caption column and phone are one group, centered, with a fixed gutter.
+    const gap = 120;
+    const textWidth = 640;
+    let phoneH = base.height - m * 2;
+    let phoneW = Math.round(phoneH * PHONE_ASPECT);
+    if (textWidth + gap + phoneW > base.width - m * 2) {
+      phoneW = base.width - m * 2 - textWidth - gap;
+      phoneH = Math.round(phoneW / PHONE_ASPECT);
+    }
+    const groupW = textWidth + gap + phoneW;
+    const groupX = Math.round((base.width - groupW) / 2);
+    const phoneX = groupX + textWidth + gap;
+    const phoneY = Math.round((base.height - phoneH) / 2);
     return {
-      format, ...base, margin: m, fontScale,
-      phone: { x: base.width - m - phoneW, y: Math.round((base.height - phoneH) / 2), w: phoneW, h: phoneH },
-      textWidth: 640,
+      format, ...base, margin: m, fontScale, gap,
+      phone: { x: phoneX, y: phoneY, w: phoneW, h: phoneH },
+      copyX: groupX,
+      textWidth,
       endTop: 268,
       hookSize: 92,
       titleSize: 58,
@@ -33,6 +45,7 @@ export function layoutFor(format, { fontScale = 1, margin } = {}) {
     return {
       format, ...base, margin: m, fontScale,
       phone: { x, y: m, w: phoneW, h: phoneH },
+      copyX: m,
       textWidth: base.width - m * 2,
       endTop: null,
       hookSize: 72,
@@ -47,6 +60,7 @@ export function layoutFor(format, { fontScale = 1, margin } = {}) {
   return {
     format, ...base, margin: m, fontScale,
     phone: { x: base.width - m - phoneW, y: Math.round((base.height - phoneH) / 2), w: phoneW, h: phoneH },
+    copyX: m,
     textWidth: 460,
     endTop: 220,
     hookSize: 64,
