@@ -53,8 +53,9 @@ export async function run(options) {
   }
   if (!meta.shell) throw new Error('Could not find the product frame on the page.');
   if (meta.fps && meta.fps < 8) log(`warning: screencast was ${meta.fps.toFixed(1)} fps`);
-  if (timeline.duration < 20 || timeline.duration > 30) {
-    throw new Error(`Timeline is ${timeline.duration.toFixed(2)}s. Keep it between 20 and 30.`);
+  const durationRange = journey.durationRange || { min: 20, max: 30 };
+  if (timeline.duration < durationRange.min || timeline.duration > durationRange.max) {
+    throw new Error(`Timeline is ${timeline.duration.toFixed(2)}s. Keep it between ${durationRange.min} and ${durationRange.max}.`);
   }
   log(`timeline ${timeline.duration.toFixed(2)}s, ${timeline.scenes.length} scenes`);
 
@@ -122,7 +123,9 @@ export async function run(options) {
     workDir: outDir,
     width: layout.width,
     height: layout.height,
-    background: journey.theme?.bg
+    background: journey.theme?.bg,
+    durationMin: durationRange.min,
+    durationMax: durationRange.max + 0.5
   });
   await fs.writeFile(path.join(outDir, 'review.json'), JSON.stringify({ ...report, heroes }, null, 2));
   if (!report.ok) {

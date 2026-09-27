@@ -7,6 +7,8 @@ import { publicBlocks } from './storyboard.mjs';
 import { scenes, posts } from '../journeys/kochi.mjs';
 import { scenes as tideScenes, posts as tidePosts } from '../journeys/wired-tides.mjs';
 import { scenes as chessScenes, posts as chessPosts } from '../journeys/edmonds-chess.mjs';
+import { scenes as cardScenes, posts as cardPosts } from '../journeys/card-match.mjs';
+import { scenes as card15Scenes, durationRange as card15Range } from '../journeys/card-match-15.mjs';
 
 test('reading time floors', () => {
   assert.equal(readingSeconds('Scan.'), 0.8);
@@ -100,6 +102,28 @@ test('edmonds chess copy is honest and readable', () => {
     scenes: built,
     posts: chessPosts,
     disclaimer: 'A recording of the live public site.'
+  }));
+  assert.deepEqual(hits, []);
+});
+
+test('card match copy is honest and readable', () => {
+  const check = (list, range) => {
+    let t = 0;
+    const built = list.map(spec => {
+      const scene = { ...spec, start: t, duration: spec.duration, end: t + spec.duration };
+      t += spec.duration;
+      return scene;
+    });
+    assert.ok(t >= range.min && t <= range.max, `duration ${t}`);
+    assert.deepEqual(pacingIssues(built.flatMap(linesForScene)), []);
+    return built;
+  };
+  const built = check(cardScenes, { min: 20, max: 30 });
+  check(card15Scenes, card15Range);
+  const hits = assertHonest(publicBlocks({
+    scenes: built,
+    posts: cardPosts,
+    disclaimer: 'A recording of the live site.'
   }));
   assert.deepEqual(hits, []);
 });

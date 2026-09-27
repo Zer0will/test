@@ -85,6 +85,19 @@ node brag-studio/bin/brag-studio.mjs \
   --out brag-studio/runs/edmonds-chess
 ```
 
+## Card Match
+
+`journeys/card-match.mjs` records the live quiz with sample choices, then the recommendation the site returns. It does not type personal or financial details. A fifteen-second cut of the same capture is `journeys/card-match-15.mjs`. See `projects/card-match/disclaimers.json`.
+
+```bash
+node brag-studio/bin/brag-studio.mjs \
+  --url https://cardmatch-red.vercel.app/ \
+  --journey brag-studio/journeys/card-match.mjs \
+  --format landscape \
+  --disclaimers brag-studio/projects/card-match/disclaimers.json \
+  --out brag-studio/runs/card-match
+```
+
 ## Credits
 
 - Original workflow, skill, and CC0 interface effects: [latent-spaces/brag](https://github.com/latent-spaces/brag), MIT, Shunit Haviv Hakimi

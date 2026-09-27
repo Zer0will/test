@@ -5,7 +5,7 @@ import { ffprobe, ffmpeg } from './clips.mjs';
 
 const FONT = '/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf';
 
-export async function reviewVideo(file, { workDir, width, height, background = '#0d0c0f' }) {
+export async function reviewVideo(file, { workDir, width, height, background = '#0d0c0f', durationMin = 20, durationMax = 30.5 }) {
   const probe = await ffprobe(file);
   const video = (probe.streams || []).find(s => s.codec_type === 'video');
   const audio = (probe.streams || []).find(s => s.codec_type === 'audio');
@@ -16,7 +16,7 @@ export async function reviewVideo(file, { workDir, width, height, background = '
   const issues = [];
   if (video?.width !== width || video?.height !== height) issues.push({ type: 'size', detail: `${video?.width}x${video?.height}` });
   if (Math.abs(fps - 30) > 0.2) issues.push({ type: 'fps', detail: fps.toFixed(2) });
-  if (duration < 20 || duration > 30.5) issues.push({ type: 'duration', detail: duration.toFixed(2) });
+  if (duration < durationMin || duration > durationMax) issues.push({ type: 'duration', detail: duration.toFixed(2) });
   if (!audio) issues.push({ type: 'audio', detail: 'missing soundtrack' });
   if (stat.size > 15 * 1024 * 1024) issues.push({ type: 'filesize', detail: `${(stat.size / 1024 / 1024).toFixed(1)} MB` });
 

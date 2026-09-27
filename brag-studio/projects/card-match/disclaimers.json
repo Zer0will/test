@@ -1,0 +1,13 @@
+{
+  "product": "Card Match",
+  "disclaimers": ["A recording of the live site."],
+  "alwaysShowDisclaimer": true,
+  "allow": {
+    "metrics": [],
+    "customers": [],
+    "integrations": [],
+    "literals": []
+  },
+  "bannedPatterns": [],
+  "notes": "Sample survey choices only. Do not type personal or financial details. Do not describe the result as a live model answer unless the page shows that."
+}
