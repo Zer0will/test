@@ -106,7 +106,7 @@ export const scenes = [
     maxRate: 1.38,
     cue: 'both',
     cueAt: 0.7,
-    highlight: { mark: 'totals', in: 0.74, out: 5.95 },
+    highlight: { mark: 'totals', in: 5.05, out: 5.95 },
     zoom: [1, 1.035],
     copy: {
       kicker: 'Order',
@@ -123,7 +123,7 @@ export const scenes = [
     maxRate: 1.2,
     cue: 'even',
     cueAt: 0.58,
-    highlight: { mark: 'shares', in: 0.72, out: 4.75 },
+    highlight: { mark: 'shares', in: 3.15, out: 4.75 },
     zoom: [1, 1.04],
     copy: {
       kicker: 'Split',
